@@ -1,0 +1,24 @@
+!!!5
+%html{lang: "es"}
+	%head
+		%meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+		%meta{charset:"UTF-8"}
+		%meta{content:"Plantel Azteca, Gliphy, GliphyHub, gliphy", name: "keywords"}
+		%meta{content:"GliplyHub, aquí podrás acceder a tus tareas y pendientes.", name: "description"}
+		%meta{content:"TeamDevs", name: "author"}
+		%meta{content:"TeamDevs", name: "owner"}
+		%meta{content:"index/follow", name: "robots"}
+		%meta{name: "theme-color", content: "#2E5EC6"}
+		= favicon_link_tag 'favicon.ico'
+		= csrf_meta_tags		
+		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+		-#%script{type:"text/javascript", src:"https://code.jquery.com/jquery-3.1.1.min.js",integrity:"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=",crossorigin:"anonymous"}
+		= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+		%script{src:"http://jnicol.github.io/particleground/js/jquery.particleground.js"}
+		%title GliphyHub
+%body	 
+	%p.notice
+		= notice 
+	%p.alert
+		= alert
+	=yield

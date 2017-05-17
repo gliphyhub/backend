@@ -40,7 +40,9 @@ gem 'haml-rails'
 gem 'devise'
 gem 'rails_admin', '~> 1.1.1'
 gem 'devise-i18n'
-
+gem 'material_icons'
+gem 'materialize-sass'
+gem 'jquery-turbolinks'
 #====================================================
 #====================================================
 group :development, :test do
