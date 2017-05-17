@@ -1,0 +1,45 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  matricula: MyString
+  ap_paterno: MyString
+  ap_materno: MyString
+  nombre: MyString
+  fecha_de_nacimiento: 2017-05-16
+  genero: one
+  calle: MyString
+  numero_exterior: MyString
+  numero_interior: MyString
+  colonia: MyString
+  delegacion_municipio: MyString
+  codigo_postal: MyString
+  telefono_casa: MyString
+  telefono_celular: MyString
+  telefono_recados: MyString
+  extension_recados: MyString
+  grupo: 
+  generacion: one
+  perfil_tutor: one
+
+two:
+  user: two
+  matricula: MyString
+  ap_paterno: MyString
+  ap_materno: MyString
+  nombre: MyString
+  fecha_de_nacimiento: 2017-05-16
+  genero: two
+  calle: MyString
+  numero_exterior: MyString
+  numero_interior: MyString
+  colonia: MyString
+  delegacion_municipio: MyString
+  codigo_postal: MyString
+  telefono_casa: MyString
+  telefono_celular: MyString
+  telefono_recados: MyString
+  extension_recados: MyString
+  grupo: 
+  generacion: two
+  perfil_tutor: two

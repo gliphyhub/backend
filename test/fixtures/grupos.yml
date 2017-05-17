@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  grupo: MyString
+  nivel: one
+  grado: one
+  turno: one
+
+two:
+  grupo: MyString
+  nivel: two
+  grado: two
+  turno: two

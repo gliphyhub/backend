@@ -1,0 +1,42 @@
+rails g model Tipo tipo_de_usuario
+
+rails g model Genero sexo
+
+rails g devise User tipo:belongs_to
+
+rails g model PerfilAdmin user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+
+rails g model PerfilProfesor user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+
+rails g model PerfilTutor user:belongs_to ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+
+rails g model PerfilAlumno user:belongs_to matricula ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados grupo:belongs_to generacion:belongs_to perfil_tutor:belongs_to
+
+rails g model Generacion generacion
+
+rails g model Grupo grupo nivel:belongs_to grado:belongs_to turno:belongs_to
+
+rails g model Nivel nivel
+
+rails g model Grado grado
+
+rails g model Turno turno
+
+rails g model Color color descripcion
+
+rails g model Materia materia nivel:belongs_to grado:belongs_to color:belongs_to
+
+rails g model ProfesorGrupo perfil_profesor:belongs_to grupo:belongs_to
+
+rails g model ProfesorMateria perfil_profesor:belongs_to materia:belongs_to
+
+rails g model MateriaGrupo materia:belongs_to grupo:belongs_to
+
+rails g model Publicacion titulo mensaje:text fecha_de_termino:date prioridad:boolean color:belongs_to
+
+rails g model Archivo publicacion:belongs_to nombre ruta
+
+rails g model PublicacionGrupo grupo:belongs_to perfil_profesor:belongs_to
+
+rails g model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
+

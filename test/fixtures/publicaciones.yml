@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  titulo: MyString
+  mensaje: MyText
+  fecha_de_termino: 2017-05-16
+  prioridad: false
+  color: one
+
+two:
+  titulo: MyString
+  mensaje: MyText
+  fecha_de_termino: 2017-05-16
+  prioridad: false
+  color: two

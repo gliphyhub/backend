@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  materia: MyString
+  nivel: one
+  grado: one
+  color: one
+
+two:
+  materia: MyString
+  nivel: two
+  grado: two
+  color: two

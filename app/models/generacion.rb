@@ -1,0 +1,2 @@
+class Generacion < ApplicationRecord
+end
