@@ -209,11 +209,11 @@ ActiveRecord::Schema.define(version: 20170517045422) do
 
   create_table "publicacion_grupos", force: :cascade do |t|
     t.integer  "grupo_id"
-    t.integer  "perfil_profesor_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "publicacion_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.index ["grupo_id"], name: "index_publicacion_grupos_on_grupo_id"
-    t.index ["perfil_profesor_id"], name: "index_publicacion_grupos_on_perfil_profesor_id"
+    t.index ["publicacion_id"], name: "index_publicacion_grupos_on_publicacion_id"
   end
 
   create_table "publicaciones", force: :cascade do |t|
@@ -221,10 +221,8 @@ ActiveRecord::Schema.define(version: 20170517045422) do
     t.text     "mensaje"
     t.date     "fecha_de_termino"
     t.boolean  "prioridad"
-    t.integer  "color_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.index ["color_id"], name: "index_publicaciones_on_color_id"
   end
 
   create_table "tipos", force: :cascade do |t|

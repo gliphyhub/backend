@@ -5,7 +5,6 @@ class CreatePublicaciones < ActiveRecord::Migration[5.0]
       t.text :mensaje
       t.date :fecha_de_termino
       t.boolean :prioridad
-      t.belongs_to :color, foreign_key: true
 
       t.timestamps
     end

@@ -18,7 +18,7 @@ class CreatePerfilAlumnos < ActiveRecord::Migration[5.0]
       t.string :telefono_celular
       t.string :telefono_recados
       t.string :extension_recados
-      t.belongs_to :grupo
+      t.belongs_to :grupo, foreign_key: true
       t.belongs_to :generacion, foreign_key: true
       t.belongs_to :perfil_tutor, foreign_key: true
 
