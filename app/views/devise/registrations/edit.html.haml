@@ -1,3 +1,5 @@
+-#para que no de el error de las particles
+#particles.ocultado
 %main
 	-#Contenedor principal
 	.profile.row.no-margin.min-total.white-text
@@ -52,6 +54,13 @@
 							%p Sexo:
 						.col.s12
 							%h5 "#{@sexo}"
+					-if current_user.tipo.id == 4
+						.col.s12.m6.dato
+							.col.s12
+								%i.material-icons.left extension
+								%p Grupo:
+							.col.s12
+								%h5 #{@grupo}
 				.col.s12.no-padding
 					.col.s12.m6.dato
 						.col.s12
