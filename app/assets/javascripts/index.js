@@ -96,15 +96,13 @@ $(function() {
 		$("#inicialForm, .logotipo-login").delay(400).fadeIn(2000);
 	});
 
-	$(".forget a").on ("click", function() {
+	$("#prueba").on ("click", function() {
 		$(".ingresar").fadeOut();
 		$(".olvide").delay(500).fadeIn();
 	});
 
 	$("#rbutton").on("click", function() {
-		$('#mensaje-01').modal('open');
-		$("#recuperar01").fadeOut();
-		$("#recuperar02").delay(500).removeClass("ocultado")
+		$("#recuperar").fadeOut();
 	});
 
 	$("#back-to-ingresar").on("click", function() {
@@ -118,6 +116,8 @@ $(function() {
 	$("#menu-login a").on("click", function() {
 		$('#menu-login').sideNav('hide');
 	});
+
+
 
        // function parallaxScroll()
         //{

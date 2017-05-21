@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: generos
+#
+#  id   :integer          not null, primary key
+#  sexo :string
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

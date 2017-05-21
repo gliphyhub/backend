@@ -1,0 +1,22 @@
+= form_for @publicacion do |f|
+  - if @publicacion.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@publicacion.errors.count, "error")} prohibited this publicacion from being saved:"
+      %ul
+        - @publicacion.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :titulo
+    = f.text_field :titulo
+  .field
+    = f.label :mensaje
+    = f.text_area :mensaje
+  .field
+    = f.label :fecha_de_termino
+    = f.date_select :fecha_de_termino
+  .field
+    = f.label :prioridad
+    = f.check_box :prioridad
+  .actions
+    = f.submit 'Save'

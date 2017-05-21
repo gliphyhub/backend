@@ -1,15 +1,26 @@
+# == Schema Information
+#
+# Table name: publicaciones
+#
+#  id               :integer          not null, primary key
+#  titulo           :string
+#  mensaje          :text
+#  fecha_de_termino :date
+#  prioridad        :boolean
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   titulo: MyString
   mensaje: MyText
-  fecha_de_termino: 2017-05-16
+  fecha_de_termino: 2017-05-17
   prioridad: false
-  color: one
 
 two:
   titulo: MyString
   mensaje: MyText
-  fecha_de_termino: 2017-05-16
+  fecha_de_termino: 2017-05-17
   prioridad: false
-  color: two

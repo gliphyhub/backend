@@ -1,0 +1,63 @@
+-#=================================================================================
+-#===================================== DISEÑO ====================================
+-#=================================================================================
+
+-notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},]
+
+-#=========================================
+-#=========== Barra de navegación ================
+-#=========================================
+
+-if current_user.tipo.id == 1
+	=render "home/navs/admin"
+-elsif current_user.tipo.id == 2
+	=render "home/navs/prof"
+-elsif current_user.tipo.id == 4
+	-if current_user.perfil_alumno.grupo.nivel.id == 1
+		=render "home/navs/secundaria"
+	-else
+		=render "home/navs/bachillerato"
+-else
+	=render "home/navs/tutor"
+
+-#=========================================
+-#=========== Opciones de usuario =========
+-#=========================================
+%ul#user-menu.side-nav.blue-grey.darken-4
+	%li.userView
+		.background
+			=image_tag "#{@imgCover}"
+		.white-bonis
+			=image_tag "#{@imgPerfil}", class:"circle"
+			%span.white-text.name #{@nombreCorto}
+			%span.white-text.email.separado #{@tipoUser}
+	%li.waves-effect
+		%i.material-icons.left.white-bonis person
+		=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
+	%li.waves-effect
+		%i.material-icons.white-bonis power_settings_newd
+		=link_to "Salir", destroy_user_session_path, method: :delete, class:"white-bonis waves-effect"
+-#=========================================
+-#======== Menú Notificaciones - Responsive ============
+-#=========================================
+%ul#notificaciones-menu.side-nav.blue-grey.darken-3
+	.side-contenedor
+		%br/
+		%li.white-text
+			%h6.center-align.upper Notificaciones
+		%ul.notificaciones
+			-notificationes.each do |item|
+				%li 
+					%ul.collapsible.collapsible-accordion
+						%li
+							%a.waves-effect.white-bonis.collapsible-header
+								%i.material-icons.left.white-bonis=item[:icon]
+								%span.trun=item[:title]
+								%label=item[:publicador]
+							.collapsible-body
+								%ul.blue-grey.darken-1
+									.row.no-margin
+										.col.s12.no-padding
+											.noti.white-text.jus=item[:desc]
+										.col.s12.no-padding
+											%a.btn-flat.waves-effect.no-margin.orange-text.right Ver más

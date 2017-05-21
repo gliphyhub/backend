@@ -1,0 +1,8 @@
+resources :post
+get /post => post_controller #index
+get /post/new => post_controller #new
+post /post => post_controller #create
+get /post/:id => post_controller #show
+put/patch /post/:id post_controller #update
+get /post/:id/edit post_controller #edit
+delete /posts/:id post_cotroller #delete

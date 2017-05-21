@@ -1,0 +1,20 @@
+!!!5
+%html{lang: "es"}
+	%head
+		%meta{name:"viewport", content:"width=device-width, initial-scale=1"}
+		%meta{charset:"UTF-8"}
+		-#%title= "Gliphy#{@tipoUser.capitalize}"
+		%title GliphyHub
+		= favicon_link_tag 'favicon.ico'
+		= csrf_meta_tags		
+		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+		%script{type:"text/javascript", src:"https://code.jquery.com/jquery-3.1.1.min.js", integrity:"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=", crossorigin:"anonymous"}
+		= javascript_include_tag 'gliphymain', 'data-turbolinks-track': 'reload'
+
+%body
+	- flash.each do |_key, msg|
+		%script Materialize.toast("#{msg}", 5000);
+
+	=render "home/navs/nav"
+
+	=yield

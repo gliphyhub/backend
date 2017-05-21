@@ -1,3 +1,5 @@
+bundle exec anotate
+
 rails g model Tipo tipo_de_usuario
 
 rails g model Genero sexo
@@ -32,11 +34,12 @@ rails g model ProfesorMateria perfil_profesor:belongs_to materia:belongs_to
 
 rails g model MateriaGrupo materia:belongs_to grupo:belongs_to
 
-rails g model Publicacion titulo mensaje:text fecha_de_termino:date prioridad:boolean 
+rails g scaffold Publicacion titulo mensaje:text fecha_de_termino:date prioridad:boolean 
+
+rails g model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
 
 rails g model Archivo publicacion:belongs_to nombre ruta
 
 rails g model PublicacionGrupo grupo:belongs_to publicacion:belongs_to
 
-rails g model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
 

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Titulo:
+  = @publicacion.titulo
+%p
+  %b Mensaje:
+  = @publicacion.mensaje
+%p
+  %b Fecha de termino:
+  = @publicacion.fecha_de_termino
+%p
+  %b Prioridad:
+  = @publicacion.prioridad
+
+= link_to 'Edit', edit_publicacion_path(@publicacion)
+\|
+= link_to 'Back', publicaciones_path

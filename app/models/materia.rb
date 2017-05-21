@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: materias
+#
+#  id         :integer          not null, primary key
+#  materia    :string
+#  nivel_id   :integer
+#  grado_id   :integer
+#  color_id   :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Materia < ApplicationRecord
   belongs_to :nivel
   belongs_to :grado

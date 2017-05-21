@@ -1,0 +1,34 @@
+%main.main-login
+	-#======= Parte principal ==========
+	.index-first.z-depth-2
+		-#======== Animación inicial ===========
+		
+		-#======== Particles ===========
+		#particles.fixed.z-depth-2
+		-#======== Nav bar de navegación ===========
+
+		-#======== Contenido de la parte principal ===========
+		.row.finished.no-margin
+			.col.s12.m6.center-align
+				=image_tag "login/logo-horizontal-w-s.png", class: "hide-on-small-only"
+				=image_tag "login/logo-s.png", class: "hide-on-med-and-up left"
+			.col.s12.m5.white-text.recuperar-displayed
+				.col.s12
+					%h5= t('.change_your_password')
+				.col.s12
+					= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+						= devise_error_messages!
+						= f.hidden_field :reset_password_token
+						.input-field.col.s12
+							%i.material-icons.prefix.medium lock_outline
+							= f.label :password, t('.new_password')
+							= f.password_field :password, autocomplete: "off"
+						.input-field.col.s12
+							%i.material-icons.prefix.medium lock_outline
+							= f.label :password_confirmation, t('.confirm_new_password')
+							%br/
+							= f.password_field :password_confirmation, autocomplete: "off"
+						.input-field.col.s12
+							= f.submit t('.change_my_password'), class:"col s12 btn waves-effect waves-light"
+						.col.s12.forget.center-align
+							=link_to "Iniciar", new_user_session_path,class:"upper white-bonis manita"

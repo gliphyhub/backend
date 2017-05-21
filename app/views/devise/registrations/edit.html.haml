@@ -1,0 +1,114 @@
+%main
+	-#Contenedor principal
+	.profile.row.no-margin.min-total.white-text
+		.col.s12.m12.l4.no-padding.side-profile
+			-#Portada
+			.portadaProfile.z-depth-3.no-padding
+				=image_tag "#{@imgCover}"
+				.col.s12.back-btn
+					%a.btn.waves-effect.center-align.white-bonis
+						%i.material-icons.left arrow_back
+						%span Regresar
+			-#Imagen de perfil
+			.imgProfile.col.s12.center.no-padding
+				%img.circle.z-depth-4{src:"#{@imgPerfil}"}
+			-#Nombre 
+			.name-profile.col.s12
+				%h5.center-align
+					%span "#{@nombreCorto}"
+				%h6.center-align.upper
+					%span "#{@tipoUser}"
+			.editar.col.s12.ocultado.center-align
+				%a.btn-flat.waves-effect.orange-text.text-lighten-1 Editar foto
+
+		-#Contenido
+		.contentProfile.col.s12.m12.l8.no-padding.blue-grey.darken-2.z-depth-3
+			-#Opciones
+			#profileOptions.col.s12
+				.col.s12.no-padding
+					.col.s12.hide-on-med-and-down
+						%h4 Mis datos
+					.col.s12.m6.dato
+						.col.s12
+							%i.material-icons.left face
+							%p Nombre completo: 
+						.col.s12
+							%h5 "#{@nombres} #{@ap_paterno} #{@ap_materno}"
+					.col.s12.m6.dato
+						.col.s12
+							%i.material-icons.left contacts
+							%p Tipo de cuenta:
+						.col.s12
+							%h5 "#{@tipoUser}"
+					.col.s12.m6.dato
+						.col.s12
+							%i.material-icons.left event
+							%p Fecha de nacimiento:
+						.col.s12
+							%h5 |#{@fecha_de_nacimiento}|
+					.col.s12.m6.dato
+						.col.s12
+							%i.material-icons.left favorite
+							%p Sexo:
+						.col.s12
+							%h5 "#{@sexo}"
+				.col.s12.no-padding
+					.col.s12.m6.dato
+						.col.s12
+							%i.material-icons.left email
+							%p Correo:
+						%form
+							.col.s12.input-field
+								%input#correoUser.validate.grey-text{placeholder:"Ingresa un correo electrónico",value:"#{@correo}", disabled:"", type:"text"}
+					.col.s12.m6.dato
+						.col.s12
+							%i.material-icons.left vpn_key
+							%p Contraseña:
+						%form.col.s12.no-padding
+							.col.s12.input-field
+								%input#passOne.validate{placeholder:"********", disabled:"", type:"text"}
+							.col.s12.input-field.ocultado
+								%input#passTwo.validate{placeholder:"********", disabled:"", type:"text"}
+				%form#validarPass.col.s12.m6.input-field.ocultado.white-text
+					%h5.orange-text.text-darken-1 Ingresa tu contraseña antigua para guardar los cambios:
+					%input.validate{placeholder:"Contraseña antigua",disabled:"", type:"text"}
+				.col.s12.m6.dato
+					%a#cancelarDatosProfile.btn-flat.waves-effect.orange-text.text-darken-1.ocultado{href:"#!"} Cancelar
+					%a#editarDatosProfile.btn.waves-effect.grey-text.text-darken-4.orange{href:"#!"} Editar
+
+-# %h2= t('.title', resource: resource_class.model_name.human)
+-# = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+-# 	= devise_error_messages!
+-# 	.input-field.col.s12
+
+-# 		= f.label :email
+-# 		%br/
+-# 		= f.email_field :email
+-# 	-if devise_mapping.confirmable? && resource.pending_reconfirmation? 
+-# 		%p= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email)
+
+-# 	.input-field.col.s12
+-# 		= f.label :password 
+-# 		= t('.leave_blank_if_you_don_t_want_to_change_it')
+-# 		%br
+-# 		= f.password_field :password, autocomplete: "off"
+	
+-# 	.input-field.col.s12
+-# 		=f.label :password_confirmation
+-# 		%br/
+-# 		= f.password_field :password_confirmation
+
+-# 	.input-field.col.s12
+-# 		= f.label :current_password 
+-# 		= t('.we_need_your_current_password_to_confirm_your_changes') 
+-# 		%br/
+-# 		= f.password_field :current_password 
+
+-# 	= f.submit t('.update') 
+
+-# 	%h3= t('.cancel_my_account')
+
+-# 	= t('.unhappy')
+-# 	= link_to t('.cancel_my_account'), registration_path(resource_name), data: { confirm: t('.are_you_sure') }, method: :delete
+
+-# 	= link_to t('devise.shared.links.back'), :back 

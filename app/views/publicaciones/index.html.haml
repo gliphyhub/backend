@@ -1,0 +1,27 @@
+%h1 Listing publicaciones
+
+%table
+  %thead
+    %tr
+      %th Titulo
+      %th Mensaje
+      %th Fecha de termino
+      %th Prioridad
+      %th
+      %th
+      %th
+
+  %tbody
+    - @publicaciones.each do |publicacion|
+      %tr
+        %td= publicacion.titulo
+        %td= publicacion.mensaje
+        %td= publicacion.fecha_de_termino
+        %td= publicacion.prioridad
+        %td= link_to 'Show', publicacion
+        %td= link_to 'Edit', edit_publicacion_path(publicacion)
+        %td= link_to 'Destroy', publicacion, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Publicacion', new_publicacion_path

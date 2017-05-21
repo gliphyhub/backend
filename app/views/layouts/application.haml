@@ -16,9 +16,7 @@
 		= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
 		%script{src:"http://jnicol.github.io/particleground/js/jquery.particleground.js"}
 		%title GliphyHub
-%body	 
-	%p.notice
-		= notice 
-	%p.alert
-		= alert
+%body
+	- flash.each do |_key, msg|
+		%script Materialize.toast("#{msg}", 5000);
 	=yield

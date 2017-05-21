@@ -1,0 +1,38 @@
+%main.main-login
+	-#======= Parte principal ==========
+	.index-first.z-depth-2
+		-#======== Animación inicial ===========
+		
+		-#======== Particles ===========
+		#particles.fixed.z-depth-2
+		-#======== Nav bar de navegación ===========
+
+		-#======== Contenido de la parte principal ===========
+		.row.finished.no-margin
+			.col.s12.m6.center-align
+				=image_tag "login/logo-horizontal-w-s.png", class: "hide-on-small-only"
+				=image_tag "login/logo-s.png", class: "hide-on-med-and-up left"
+			.ingresar.col.s12.m5
+				.col.s12.white-bonis
+					%h4.hide-on-small-only Bienvenido
+					%h4.hide-on-med-and-up Bienvenido a GliphyHub
+					%h6 Ingrese su nombre de usuario y contraseña para acceder a la plataforma
+					-#=============================
+					=render "devise/sessions/new"
+					-#=============================
+					.col.s12.forget.center-align
+						-#= link_to "¿Olvidó su contraseña?", new_password_path(resource_name) , class:"upper white-bonis"
+						#prueba.upper.white-bonis.manita{href: "#!"} ¿olvidó su contraseña?
+			.olvide.col.s12.m5.white-text
+				.left
+					%a#back-to-ingresar.btn-flat.btn-square
+						%i.material-icons.prefix.medium arrow_back
+				.col.s12
+					%h5 ¿Olvidó su contraseña?
+				.col.s12
+					%p.jus.text-normal
+						%span Si olvidó su contraseña, ingrese en el campo de abajo el
+						%strong correo con el cual se registró
+						%span en la plataforma, para que nosotros podamos ayudarle a recuperar tu cuenta
+				#recuperar
+					=render "devise/passwords/new"

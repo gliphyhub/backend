@@ -1,0 +1,15 @@
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
+	.input-field.col.s12.l6
+		%i.material-icons.prefix.medium account_circle
+		= f.email_field :email, autofocus: true, class:"validate"
+		= f.label :email
+	.input-field.col.s12.l6
+		%i.material-icons.prefix.medium lock_outline
+		= f.password_field :password, autocomplete: "off", class:"validate"
+		= f.label :password
+	.input-field.col.s12.center
+		= f.check_box :remember_me
+		= f.label :remember_me
+	%br/
+	.input-field.col.s12
+		= f.submit t('.sign_in'), class:"col s12 btn waves-effect waves-light"

@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: grados
+#
+#  id    :integer          not null, primary key
+#  grado :string
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

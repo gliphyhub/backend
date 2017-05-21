@@ -18,6 +18,7 @@ $(function() {
 	   $(".collapsible-header").click(function () {
 	    $("#flecha_up_down").text("keyboard_arrow_down");
 	});*/
+
 	// =============== CONTAR CARACTERES ====================
 	$('input#input_text, textarea#textarea1').characterCounter();
 	 // =============== ComboBox =========================

@@ -11,7 +11,7 @@ crear
 17 profesores
 25 tutores
 30 alumnos
-==============
+============== 
 
 Genero.create(sexo:"masculino")
 Genero.create(sexo:"femenino")
