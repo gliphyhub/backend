@@ -1,20 +1,23 @@
--seccion="Inicio"
 -tipoUser = current_user.tipo.tipo_de_usuario
--nombres =  current_user.perfil_admin.nombre.capitalize
--ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
--ap_materno = current_user.perfil_admin.ap_materno.capitalize
--correo = current_user.email
--fecha_de_nacimiento = current_user.perfil_admin.fecha_de_nacimiento
--sexo = current_user.perfil_admin.genero.sexo
--imgCover = "covers/admin-cover.jpg"
--menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Publicaciones",link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
--tablas=[{title:"Panel de administración", link:rails_admin_path},{title:"Archivo", link:"basededatos/archivo"},{title:"Color", link:"basededatos/color"}, {title:"Generación", link:"basededatos/generacion"},{title:"Grado", link:"basededatos/grado"},  {title:"Grupo", link:"basededatos/grupo"},{title:"Materia", link:"basededatos/materia"}, {title:"Administrativos", link:"basededatos/perfil_admin"},{title:"Profesores", link:"basededatos/perfil_profesor"},{title:"Alumnos", link:"basededatos/perfil_alumno"}, {title:"Tutores", link:"basededatos/perfil_tutor"}, {title:"Publicación", link:"basededatos/publicacion"},{title:"Tipos", link:"basededatos/tipo"}, {title:"Turno", link:"basededatos/turno"}, {title:"Usuario", link:"basededatos/user"}]
-
--nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
--if sexo == "masculino"
-	-imgPerfil = "users/user01.jpg"
+-unless current_user.perfil_admin.nil?
+	-seccion="Inicio"
+	-nombres =  current_user.perfil_admin.nombre.capitalize
+	-ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
+	-ap_materno = current_user.perfil_admin.ap_materno.capitalize
+	-correo = current_user.email
+	-fecha_de_nacimiento = current_user.perfil_admin.fecha_de_nacimiento
+	-sexo = current_user.perfil_admin.genero.sexo
+	-imgCover = "covers/admin-cover.jpg"
+	-menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Publicaciones",link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
+	-tablas=[{title:"Panel de administración", link:rails_admin_path},{title:"Archivo", link:"basededatos/archivo"},{title:"Color", link:"basededatos/color"}, {title:"Generación", link:"basededatos/generacion"},{title:"Grado", link:"basededatos/grado"},  {title:"Grupo", link:"basededatos/grupo"},{title:"Materia", link:"basededatos/materia"}, {title:"Administrativos", link:"basededatos/perfil_admin"},{title:"Profesores", link:"basededatos/perfil_profesor"},{title:"Alumnos", link:"basededatos/perfil_alumno"}, {title:"Tutores", link:"basededatos/perfil_tutor"}, {title:"Publicación", link:"basededatos/publicacion"},{title:"Tipos", link:"basededatos/tipo"}, {title:"Turno", link:"basededatos/turno"}, {title:"Usuario", link:"basededatos/user"}]
+	-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
+	-if sexo == "masculino"
+		-imgPerfil = "users/user01.jpg"
+	-else
+		-imgPerfil = "users/user02.jpg"
 -else
-	-imgPerfil = "users/user02.jpg"
+	-nombreCorto = "Gliphy Hub"
+	-imgPerfil = "users/desconocido.png"
 
 -#=========================================
 -#=========== Barra de navegación ================
@@ -54,7 +57,7 @@
 			-#========== Navegación - menú =================
 			-#=========================================
 			.col.s8.margincito-left.hide-on-small-only.truncate
-				%a.breadcrumb= "Gliphy#{tipoUser}"
+				%a.breadcrumb= "Gliphy#{tipoUser.capitalize}"
 				%a.breadcrumb= "#{seccion}"
 
 -#=========================================
@@ -64,25 +67,26 @@
 	.side-contenedor
 		.side-lista
 			%br/
-			-menuLateral.each do |item|		
-				-if item[:title] == "Base de Datos"
-					%li
-						%ul.collapsible.collapsible-accordion
-							%li
-								%a#base-datos-list.waves-effect.white-bonis.collapsible-header
-									%i.material-icons.left.white-bonis=item[:icon]
-									%span=item[:title]
-									%i.arrow.material-icons.white-bonis arrow_drop_down
-								.collapsible-body
-									%ul.blue-grey.darken-3
-										-tablas.each do |tabla|
-											%li
-												%a.waves-effect.white-bonis{href:tabla[:link]}
+			-unless menuLateral.nil?
+				-menuLateral.each do |item|		
+					-if item[:title] == "Base de Datos"
+						%li
+							%ul.collapsible.collapsible-accordion
+								%li
+									%a#base-datos-list.waves-effect.white-bonis.collapsible-header
+										%i.material-icons.left.white-bonis=item[:icon]
+										%span=item[:title]
+										%i.arrow.material-icons.white-bonis arrow_drop_down
+									.collapsible-body
+										%ul.blue-grey.darken-3
+											-tablas.each do |tabla|
+												%li
+													%a.waves-effect.white-bonis{href:tabla[:link]}
 													%span= 	tabla[:title]
-				-else
-					%li.waves-effect
-						%i.material-icons.left.white-bonis=item[:icon]
-						=link_to item[:title], item[:link], class:"white-bonis"
+					-else
+						%li.waves-effect
+							%i.material-icons.left.white-bonis=item[:icon]
+							=link_to item[:title], item[:link], class:"white-bonis"
 				%br/
 		.line-divider
 		%li.ayuda-btn
@@ -96,25 +100,26 @@
 	.side-contenedor
 		.side-lista
 			%br/
-			-menuLateral.each do |item|		
-				-if item[:title] == "Base de Datos"
-					%li
-						%ul.collapsible.collapsible-accordion
-							%li
-								%a#base-datos-list.waves-effect.white-bonis.collapsible-header
-									%i.material-icons.left.white-bonis=item[:icon]
-									%span=item[:title]
-									%i.arrow.material-icons.white-bonis arrow_drop_down
-								.collapsible-body
-									%ul.blue-grey.darken-3
-										-tablas.each do |tabla|
-											%li
-												%a.waves-effect.white-bonis{href:tabla[:link]}
+			-unless menuLateral.nil?
+				-menuLateral.each do |item|		
+					-if item[:title] == "Base de Datos"
+						%li
+							%ul.collapsible.collapsible-accordion
+								%li
+									%a#base-datos-list.waves-effect.white-bonis.collapsible-header
+										%i.material-icons.left.white-bonis=item[:icon]
+										%span=item[:title]
+										%i.arrow.material-icons.white-bonis arrow_drop_down
+									.collapsible-body
+										%ul.blue-grey.darken-3
+											-tablas.each do |tabla|
+												%li
+													%a.waves-effect.white-bonis{href:tabla[:link]}
 													%span= 	tabla[:title]
-				-else
-					%li.waves-effect
-						%i.material-icons.left.white-bonis=item[:icon]
-						=link_to item[:title], item[:link], class:"white-bonis"
+					-else
+						%li.waves-effect
+							%i.material-icons.left.white-bonis=item[:icon]
+							=link_to item[:title], item[:link], class:"white-bonis"
 				%br/
 		.line-divider
 		%li.ayuda-btn

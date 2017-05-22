@@ -1,11 +1,14 @@
 class HomeController < ApplicationController
   def bienvenida
   end
-  def index   
+  def index 
+    if current_user.tipo.id == 1
+      @perfil_admin = PerfilAdmin.new       
+    else
+       
+    end 
 
   end
-
-
 
   def help
     

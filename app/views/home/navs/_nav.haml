@@ -1,50 +1,51 @@
 
 -tipoUser = current_user.tipo.tipo_de_usuario
 -if current_user.tipo.id == 1
-	-nombres =  current_user.perfil_admin.nombre.capitalize
-	-ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
-	-sexo = current_user.perfil_admin.genero.sexo
+	-unless current_user.perfil_admin.nil?
+		-nombres =  current_user.perfil_admin.nombre.capitalize
+		-ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
+		-sexo = current_user.perfil_admin.genero.sexo
+		-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
+		-notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},]
+	-else
+		-imgPerfil = "users/desconocido.png"
+		-imgCover = "covers/desconocido.png"
+-# -elsif current_user.tipo.id == 2
+-# 	-nombres =  current_user.perfil_profesor.nombre.capitalize
+-# 	-ap_paterno = current_user.perfil_profesor.ap_paterno.capitalize
+-# 	-ap_materno = current_user.perfil_profesor.ap_materno.capitalize
+-# 	-correo = current_user.email
+-# 	-fecha_de_nacimiento = current_user.perfil_profesor.fecha_de_nacimiento
+-# 	-sexo = current_user.perfil_profesor.genero.sexo
+-# 	-imgCover = "covers/teacher-cover.jpg"
+-# 	-menuLateral=[{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},
+-# 				{title:"Agregar",link:new_publicacion_path, icon:"add"}]
+-# -elsif current_user.tipo.id == 3
+-# 	-nombres =  current_user.perfil_tutor.nombre.capitalize
+-# 	-ap_paterno = current_user.perfil_tutor.ap_paterno.capitalize
+-# 	-ap_materno = current_user.perfil_tutor.ap_materno.capitalize
+-# 	-correo = current_user.email
+-# 	-fecha_de_nacimiento = current_user.perfil_tutor.fecha_de_nacimiento
+-# 	-sexo = current_user.perfil_tutor.genero.sexo
+-# 	-imgCover = "covers/student-cover.jpg"
+-# -else
+-# 	-nombres =  current_user.perfil_alumno.nombre.capitalize
+-# 	-ap_paterno = current_user.perfil_alumno.ap_paterno.capitalize
+-# 	-ap_materno = current_user.perfil_alumno.ap_materno.capitalize
+-# 	-correo = current_user.email
+-# 	-fecha_de_nacimiento = current_user.perfil_alumno.fecha_de_nacimiento
+-# 	-sexo = current_user.perfil_alumno.genero.sexo
+-# 	-grupo = current_user.perfil_alumno.grupo.grupo
+-# 	-imgCover = "covers/student-cover.jpg"
 
--elsif current_user.tipo.id == 2
-	-nombres =  current_user.perfil_profesor.nombre.capitalize
-	-ap_paterno = current_user.perfil_profesor.ap_paterno.capitalize
-	-ap_materno = current_user.perfil_profesor.ap_materno.capitalize
-	-correo = current_user.email
-	-fecha_de_nacimiento = current_user.perfil_profesor.fecha_de_nacimiento
-	-sexo = current_user.perfil_profesor.genero.sexo
-	-imgCover = "covers/teacher-cover.jpg"
-	-menuLateral=[{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},
-				{title:"Agregar",link:new_publicacion_path, icon:"add"}]
-	elsif current_user.tipo.id == 3
-	-nombres =  current_user.perfil_tutor.nombre.capitalize
-	-ap_paterno = current_user.perfil_tutor.ap_paterno.capitalize
-	-ap_materno = current_user.perfil_tutor.ap_materno.capitalize
-	-correo = current_user.email
-	-fecha_de_nacimiento = current_user.perfil_tutor.fecha_de_nacimiento
-	-sexo = current_user.perfil_tutor.genero.sexo
-	-imgCover = "covers/student-cover.jpg"
--else
-	-nombres =  current_user.perfil_alumno.nombre.capitalize
-	-ap_paterno = current_user.perfil_alumno.ap_paterno.capitalize
-	-ap_materno = current_user.perfil_alumno.ap_materno.capitalize
-	-correo = current_user.email
-	-fecha_de_nacimiento = current_user.perfil_alumno.fecha_de_nacimiento
-	-sexo = current_user.perfil_alumno.genero.sexo
-	-grupo = current_user.perfil_alumno.grupo.grupo
-	-imgCover = "covers/student-cover.jpg"
+-#
 
--nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
+-#-if sexo == "masculino"
+-#	-imgPerfil = "users/user01.jpg"
+-#-else
+-#-imgPerfil = "users/user02.jpg"
+-#-imgCover = "covers/student-cover.jpg"
 
--if sexo == "masculino"
-	-imgPerfil = "users/user01.jpg"
--else
-	-imgPerfil = "users/user02.jpg"
-
--#=========================================================================
--#===================================== DISEÑO ===========================
--#========================================================================
-
--notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},]
 
 -#=========================================
 -#=========== Barra de navegación ================
@@ -74,8 +75,22 @@
 			%span.white-text.name #{nombreCorto}
 			%span.white-text.email.separado #{tipoUser}
 	%li.waves-effect
-		%i.material-icons.left.white-bonis person
-		=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
+		-if current_user.tipo.id == 1
+			-unless current_user.perfil_admin.nil?
+				%i.material-icons.left.white-bonis person
+				=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
+		-elsif current_user.tipo.id == 2
+			-unless current_user.profesor_admin.nil?
+				%i.material-icons.left.white-bonis person
+				=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
+		-elsif current_user.tipo.id == 3
+			-unless current_user.tutor_admin.nil?
+				%i.material-icons.left.white-bonis person
+				=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
+		-else
+			-unless current_user.alumno_admin.nil?
+				%i.material-icons.left.white-bonis person
+				=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
 	%li.waves-effect
 		%i.material-icons.white-bonis power_settings_newd
 		=link_to "Salir", destroy_user_session_path, method: :delete, class:"white-bonis waves-effect"
@@ -88,18 +103,19 @@
 		%li.white-text
 			%h6.center-align.upper Notificaciones
 		%ul.notificaciones
-			-notificationes.each do |item|
-				%li 
-					%ul.collapsible.collapsible-accordion
-						%li
-							%a.waves-effect.white-bonis.collapsible-header
-								%i.material-icons.left.white-bonis=item[:icon]
-								%span.trun=item[:title]
-								%label=item[:publicador]
-							.collapsible-body
-								%ul.blue-grey.darken-1
-									.row.no-margin
-										.col.s12.no-padding
-											.noti.white-text.jus=item[:desc]
-										.col.s12.no-padding
-											%a.btn-flat.waves-effect.no-margin.orange-text.right Ver más
+			-unless notificationes.nil?
+				-notificationes.each do |item|
+					%li 
+						%ul.collapsible.collapsible-accordion
+							%li
+								%a.waves-effect.white-bonis.collapsible-header
+									%i.material-icons.left.white-bonis=item[:icon]
+									%span.trun=item[:title]
+									%label=item[:publicador]
+								.collapsible-body
+									%ul.blue-grey.darken-1
+										.row.no-margin
+											.col.s12.no-padding
+												.noti.white-text.jus=item[:desc]
+											.col.s12.no-padding
+												%a.btn-flat.waves-effect.no-margin.orange-text.right Ver más
