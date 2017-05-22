@@ -1,0 +1,61 @@
+= form_for @perfil_profesor do |f|
+  - if @perfil_profesor.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@perfil_profesor.errors.count, "error")} prohibited this perfil_profesor from being saved:"
+      %ul
+        - @perfil_profesor.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :user
+    = f.text_field :user
+  .field
+    = f.label :nss
+    = f.text_field :nss
+  .field
+    = f.label :ap_paterno
+    = f.text_field :ap_paterno
+  .field
+    = f.label :ap_materno
+    = f.text_field :ap_materno
+  .field
+    = f.label :nombre
+    = f.text_field :nombre
+  .field
+    = f.label :fecha_de_nacimiento
+    = f.date_select :fecha_de_nacimiento
+  .field
+    = f.label :genero
+    = f.text_field :genero
+  .field
+    = f.label :calle
+    = f.text_field :calle
+  .field
+    = f.label :numero_exterior
+    = f.text_field :numero_exterior
+  .field
+    = f.label :numero_interior
+    = f.text_field :numero_interior
+  .field
+    = f.label :colonia
+    = f.text_field :colonia
+  .field
+    = f.label :delegacion_municipio
+    = f.text_field :delegacion_municipio
+  .field
+    = f.label :codigo_postal
+    = f.text_field :codigo_postal
+  .field
+    = f.label :telefono_casa
+    = f.text_field :telefono_casa
+  .field
+    = f.label :telefono_celular
+    = f.text_field :telefono_celular
+  .field
+    = f.label :telefono_recados
+    = f.text_field :telefono_recados
+  .field
+    = f.label :extension_recados
+    = f.text_field :extension_recados
+  .actions
+    = f.submit 'Save'

@@ -1,7 +1,8 @@
-class CreatePerfilTutores < ActiveRecord::Migration[5.0]
+class CreatePerfilAdmins < ActiveRecord::Migration[5.0]
   def change
-    create_table :perfil_tutores do |t|
-      t.belongs_to :user, foreign_key: true, index: { unique: true }
+    create_table :perfil_admins do |t|
+      t.belongs_to :user, foreign_key: true,unique: true,index:{unique: true}
+      t.string :nss
       t.string :ap_paterno
       t.string :ap_materno
       t.string :nombre

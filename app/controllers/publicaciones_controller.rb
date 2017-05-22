@@ -1,10 +1,12 @@
 class PublicacionesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_publicacion, only: [:show, :edit, :update, :destroy]
 
   # GET /publicaciones
   # GET /publicaciones.json
   def index
     @publicaciones = Publicacion.all
+    
   end
 
   # GET /publicaciones/1

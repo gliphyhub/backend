@@ -1,0 +1,59 @@
+%h1 Listing perfil_alumnos
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Matricula
+      %th Ap paterno
+      %th Ap materno
+      %th Nombre
+      %th Fecha de nacimiento
+      %th Genero
+      %th Calle
+      %th Numero exterior
+      %th Numero interior
+      %th Colonia
+      %th Delegacion municipio
+      %th Codigo postal
+      %th Telefono casa
+      %th Telefono celular
+      %th Telefono recados
+      %th Extension recados
+      %th Grupo
+      %th Generacion
+      %th Perfil tutor
+      %th
+      %th
+      %th
+
+  %tbody
+    - @perfil_alumnos.each do |perfil_alumno|
+      %tr
+        %td= perfil_alumno.user
+        %td= perfil_alumno.matricula
+        %td= perfil_alumno.ap_paterno
+        %td= perfil_alumno.ap_materno
+        %td= perfil_alumno.nombre
+        %td= perfil_alumno.fecha_de_nacimiento
+        %td= perfil_alumno.genero
+        %td= perfil_alumno.calle
+        %td= perfil_alumno.numero_exterior
+        %td= perfil_alumno.numero_interior
+        %td= perfil_alumno.colonia
+        %td= perfil_alumno.delegacion_municipio
+        %td= perfil_alumno.codigo_postal
+        %td= perfil_alumno.telefono_casa
+        %td= perfil_alumno.telefono_celular
+        %td= perfil_alumno.telefono_recados
+        %td= perfil_alumno.extension_recados
+        %td= perfil_alumno.grupo
+        %td= perfil_alumno.generacion
+        %td= perfil_alumno.perfil_tutor
+        %td= link_to 'Show', perfil_alumno
+        %td= link_to 'Edit', edit_perfil_alumno_path(perfil_alumno)
+        %td= link_to 'Destroy', perfil_alumno, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Perfil alumno', new_perfil_alumno_path

@@ -8,3 +8,5 @@
 %main.navegacion-espacio
 	=current_user.tipo.tipo_de_usuario
 	=link_to "salir", destroy_user_session_path, :method => :delete
+
+	=render "devise/registrations/new"

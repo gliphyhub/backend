@@ -1,0 +1,53 @@
+%h1 Listing perfil_admins
+
+%table
+  %thead
+    %tr
+      %th User
+      %th Nss
+      %th Ap paterno
+      %th Ap materno
+      %th Nombre
+      %th Fecha de nacimiento
+      %th Genero
+      %th Calle
+      %th Numero exterior
+      %th Numero interior
+      %th Colonia
+      %th Delegacion municipio
+      %th Codigo postal
+      %th Telefono casa
+      %th Telefono celular
+      %th Telefono recados
+      %th Extension recados
+      %th
+      %th
+      %th
+
+  %tbody
+    - @perfil_admins.each do |perfil_admin|
+      %tr
+        %td= perfil_admin.user
+        %td= perfil_admin.nss
+        %td= perfil_admin.ap_paterno
+        %td= perfil_admin.ap_materno
+        %td= perfil_admin.nombre
+        %td= perfil_admin.fecha_de_nacimiento
+        %td= perfil_admin.genero
+        %td= perfil_admin.calle
+        %td= perfil_admin.numero_exterior
+        %td= perfil_admin.numero_interior
+        %td= perfil_admin.colonia
+        %td= perfil_admin.delegacion_municipio
+        %td= perfil_admin.codigo_postal
+        %td= perfil_admin.telefono_casa
+        %td= perfil_admin.telefono_celular
+        %td= perfil_admin.telefono_recados
+        %td= perfil_admin.extension_recados
+        %td= link_to 'Show', perfil_admin
+        %td= link_to 'Edit', edit_perfil_admin_path(perfil_admin)
+        %td= link_to 'Destroy', perfil_admin, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Perfil admin', new_perfil_admin_path

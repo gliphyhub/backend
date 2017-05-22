@@ -1,0 +1,57 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @perfil_profesor.user
+%p
+  %b Nss:
+  = @perfil_profesor.nss
+%p
+  %b Ap paterno:
+  = @perfil_profesor.ap_paterno
+%p
+  %b Ap materno:
+  = @perfil_profesor.ap_materno
+%p
+  %b Nombre:
+  = @perfil_profesor.nombre
+%p
+  %b Fecha de nacimiento:
+  = @perfil_profesor.fecha_de_nacimiento
+%p
+  %b Genero:
+  = @perfil_profesor.genero
+%p
+  %b Calle:
+  = @perfil_profesor.calle
+%p
+  %b Numero exterior:
+  = @perfil_profesor.numero_exterior
+%p
+  %b Numero interior:
+  = @perfil_profesor.numero_interior
+%p
+  %b Colonia:
+  = @perfil_profesor.colonia
+%p
+  %b Delegacion municipio:
+  = @perfil_profesor.delegacion_municipio
+%p
+  %b Codigo postal:
+  = @perfil_profesor.codigo_postal
+%p
+  %b Telefono casa:
+  = @perfil_profesor.telefono_casa
+%p
+  %b Telefono celular:
+  = @perfil_profesor.telefono_celular
+%p
+  %b Telefono recados:
+  = @perfil_profesor.telefono_recados
+%p
+  %b Extension recados:
+  = @perfil_profesor.extension_recados
+
+= link_to 'Edit', edit_perfil_profesor_path(@perfil_profesor)
+\|
+= link_to 'Back', perfil_profesores_path

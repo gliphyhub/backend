@@ -1,0 +1,2 @@
+json.extract! perfil_alumno, :id, :user_id, :matricula, :ap_paterno, :ap_materno, :nombre, :fecha_de_nacimiento, :genero_id, :calle, :numero_exterior, :numero_interior, :colonia, :delegacion_municipio, :codigo_postal, :telefono_casa, :telefono_celular, :telefono_recados, :extension_recados, :grupo_id, :generacion_id, :perfil_tutor_id, :created_at, :updated_at
+json.url perfil_alumno_url(perfil_alumno, format: :json)

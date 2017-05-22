@@ -35,7 +35,7 @@ one:
   ap_paterno: MyString
   ap_materno: MyString
   nombre: MyString
-  fecha_de_nacimiento: 2017-05-16
+  fecha_de_nacimiento: 2017-05-21
   genero: one
   calle: MyString
   numero_exterior: MyString
@@ -47,7 +47,7 @@ one:
   telefono_celular: MyString
   telefono_recados: MyString
   extension_recados: MyString
-  grupo: 
+  grupo: one
   generacion: one
   perfil_tutor: one
 
@@ -57,7 +57,7 @@ two:
   ap_paterno: MyString
   ap_materno: MyString
   nombre: MyString
-  fecha_de_nacimiento: 2017-05-16
+  fecha_de_nacimiento: 2017-05-21
   genero: two
   calle: MyString
   numero_exterior: MyString
@@ -69,6 +69,6 @@ two:
   telefono_celular: MyString
   telefono_recados: MyString
   extension_recados: MyString
-  grupo: 
+  grupo: two
   generacion: two
   perfil_tutor: two

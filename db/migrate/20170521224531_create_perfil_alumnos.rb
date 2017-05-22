@@ -1,8 +1,8 @@
-class CreatePerfilProfesores < ActiveRecord::Migration[5.0]
+class CreatePerfilAlumnos < ActiveRecord::Migration[5.0]
   def change
-    create_table :perfil_profesores do |t|
-      t.belongs_to :user, foreign_key: true, index: { unique: true }
-      t.string :nss
+    create_table :perfil_alumnos do |t|
+      t.belongs_to :user, foreign_key: true, index:{unique: true}
+      t.string :matricula
       t.string :ap_paterno
       t.string :ap_materno
       t.string :nombre
@@ -18,6 +18,9 @@ class CreatePerfilProfesores < ActiveRecord::Migration[5.0]
       t.string :telefono_celular
       t.string :telefono_recados
       t.string :extension_recados
+      t.belongs_to :grupo, foreign_key: true
+      t.belongs_to :generacion, foreign_key: true
+      t.belongs_to :perfil_tutor, foreign_key: true
 
       t.timestamps
     end

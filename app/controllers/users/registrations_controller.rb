@@ -3,35 +3,50 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #prepend_before_action :authenticate_scope!, only: [:new, :create, :cancel]
   # before_action :configure_account_update_params, only: [:update]
 
+
   # GET /resource/sign_up
    def new
   #   super
-    build_resource({})
-    yield resource if block_given?
-    respond_with resource
+   # build_resource({})
+    #yield resource if block_given?
+    #respond_with resource  
+    @user = User.new
+    @user.create_perfil_admin 
+    #@user.build_perfil_profesor
+    #@user.build_perfil_tutor
+    #@user.build_perfil_alumno
+
    end
 
   # POST /resource
    def create
   #   super
-      build_resource(sign_up_params)
-      resource.save
-      yield resource if block_given?
-      if resource.persisted?
-        if resource.active_for_authentication?
-          set_flash_message! :notice, :signed_up
-          sign_up(resource_name, resource)
-          respond_with resource, location: after_sign_up_path_for(resource)
-        else
-          set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-          expire_data_after_sign_in!
-          respond_with resource, location: after_inactive_sign_up_path_for(resource)
-        end
-      else
-        clean_up_passwords resource
-        set_minimum_password_length
-        respond_with resource
-      end
+      # build_resource(sign_up_params)
+      # resource.save
+      # yield resource if block_given?
+      # if resource.persisted?
+      #   if resource.active_for_authentication?
+      #     set_flash_message! :notice, :signed_up
+      #     sign_up(resource_name, resource)
+      #     respond_with resource, location: after_sign_up_path_for(resource)
+      #   else
+      #     set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+      #     expire_data_after_sign_in!
+      #     respond_with resource, location: after_inactive_sign_up_path_for(resource)
+      #   end
+      # else
+      #   clean_up_passwords resource
+      #   set_minimum_password_length
+      #   respond_with resource
+      # end
+      @user = User.create(configure_sign_up_params)
+    if @user.save
+      flash[:success] = "Creado con exito"
+      redirect_to new_user_session_path
+    else
+      flash[:error] = "No se puedo crear el usuario"
+      render  "devise/registrations/new"
+    end
    end
 
   # GET /resource/edit
@@ -62,8 +77,31 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:tipo_id])
+     #devise_parameter_sanitizer.permit(:sign_up, keys: [:tipo_id])
+     params.require(:user).permit(:tipo_id,
+                        :password,
+                        :password_confirmation,
+                        :email,
+                        perfil_admin_attributes: 
+                            [:user_id, 
+                             :nss, 
+                             :ap_paterno, 
+                             :ap_materno, 
+                             :nombre,
+                              :fecha_de_nacimiento, 
+                              :genero_id, :calle, 
+                              :numero_exterior, 
+                              :numero_interior, 
+                              :colonia, 
+                              :delegacion_municipio, 
+                              :codigo_postal, 
+                              :telefono_casa, 
+                              :telefono_celular, 
+                              :telefono_recados, 
+                              :extension_recados]) # Tus atributos de User
    end
+
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params

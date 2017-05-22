@@ -1,0 +1,37 @@
+// Mixins para reducir código
+@import "components/mixins";
+
+// Variables
+@import "components/variables";
+
+// Componentes generales
+@import "components/general";
+@import "components/helpers";
+
+// Componentes del layout de usuarios
+@import "components/layout";
+@import "components/calendar";
+@import "components/cards";
+@import "components/carousel";
+@import "components/profile";
+
+// Página de error
+@import "components/error404";
+
+// Componentes del login
+@import "components/login";
+@import "components/card-login";
+
+side-nav li.waves-effect {
+  display: inherit !important;
+}
+
+.side-nav li.waves-effect i {
+  position: absolute;
+  top: 10px;
+  left: 33px;
+}
+
+.side-nav li.waves-effect a {
+  padding-left: 90px;
+}

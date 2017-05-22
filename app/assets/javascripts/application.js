@@ -12,7 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require index
 //= require materialize
 //= require materialize/extras/nouislider
+//= require gliphy
+//= require calendar
+//= require jquery-ui-datepicker.min
+//= require turbolinks

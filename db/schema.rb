@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170517045422) do
+ActiveRecord::Schema.define(version: 20170521224531) do
 
   create_table "archivos", force: :cascade do |t|
     t.integer  "publicacion_id"

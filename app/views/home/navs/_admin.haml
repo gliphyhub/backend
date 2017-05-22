@@ -1,3 +1,21 @@
+-seccion="Inicio"
+-tipoUser = current_user.tipo.tipo_de_usuario
+-nombres =  current_user.perfil_admin.nombre.capitalize
+-ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
+-ap_materno = current_user.perfil_admin.ap_materno.capitalize
+-correo = current_user.email
+-fecha_de_nacimiento = current_user.perfil_admin.fecha_de_nacimiento
+-sexo = current_user.perfil_admin.genero.sexo
+-imgCover = "covers/admin-cover.jpg"
+-menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Publicaciones",link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
+-tablas=[{title:"Panel de administración", link:rails_admin_path},{title:"Archivo", link:"basededatos/archivo"},{title:"Color", link:"basededatos/color"}, {title:"Generación", link:"basededatos/generacion"},{title:"Grado", link:"basededatos/grado"},  {title:"Grupo", link:"basededatos/grupo"},{title:"Materia", link:"basededatos/materia"}, {title:"Administrativos", link:"basededatos/perfil_admin"},{title:"Profesores", link:"basededatos/perfil_profesor"},{title:"Alumnos", link:"basededatos/perfil_alumno"}, {title:"Tutores", link:"basededatos/perfil_tutor"}, {title:"Publicación", link:"basededatos/publicacion"},{title:"Tipos", link:"basededatos/tipo"}, {title:"Turno", link:"basededatos/turno"}, {title:"Usuario", link:"basededatos/user"}]
+
+-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
+-if sexo == "masculino"
+	-imgPerfil = "users/user01.jpg"
+-else
+	-imgPerfil = "users/user02.jpg"
+
 -#=========================================
 -#=========== Barra de navegación ================
 -#=========================================
@@ -21,8 +39,8 @@
 			-#=========================================
 			.right
 				%a.user-activator.btn-flat.white-bonis.hide-on-small-only.no-upper{href:"#!", data:{activates:"user-menu"}}
-					=image_tag "#{@imgPerfil}",class:"admin-img left"
-					%span #{@nombreCorto}
+					=image_tag "#{imgPerfil}",class:"admin-img left"
+					%span #{nombreCorto}
 				%a.user-activator.btn-flat.white-bonis.hide-on-med-and-up{href:"#!",data:{activates:"user-menu"}}
 					%i.material-icons.left apps
 					%span OPCIONES
@@ -36,8 +54,8 @@
 			-#========== Navegación - menú =================
 			-#=========================================
 			.col.s8.margincito-left.hide-on-small-only.truncate
-				%a.breadcrumb= "Gliphy#{@tipoUser.capitalize}"
-				%a.breadcrumb= "#{@seccion}"
+				%a.breadcrumb= "Gliphy#{tipoUser}"
+				%a.breadcrumb= "#{seccion}"
 
 -#=========================================
 -#========== Menú navegación - Large ==============
@@ -46,7 +64,7 @@
 	.side-contenedor
 		.side-lista
 			%br/
-			-@menuLateral.each do |item|		
+			-menuLateral.each do |item|		
 				-if item[:title] == "Base de Datos"
 					%li
 						%ul.collapsible.collapsible-accordion
@@ -57,7 +75,7 @@
 									%i.arrow.material-icons.white-bonis arrow_drop_down
 								.collapsible-body
 									%ul.blue-grey.darken-3
-										-@tablas.each do |tabla|
+										-tablas.each do |tabla|
 											%li
 												%a.waves-effect.white-bonis{href:tabla[:link]}
 													%span= 	tabla[:title]
@@ -78,7 +96,7 @@
 	.side-contenedor
 		.side-lista
 			%br/
-			-@menuLateral.each do |item|		
+			-menuLateral.each do |item|		
 				-if item[:title] == "Base de Datos"
 					%li
 						%ul.collapsible.collapsible-accordion
@@ -89,7 +107,7 @@
 									%i.arrow.material-icons.white-bonis arrow_drop_down
 								.collapsible-body
 									%ul.blue-grey.darken-3
-										-@tablas.each do |tabla|
+										-tablas.each do |tabla|
 											%li
 												%a.waves-effect.white-bonis{href:tabla[:link]}
 													%span= 	tabla[:title]

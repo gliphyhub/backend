@@ -1,4 +1,5 @@
-bundle exec anotate
+bundle exec annotate
+rails db:migrate VERSION=0
 
 rails g model Tipo tipo_de_usuario
 
@@ -6,13 +7,13 @@ rails g model Genero sexo
 
 rails g devise User tipo:belongs_to
 
-rails g model PerfilAdmin user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+rails g scaffold PerfilAdmin user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
 
-rails g model PerfilProfesor user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+rails g scaffold PerfilProfesor user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
 
-rails g model PerfilTutor user:belongs_to ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+rails g scaffold PerfilTutor user:belongs_to ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
 
-rails g model PerfilAlumno user:belongs_to matricula ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados grupo:belongs_to generacion:belongs_to perfil_tutor:belongs_to
+rails g scaffold PerfilAlumno user:belongs_to matricula ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados grupo:belongs_to generacion:belongs_to perfil_tutor:belongs_to
 
 rails g model Generacion generacion
 

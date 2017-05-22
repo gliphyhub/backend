@@ -1,0 +1,54 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @perfil_tutor.user
+%p
+  %b Ap paterno:
+  = @perfil_tutor.ap_paterno
+%p
+  %b Ap materno:
+  = @perfil_tutor.ap_materno
+%p
+  %b Nombre:
+  = @perfil_tutor.nombre
+%p
+  %b Fecha de nacimiento:
+  = @perfil_tutor.fecha_de_nacimiento
+%p
+  %b Genero:
+  = @perfil_tutor.genero
+%p
+  %b Calle:
+  = @perfil_tutor.calle
+%p
+  %b Numero exterior:
+  = @perfil_tutor.numero_exterior
+%p
+  %b Numero interior:
+  = @perfil_tutor.numero_interior
+%p
+  %b Colonia:
+  = @perfil_tutor.colonia
+%p
+  %b Delegacion municipio:
+  = @perfil_tutor.delegacion_municipio
+%p
+  %b Codigo postal:
+  = @perfil_tutor.codigo_postal
+%p
+  %b Telefono casa:
+  = @perfil_tutor.telefono_casa
+%p
+  %b Telefono celular:
+  = @perfil_tutor.telefono_celular
+%p
+  %b Telefono recados:
+  = @perfil_tutor.telefono_recados
+%p
+  %b Extension recados:
+  = @perfil_tutor.extension_recados
+
+= link_to 'Edit', edit_perfil_tutor_path(@perfil_tutor)
+\|
+= link_to 'Back', perfil_tutores_path

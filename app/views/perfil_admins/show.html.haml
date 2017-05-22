@@ -1,0 +1,57 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @perfil_admin.user
+%p
+  %b Nss:
+  = @perfil_admin.nss
+%p
+  %b Ap paterno:
+  = @perfil_admin.ap_paterno
+%p
+  %b Ap materno:
+  = @perfil_admin.ap_materno
+%p
+  %b Nombre:
+  = @perfil_admin.nombre
+%p
+  %b Fecha de nacimiento:
+  = @perfil_admin.fecha_de_nacimiento
+%p
+  %b Genero:
+  = @perfil_admin.genero
+%p
+  %b Calle:
+  = @perfil_admin.calle
+%p
+  %b Numero exterior:
+  = @perfil_admin.numero_exterior
+%p
+  %b Numero interior:
+  = @perfil_admin.numero_interior
+%p
+  %b Colonia:
+  = @perfil_admin.colonia
+%p
+  %b Delegacion municipio:
+  = @perfil_admin.delegacion_municipio
+%p
+  %b Codigo postal:
+  = @perfil_admin.codigo_postal
+%p
+  %b Telefono casa:
+  = @perfil_admin.telefono_casa
+%p
+  %b Telefono celular:
+  = @perfil_admin.telefono_celular
+%p
+  %b Telefono recados:
+  = @perfil_admin.telefono_recados
+%p
+  %b Extension recados:
+  = @perfil_admin.extension_recados
+
+= link_to 'Edit', edit_perfil_admin_path(@perfil_admin)
+\|
+= link_to 'Back', perfil_admins_path

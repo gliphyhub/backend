@@ -32,7 +32,7 @@ one:
   ap_paterno: MyString
   ap_materno: MyString
   nombre: MyString
-  fecha_de_nacimiento: 2017-05-16
+  fecha_de_nacimiento: 2017-05-21
   genero: one
   calle: MyString
   numero_exterior: MyString
@@ -51,7 +51,7 @@ two:
   ap_paterno: MyString
   ap_materno: MyString
   nombre: MyString
-  fecha_de_nacimiento: 2017-05-16
+  fecha_de_nacimiento: 2017-05-21
   genero: two
   calle: MyString
   numero_exterior: MyString
