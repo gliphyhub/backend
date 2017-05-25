@@ -24,11 +24,24 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :timeoutable
+  ###################################################
+  ##################Validaciones#####################
+  validates :tipo_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
+  ###################################################
+  ####################Relaciones#####################
   belongs_to :tipo
   has_one :perfil_admin, dependent: :destroy
   has_one :perfil_profesor, dependent: :destroy
   has_one :perfil_tutor, dependent: :destroy
   has_one :perfil_alumno, dependent: :destroy
+  ###################################################
+  ############Validaciones de relaciones#############
+  validates_associated :perfil_alumno
+  validates_associated :perfil_admin
+  validates_associated :perfil_tutor
+  validates_associated :perfil_profesor
+  ###################################################
+  ###################################################
 
   accepts_nested_attributes_for :perfil_admin, :allow_destroy => true
   accepts_nested_attributes_for :perfil_profesor

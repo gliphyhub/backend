@@ -10,5 +10,16 @@
 #
 
 class Color < ApplicationRecord
+	###################################################
+    ##################Validaciones#####################
+	validates :color, presence: {message: "Campo obligatorio."}, length: {in: 5..30, message: "El color debe tener entre 5 y 30 caracteres."}
+	validates :descripcion, presence: {message: "Campo obligatorio."}
+	###################################################
+    ####################Relaciones#####################
 	has_many :materias#,  dependent: :destroy
+	###################################################
+    ############Validaciones de relaciones#############
+	validates_associated :materias
+	###################################################
+    ###################################################
 end

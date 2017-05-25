@@ -12,6 +12,14 @@
 #
 
 class Materia < ApplicationRecord
+  ###################################################
+  ##################Validaciones#####################
+  validates :materia, presence: {message: "Campo obligatorio."}, length: {in: 5..50, message: "La materia debe tener entre 5 y 50 caracteres."}
+  validates :nivel_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
+  validates :grado_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
+  validates :color_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
+  ###################################################
+  ####################Relaciones#####################
   belongs_to :nivel
   belongs_to :grado
   belongs_to :color
@@ -19,4 +27,12 @@ class Materia < ApplicationRecord
   has_many :grupos, :through => :materia_grupos #manual el destroy
   has_many :profesor_materias, dependent: :destroy
   has_many :perfil_profesores, :through => :profesor_materias #manual el destroy
+  ###################################################
+  ############Validaciones de relaciones#############
+  validates_associated :grupos
+  validates_associated :materia_grupos
+  validates_associated :profesor_materias
+  validates_associated :perfil_profesores
+  ###################################################
+  ###################################################
 end

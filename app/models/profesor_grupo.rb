@@ -10,6 +10,14 @@
 #
 
 class ProfesorGrupo < ApplicationRecord
+  ###################################################
+  ##################Validaciones#####################
+  validates :perfil_profesor_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
+  validates :grupo_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
+  ###################################################
+  ####################Relaciones#####################
   belongs_to :perfil_profesor
   belongs_to :grupo
+  ###################################################
+  ###################################################
 end

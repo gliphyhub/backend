@@ -43,6 +43,8 @@ gem 'devise-i18n'
 gem 'rails_admin-i18n'
 gem 'material_icons'
 gem 'materialize-sass'
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem 'bcrypt', platforms: :ruby
 #gem 'jquery-turbolinks'
 gem 'annotate'
 #====================================================

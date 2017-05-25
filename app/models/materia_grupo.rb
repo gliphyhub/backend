@@ -10,6 +10,14 @@
 #
 
 class MateriaGrupo < ApplicationRecord
+  ###################################################
+  ##################Validaciones#####################
+  validates :grupo_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
+  validates :materia_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
+  ###################################################
+  ####################Relaciones#####################
   belongs_to :materia
   belongs_to :grupo
+  ###################################################
+  ###################################################
 end

@@ -12,8 +12,8 @@
 	-if current_user.tipo.id == 1
 		=render "perfil_admins/form"
 	-elsif current_user.tipo.id == 2
-		=render "perfil_profesor/form"
+		=render "perfil_profesores/form"
 	-elsif current_user.tipo.id == 3
-		=render "tutor_profesor/form"		
+		=render "perfil_tutores/form"		
 	-else
-		=render "perfil_alumno/form"
+		=render "perfil_alumnos/form"
