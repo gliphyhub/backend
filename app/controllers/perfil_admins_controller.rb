@@ -28,9 +28,9 @@ class PerfilAdminsController < ApplicationController
     @perfil_admin = PerfilAdmin.new(perfil_admin_params)
     #@perfil_admin = current_user.perfil_admin.new(perfil_admin_params)
     @perfil_admin.user= current_user
-
     respond_to do |format|
       if @perfil_admin.save
+        current_user.update(perfilado:true)
         format.html { redirect_to root_path, notice: '¡Bienvenido!' }
         #format.json { render :show, status: :created, location: @perfil_admin }
       else

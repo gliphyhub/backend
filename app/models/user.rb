@@ -36,16 +36,15 @@ class User < ApplicationRecord
   has_one :perfil_alumno, dependent: :destroy
   ###################################################
   ############Validaciones de relaciones#############
-  validates_associated :perfil_alumno
-  validates_associated :perfil_admin
-  validates_associated :perfil_tutor
-  validates_associated :perfil_profesor
+  #validates_associated :perfil_alumno
+  #validates_associated :perfil_admin
+  #validates_associated :perfil_tutor
+  #validates_associated :perfil_profesor
   ###################################################
   ###################################################
-
-  accepts_nested_attributes_for :perfil_admin, :allow_destroy => true
-  accepts_nested_attributes_for :perfil_profesor
-  accepts_nested_attributes_for :perfil_tutor
-  accepts_nested_attributes_for :perfil_alumno
+  #accepts_nested_attributes_for :perfil_admin, :allow_destroy => true
+  #accepts_nested_attributes_for :perfil_profesor
+  #accepts_nested_attributes_for :perfil_tutor
+  #accepts_nested_attributes_for :perfil_alumno
 
 end

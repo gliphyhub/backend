@@ -52,11 +52,11 @@ $(function() {
 		closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
 		draggable: true // Choose whether you can drag to open on touch screens
 	});
-	//tagts
+	/*//tagts
 	$('.chips').material_chip();
 	$('.chips-initial').material_chip({
 		data: [{ tag: 'Comunicado', } , { tag: 'Aviso', }],
-	});
+	});*/
 	// Show sideNav
 	//$('.button-collapse').sideNav('show');
 

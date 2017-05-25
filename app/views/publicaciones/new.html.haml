@@ -1,5 +1,126 @@
-%h1 New publicacion
+%main.navegacion-espacio.row
+	-#=========== Sub - header ======================
+	%h2.red-text.center-align Nueva Publicación
+	-#==========Filtros para la publicacion====
+	.col.s12.l5
+		%h4.truncate.center-align Filtros
+		%p Seleccione las opciones que desee y necesite para la publicación de un nuevo comunicado.
+		%nav.nav-extended
+			.nav-content.bar-menu-color
+				%ul.tabs.tabs-transparent
+					%li.tab
+						%a{:href => "#general-filter-tab"} todo
+					%li.tab
+						%a{:href => "#grupos-filter-tab"} gral
+					%li.tab
+						%a{:href => "#others-filter-tab"} prf/adm					
+		#general-filter-tab.col.s12
+			%br/
+			%input#everyone{:name=>"everyone", :type=>"radio"}
+				%label{:for=>"everyone"} <b>Todos</b>
+			%h5 Usuarios						
+			%p
+				%input#alumnos-users{:name=>"usuarios-users", :type=>"checkbox"}
+				%label{:for=>"alumnos-users"} <b>Alumnos</b>
+				%input#profesores-users{:name=>"usuario-userss", :type=>"checkbox"}
+				%label{:for=>"profesores-users",style:"margin-left: 1rem"} <b>Profesores</b>
+				%input#admin-users{:name=>"usuarios-users", :type=>"checkbox"}
+				%label{:for=>"admin-users",style:"margin-left: 1rem"} <b>Admnistrativos</b>
+			%h5 Nivel
+			%p
+				%input#secundaria-users{:name=>"nivel-users", :type=>"checkbox"}
+				%label{:for=>"secundaria-users"} <b>Secundaria</b>
+				%input#bachillerato-users{:name=>"nivel-users", :type=>"checkbox"}
+				%label{:for=>"bachillerato-users",style:"margin-left: 1rem"} <b>Bachillerato</b>
+			%h5 Turno
+			%p
+				%input#matutino-users{:name=>"turno-users", :type=>"checkbox"}
+				%label{:for=>"matutino-users"} <b>Matutino</b>
+				%input#vespertino-users{:name=>"turno-users", :type=>"checkbox"}
+				%label{:for=>"vespertino-users",style:"margin-left: 1rem"} <b>Vespertino</b>
+		#grupos-filter-tab.col.s12
+			%br/
+			%p
+				%input#todos-grupos{:name=>"todos-grupos", :type=>"radio"}
+				%label{:for=>"todos-grupos"} <b>Ambos</b>
+			%p
+				%input#matutino-grupos{:name=>"turno-grupos", :type=>"checkbox"}
+				%label{:for=>"matutino-grupos"} <b>Matutino</b>
+				%input#vespertino-grupos{:name=>"turno-grupos", :type=>"checkbox"}
+				%label{:for=>"vespertino-grupos",style:"margin-left: 1rem"} <b>Vespertino</b>
+			%p
+				%input#secundaria-grado{:name=>"nivel-grupos", :type=>"checkbox"}
+				%label{:for=>"secundaria-grado"} <b>Secundaria</b>
+				%input#bachillerato-grado{:name=>"nivel-grupos", :type=>"checkbox"}
+				%label{:for=>"bachillerato-grado",style:"margin-left: 1rem"} <b>Bachillerato</b>
+			%p{style:"margin-top: 2rem"}
+				.input-field
+					%select{multiple:""}
+						%option{value:"", disabled:"", selected:""} Elija por grado
+						%option{value:"1"} Primeros
+						%option{value:"2"} Segundos
+						%option{value:"3"} Terceros
+					%label Grado
+			%p{style:"margin-top: 2rem"}
+				.input-field
+					%select{multiple:""}
+						%option{value:"", disabled:"", selected:""} Eliga por grupo
+						%option{value:"1"} 6xxx
+						%option{value:"2"} 6xxx
+						%option{value:"3"} 6xxx
+					%label Grupos
+			.divider
+			%p{style:"margin-top: 3rem"}
+				.input-field.disabled
+					%textarea#grupos-en-concreto.materialize-textarea{type:"text", placeholder:"Grupos individuales elegidos"}
+					%label{for:"grupos-en-concreto"}Grupos elegidos
+		#others-filter-tab.col.s12
+			%br/
+			%p
+				%input#todos-others{:name=>"todos-others", :type=>"radio"}
+				%label{:for=>"todos-others"} <b>Ambos</b>
+			%p
+				%input#matutino-others{:name=>"turno-others", :type=>"checkbox"}
+				%label{:for=>"matutino-others"} <b>Matutino</b>
+				%input#vespertino-others{:name=>"turno-others", :type=>"checkbox"}
+				%label{:for=>"vespertino-others",style:"margin-left: 1rem"} <b>Vespertino</b>
+			%p
+				%input#secundaria-others{:name=>"nivel-others", :type=>"checkbox"}
+				%label{:for=>"secundaria-others"} <b>Secundaria</b>
+				%input#bachillerato-others{:name=>"nivel-others", :type=>"checkbox"}
+				%label{:for=>"bachillerato-others",style:"margin-left: 1rem"} <b>Bachillerato</b>
+			%h5 Profesores
+			%p
+				%input#all-teach{:name=>"prof-others", :type=>"radio"}
+				%label{:for=>"all-teach"} <b>Todos</b>
+				%input#seleccionar-teacher{:name=>"prof-others", :type=>"radio"}
+				%label{:for=>"seleccionar-teacher",style:"margin-left: 1rem"} <b>Seleccionar</b>
+			%p{style:"margin-top: 2rem"}
+				.input-field
+					%select{multiple:""}
+						%option{value:"", disabled:"", selected:""} Elija a los profesores
+						%option{value:"1"} Profesor A
+						%option{value:"2"} Profesor B
+						%option{value:"3"} Profesor C
+						%option{value:"4"} Profesor D
+					%label Profesor
+			%h5 Adminsitradores						
+			%p
+				%input#all-admin{:name=>"admin-others", :type=>"radio"}
+				%label{:for=>"all-admin"} <b>Todos</b>
+				%input#seleccionar-admin{:name=>"admin-others", :type=>"radio"}
+				%label{:for=>"seleccionar-admin",style:"margin-left: 1rem"} <b>Seleccionar</b>
+			%p{style:"margin-top: 2rem"}
+				.input-field
+					%select{multiple:""}
+						%option{value:"", disabled:"", selected:""} Elija a los administradores
+						%option{value:"1"} Administradores A
+						%option{value:"2"} Administradores B
+						%option{value:"3"} Administradores C
+						%option{value:"4"} Administradores D
+					%label Administrador
+	-#===========Contenido de la publicacion==
+	.col.s12.l7{:style=>"margin-top: 1em"}
+		%h4.truncate.center-align Contenido
+		= render 'publicaciones/form'
 
-= render 'form'
-
-= link_to 'Back', publicaciones_path

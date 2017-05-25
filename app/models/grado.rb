@@ -9,7 +9,7 @@
 class Grado < ApplicationRecord
 	###################################################
     ##################Validaciones#####################
-    validates :grado, presence: {message: "Campo obligatorio."}, length: {in: 5..30, message: "El grado debe tener entre 5 y 30 caracteres."}
+    #validates :grado, presence: {message: "Campo obligatorio."}, length: {in: 5..30, message: "El grado debe tener entre 5 y 30 caracteres."}
 	###################################################
     ####################Relaciones#####################
 	has_many :grupos, dependent: :destroy

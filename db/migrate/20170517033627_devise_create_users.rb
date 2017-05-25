@@ -3,6 +3,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
     create_table :users do |t|
       #Para saber el tipo de usuario
       t.belongs_to :tipo
+      t.boolean :perfilado,:default => false
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

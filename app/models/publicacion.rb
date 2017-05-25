@@ -14,10 +14,11 @@
 class Publicacion < ApplicationRecord
 	###################################################
     ##################Validaciones#####################
-    validates :titulo, presence: {message: "Campo obligatorio."}, length: {in: 5..30, message: "El título debe tener entre 5 y 30 caracteres."}
-    validates :mensaje, presence: {message: "Campo obligatorio."}, length: {in: 5..255, message: "El mensaje debe tener entre 5 y 255 caracteres."}
+    validates :titulo, presence: true, length: {in: 5..30}
+    validates :mensaje, presence: true, length: {in: 5..400}
     validates :fecha_de_termino, presence: true
-    validates :prioridad, presence: true
+    validate :expiration_date_cannot_be_in_the_past
+    #validates :prioridad, presence: true
 	###################################################
     ####################Relaciones#####################
 	has_many :archivos, dependent: :destroy
@@ -27,10 +28,17 @@ class Publicacion < ApplicationRecord
 	has_many :perfil_profesores, :through => :profesor_publicaciones #manual el destroy
 	###################################################
     ############Validaciones de relaciones#############
-    validates_associated :archivos
-    validates_associated :publicacion_grupos
-    validates_associated :profesor_publicaciones
-    validates_associated :perfil_profesores
+    #validates_associated :archivos
+    #validates_associated :publicacion_grupos
+    #validates_associated :profesor_publicaciones
+    #validates_associated :perfil_profesores
     ###################################################
     ###################################################
+    private
+  def expiration_date_cannot_be_in_the_past
+    if fecha_de_termino.present? && fecha_de_termino < Date.today
+      #errors.add(:expiration_date, "can't be in the past")
+      errors.add(:fecha_de_termino,"no puede ser para el pasado")
+    end
+  end
 end
