@@ -16,7 +16,6 @@
 
 	.input-field
 		-Tipo.all.each do |tipo|
-	 
 			= f.radio_button :tipo_id,tipo.id, checked:"checked"
 			= f.label "tipo_id_#{tipo.id}", tipo.tipo_de_usuario.humanize
 			&nbsp;&nbsp;&nbsp;&nbsp;

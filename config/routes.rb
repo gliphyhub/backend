@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
-  resources :perfil_alumnos
-  resources :perfil_tutores
-  resources :perfil_profesores
-  resources :perfil_admins
+  resources :perfil_alumnos, only: [:create]
+  resources :perfil_tutores, only: [:create]
+  resources :perfil_profesores, only: [:create]
+  resources :perfil_admins, only: [:create]
   mount RailsAdmin::Engine => '/basededatos', as: 'rails_admin'
   resources :publicaciones
 
   #devise_for :users, controllers: { registrations: 'users/registrations' }
   #devise_scope :user do
-  #  get '/users/sign_out' => 'devise/sessions#destroy'
+  # get '/users/sign_out' => 'devise/sessions#destroy'
   #end
 
   devise_for :users, skip: :registrations
@@ -25,8 +25,10 @@ Rails.application.routes.draw do
       end
   end
 
+  get '/help' => 'home#help'
+
   authenticated :user do
-  	root 'home#index' 	
+    root 'home#index'
   end
   unauthenticated :user do
   	root 'home#bienvenida' 	

@@ -1,23 +1,25 @@
 -tipoUser = current_user.tipo.tipo_de_usuario
--unless current_user.perfil_admin.nil?
-	-seccion="Inicio"
-	-nombres =  current_user.perfil_admin.nombre.capitalize
-	-ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
-	-ap_materno = current_user.perfil_admin.ap_materno.capitalize
-	-correo = current_user.email
-	-fecha_de_nacimiento = current_user.perfil_admin.fecha_de_nacimiento
-	-sexo = current_user.perfil_admin.genero.sexo
-	-imgCover = "covers/admin-cover.jpg"
-	-menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Publicaciones",link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
-	-tablas=[{title:"Panel de administración", link:rails_admin_path},{title:"Archivo", link:"basededatos/archivo"},{title:"Color", link:"basededatos/color"}, {title:"Generación", link:"basededatos/generacion"},{title:"Grado", link:"basededatos/grado"},  {title:"Grupo", link:"basededatos/grupo"},{title:"Materia", link:"basededatos/materia"}, {title:"Administrativos", link:"basededatos/perfil_admin"},{title:"Profesores", link:"basededatos/perfil_profesor"},{title:"Alumnos", link:"basededatos/perfil_alumno"}, {title:"Tutores", link:"basededatos/perfil_tutor"}, {title:"Publicación", link:"basededatos/publicacion"},{title:"Tipos", link:"basededatos/tipo"}, {title:"Turno", link:"basededatos/turno"}, {title:"Usuario", link:"basededatos/user"}]
-	-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
-	-if sexo == "masculino"
-		-imgPerfil = "users/user01.jpg"
+-if current_user.tipo.id == 1
+	-unless current_user.perfil_admin.nil? 
+		-nombres =  current_user.perfil_admin.nombre.capitalize
+		-ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
+		-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
+		-unless current_user.perfil_admin.genero.nil?
+			-sexo = current_user.perfil_admin.genero.sexo
+			-if sexo == "masculino"
+				-imgPerfil = "users/user01.jpg"
+			-else
+				-imgPerfil = "users/user02.jpg"
+		-else
+			-imgPerfil = "users/desconocido.png"
+
+		-imgCover = "covers/admin-cover.jpg"	
+		-menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Publicaciones",link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
+		-tablas=[{title:"Panel de administración", link:rails_admin_path},{title:"Archivo", link:"basededatos/archivo"},{title:"Color", link:"basededatos/color"}, {title:"Generación", link:"basededatos/generacion"},{title:"Grado", link:"basededatos/grado"},  {title:"Grupo", link:"basededatos/grupo"},{title:"Materia", link:"basededatos/materia"}, {title:"Administrativos", link:"basededatos/perfil_admin"},{title:"Profesores", link:"basededatos/perfil_profesor"},{title:"Alumnos", link:"basededatos/perfil_alumno"}, {title:"Tutores", link:"basededatos/perfil_tutor"}, {title:"Publicación", link:"basededatos/publicacion"},{title:"Tipos", link:"basededatos/tipo"}, {title:"Turno", link:"basededatos/turno"}, {title:"Usuario", link:"basededatos/user"}]
 	-else
-		-imgPerfil = "users/user02.jpg"
--else
-	-nombreCorto = "Gliphy Hub"
-	-imgPerfil = "users/desconocido.png"
+		-imgPerfil = "users/desconocido.png"
+		-imgCover = "covers/desconocido.png"
+
 
 -#=========================================
 -#=========== Barra de navegación ================
@@ -58,7 +60,7 @@
 			-#=========================================
 			.col.s8.margincito-left.hide-on-small-only.truncate
 				%a.breadcrumb= "Gliphy#{tipoUser.capitalize}"
-				%a.breadcrumb= "#{seccion}"
+				%a.breadcrumb= "#{@seccion}"
 
 -#=========================================
 -#========== Menú navegación - Large ==============

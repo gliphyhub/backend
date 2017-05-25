@@ -1,14 +1,16 @@
 class HomeController < ApplicationController
   def bienvenida
   end
-  def index 
-    if current_user.tipo.id == 1
+  def index
+    @seccion="Inicio"
+    if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
       @perfil_admin = PerfilAdmin.new       
     else
        
     end 
 
   end
+
 
   def help
     

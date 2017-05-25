@@ -26,28 +26,29 @@
 
 class PerfilAdmin < ApplicationRecord
   ###################################################
-  ##################Validaciones#####################
-  validates :user_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
-  validates :nss, presence: {message: "Campo obligatorio."}, length: {in: 5..30, message: "El NSS debe tener entre 5 y 30 caracteres."}
-  validates :ap_paterno, presence: {message: "Campo obligatorio."}, length: {in: 4..20, message: "El apellido paterno debe tener entre 4 y 20 caracteres."}
-  validates :ap_materno, presence: {message: "Campo obligatorio."}, length: {in: 4..20, message: "El apellido materno debe tener entre 4 y 20 caracteres."}
-  validates :nombre, presence: {message: "Campo obligatorio."}, length: {in: 4..50, message: "El nombre debe tener entre 4 y 50 caracteres."}
-  validates :fecha_de_nacimiento, presence: true
-  validates :genero_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
-  validates :calle, presence: {message: "Campo obligatorio."}, length: {in: 4..30, message: "La calle debe tener entre 4 y 30 caracteres."}
-  validates :numero_exterior, presence: {message: "Campo obligatorio."}, length: {in: 1..10, message: "El número exterior debe tener entre 1 y 10 caracteres."}
-  validates :numero_interior, presence: {message: "Campo obligatorio."}, length: {in: 1..10, message: "El número interior debe tener entre 1 y 10 caracteres."}
-  validates :colonia, presence: {message: "Campo obligatorio."}, length: {in: 4..30, message: "La colonia debe tener entre 4 y 30 caracteres."}
-  validates :delegacion_municipio, presence: {message: "Campo obligatorio."}, length: {in: 4..30, message: "La delegación o municipio debe tener entre 4 y 30 caracteres."}
-  validates :codigo_postal, presence: {message: "Campo obligatorio."}, length: {in: 5, message: "El código postal debe tener 5 dígitos."}, numericality: {only_integer: true}
-  validates :telefono_casa, presence: {message: "Campo obligatorio."}, length: {in: 8..15, message: "El teléfono de casa debe tener entre 8 y 15 dígitos."}, numericality: {only_integer: true}
-  validates :telefono_celular, presence: {message: "Campo obligatorio."}, length: {in: 8..15, message: "El teléfono celular debe tener entre 8 y 15 dígitos."}, numericality: {only_integer: true}
-  validates :telefono_recados, presence: {message: "Campo obligatorio."}, length: {in: 8..15, message: "El teléfono de recados debe tener entre 8 y 15 dígitos."}, numericality: {only_integer: true}
-  validates :extension_recados, presence: {message: "Campo obligatorio."}, length: {in: 1..20, message: "La extension debe tener entre 1 y 20 caracteres."}
-  ###################################################
   ##################Relaciones#######################
   belongs_to :user
   belongs_to :genero
   ###################################################
+
   ###################################################
+  ##################Validaciones#####################
+  #validates :user_id, presence: true, numericality: {only_integer: true}
+  validates :nss, presence:true, length: {in: 5..30}
+  validates :ap_paterno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,
+    message: "no puede contener numeros" }
+  validates :ap_materno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,
+    message: "no puede contener numeros" }
+  validates :nombre, presence: true, length: {in: 2..50}
+  validates :fecha_de_nacimiento, presence: true
+  validates :calle, presence: true, length: {in: 4..30}
+  validates :numero_exterior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
+  validates :numero_interior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
+  validates :colonia, presence: true, length: {in: 4..30}
+  validates :delegacion_municipio, presence: true, length: {in: 4..30}
+  validates :codigo_postal, presence: true, length: {is: 5}, numericality: {only_integer: true}
+  validates :telefono_casa, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
+  validates :telefono_celular, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
+  #validates :telefono_recados,presence:false, length: {in: 8..15}, numericality: {only_integer: true}
+  #validates :extension_recados,presence:false, length: {in: 1..10}
 end

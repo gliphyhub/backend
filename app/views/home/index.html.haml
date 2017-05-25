@@ -7,13 +7,12 @@
 -#	%main
 %main.navegacion-espacio
 	=current_user.tipo.tipo_de_usuario
-	=link_to "salir", destroy_user_session_path, :method => :delete
 
-	-if current_user.tipo.id == 1
+	-if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
 		=render "perfil_admins/form"
-	-elsif current_user.tipo.id == 2
-		=render "perfil_profesores/form"
-	-elsif current_user.tipo.id == 3
-		=render "perfil_tutores/form"		
-	-else
-		=render "perfil_alumnos/form"
+	-# -elsif current_user.tipo.id == 2
+	-# 	=render "perfil_profesores/form"
+	-# -elsif current_user.tipo.id == 3
+	-# 	=render "perfil_tutores/form"		
+	-# -else
+	-# 	=render "perfil_alumnos/form"

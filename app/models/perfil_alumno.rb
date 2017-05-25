@@ -42,7 +42,7 @@ class PerfilAlumno < ApplicationRecord
   validates :numero_interior, presence: {message: "Campo obligatorio."}, length: {in: 1..10, message: "El número interior debe tener entre 1 y 10 caracteres."}
   validates :colonia, presence: {message: "Campo obligatorio."}, length: {in: 4..30, message: "La colonia debe tener entre 4 y 30 caracteres."}
   validates :delegacion_municipio, presence: {message: "Campo obligatorio."}, length: {in: 4..30, message: "La delegación o municipio debe tener entre 4 y 30 caracteres."}
-  validates :codigo_postal, presence: {message: "Campo obligatorio."}, length: {in: 5, message: "El código postal debe tener 5 dígitos."}, numericality: {only_integer: true}
+  validates :codigo_postal, presence: {message: "Campo obligatorio."}, length: {is: 5, message: "El código postal debe tener 5 dígitos."}, numericality: {only_integer: true}
   validates :telefono_casa, presence: {message: "Campo obligatorio."}, length: {in: 8..15, message: "El teléfono de casa debe tener entre 8 y 15 dígitos."}, numericality: {only_integer: true}
   validates :telefono_celular, presence: {message: "Campo obligatorio."}, length: {in: 8..15, message: "El teléfono celular debe tener entre 8 y 15 dígitos."}, numericality: {only_integer: true}
   validates :telefono_recados, presence: {message: "Campo obligatorio."}, length: {in: 8..15, message: "El teléfono de recados debe tener entre 8 y 15 dígitos."}, numericality: {only_integer: true}

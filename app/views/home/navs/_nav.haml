@@ -1,12 +1,20 @@
-
 -tipoUser = current_user.tipo.tipo_de_usuario
 -if current_user.tipo.id == 1
-	-unless current_user.perfil_admin.nil?
+	-unless current_user.perfil_admin.nil? 
 		-nombres =  current_user.perfil_admin.nombre.capitalize
 		-ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
-		-sexo = current_user.perfil_admin.genero.sexo
 		-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
-		-notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},]
+		-unless current_user.perfil_admin.genero.nil?
+			-sexo = current_user.perfil_admin.genero.sexo
+			-if sexo == "masculino"
+				-imgPerfil = "users/user01.jpg"
+			-else
+				-imgPerfil = "users/user02.jpg"
+		-else
+			-imgPerfil = "users/desconocido.png"
+
+		-imgCover = "covers/admin-cover.jpg"
+		-notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},]		
 	-else
 		-imgPerfil = "users/desconocido.png"
 		-imgCover = "covers/desconocido.png"

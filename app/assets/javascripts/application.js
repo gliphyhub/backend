@@ -18,4 +18,4 @@
 //= require gliphy
 //= require calendar
 //= require jquery-ui-datepicker.min
-//= require turbolinks
+// require turbolinks
