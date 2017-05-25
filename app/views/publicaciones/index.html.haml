@@ -1,27 +1,59 @@
-%h1 Listing publicaciones
+%main.navegacion-espacio
+  -@urgentes.each do |w|
+    %li
+      %h3
+        = w.titulo
+      %p
+        - @archi.each do |m| 
+          - if m.publicacion_id == w.id
+            - @archivos.each do |a| 
+              -if a == m.nombre
+                - if m == "." || m == ".." then next end
+                %strong=a
+                %br
+                %a{:target => "_blank", :href => "ruta_del_archivo/#{a}"}
+                  Descargar archivo
+                %br
+  -@publicaciones.each do |w|
+    %li
+      %h3
+        = w.titulo
+      %p
+        - @archi.each do |m| 
+          - if m.publicacion_id == w.id
+            - @archivos.each do |a| 
+              -if a == m.nombre
+                - if m == "." || m == ".." then next end
+                %strong=a
+                %br
+                %a{:target => "_blank", :href => "ruta_del_archivo/#{a}"}
+                  Descargar archivo
+                %br
 
-%table
-  %thead
-    %tr
-      %th Titulo
-      %th Mensaje
-      %th Fecha de termino
-      %th Prioridad
-      %th
-      %th
-      %th
+  %h1 Listing publicaciones
 
-  %tbody
-    - @publicaciones.each do |publicacion|
+  %table
+    %thead
       %tr
-        %td= publicacion.titulo
-        %td= publicacion.mensaje
-        %td= publicacion.fecha_de_termino
-        %td= publicacion.prioridad
-        %td= link_to 'Show', publicacion
-        %td= link_to 'Edit', edit_publicacion_path(publicacion)
-        %td= link_to 'Destroy', publicacion, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th Titulo
+        %th Mensaje
+        %th Fecha de termino
+        %th Prioridad
+        %th
+        %th
+        %th
 
-%br
+    %tbody
+      - @publicaciones.each do |publicacion|
+        %tr
+          %td= publicacion.titulo
+          %td= publicacion.mensaje
+          %td= publicacion.fecha_de_termino
+          %td= publicacion.prioridad
+          %td= link_to 'Show', publicacion
+          %td= link_to 'Edit', edit_publicacion_path(publicacion)
+          %td= link_to 'Destroy', publicacion, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Publicacion', new_publicacion_path
+  %br
+
+  = link_to 'New Publicacion', new_publicacion_path

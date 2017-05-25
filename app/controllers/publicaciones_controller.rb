@@ -1,4 +1,5 @@
 class PublicacionesController < ApplicationController
+  Ruta_directorio_archivos = "public/archivos"
   before_action :authenticate_user!
   before_action :set_publicacion, only: [:show, :edit, :update, :destroy]
 
@@ -6,7 +7,10 @@ class PublicacionesController < ApplicationController
   # GET /publicaciones.json
   def index
     @publicaciones = Publicacion.all
-    
+    @archi = Archivo.select("id, nombre, ruta, publicacion_id")
+    @archivos = Dir.entries(Ruta_directorio_archivos)
+    @urgentes = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: true, condicion de que la fecha actual sea menor a la de termino)
+    @publicaciones = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: false, condicion de que la fecha actual sea menor a la de termino)
   end
 
   # GET /publicaciones/1
@@ -26,15 +30,55 @@ class PublicacionesController < ApplicationController
   # POST /publicaciones
   # POST /publicaciones.json
   def create
-    @publicacion = Publicacion.new(publicacion_params)
-
-    respond_to do |format|
-      if @publicacion.save
-        format.html { redirect_to @publicacion, notice: 'Publicacion was successfully created.' }
-        format.json { render :show, status: :created, location: @publicacion }
+    if params[:publicacion][:file]#si contiene un archivo
+      archivo = params[:publicacion][:file]
+      nombre = archivo.original_filename
+      dir = Ruta_directorio_archivos
+      ext = nombre.slice(nombre.rindex("."), nombre.length).downcase
+      if ext == ".pdf" || ext == ".pptx" || ext == ".docx" || ext == ".xlsx"|| ext == ".ppt" || ext == ".doc" || ext == ".xls" || ext == ".rar"|| ext == ".zip"
+        path = File.join(dir, nombre)
+        resultado = File.open(path, "wb") {|f| f.write(archivo.read)}
+        if resultado
+          subir = "ok"
+          @ruta = path
+          @publicacion = Publicacion.new(publicacion_params)
+          respond_to do |format|
+            if @publicacion.save()
+              id = Publicacion.last.id
+              @tarea = Publicacion.find(id)
+              @archivo = Archivo.new({
+                nombre: nombre,
+                ruta: @ruta,
+                publicacion: @tarea
+              })
+              if @archivo.save()
+                format.html { redirect_to @publicacion, notice: 'La publicación ha sido creada satisfactoriamente.' }
+                format.json { render :show, status: :created, location: @publicacion }
+              else
+                format.html { render :new }
+                format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+              end
+            else
+              format.html { render :new }
+              format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+            end
+          end
+        else
+          subir = "No se pudo subir el archivo."
+        end
       else
-        format.html { render :new }
-        format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+        @formato_erroneo = true
+      end
+    else
+      @publicacion = Publicacion.new(publicacion_params)
+      respond_to do |format|
+        if @publicacion.save()
+          format.html { redirect_to @publicacion, notice: 'La publicación ha sido creada satisfactoriamente.' }
+          format.json { render :show, status: :created, location: @publicacion }
+        else
+          format.html { render :new }
+          format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

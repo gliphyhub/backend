@@ -24,13 +24,6 @@
 					%input{type:"file", multiple:""}
 				.file-path-wrapper
 					%input.file-path.validate{type:"text", placeholder:"Archivos a subir"}
-			.file-field.input-field
-				.btn
-					%span
-						%i.material-icons attach_file
-					%input{type:"file", multiple:""}
-				.file-path-wrapper
-					%input.file-path.validate{type:"text", placeholder:"Archivos a subir"}
 			%h5 Seleccione la prioridad del comunicado
 			.col.s12.input-field
 				= f.check_box :prioridad
@@ -47,3 +40,6 @@
 			%p.right
 				%a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href:"#"} Volver
 				= f.submit 'Publicar',class:"modal-action modal-close  waves-effect waves-green btn"
+- if @formato_erroneo
+   %div
+      %p El formato ingresado es incorrecto. Solo puedes subir archivos .doc, .docx, .pdf, .xlsx, .pptx, .ppt, .xls
