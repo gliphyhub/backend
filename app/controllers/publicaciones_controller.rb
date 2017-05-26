@@ -9,8 +9,8 @@ class PublicacionesController < ApplicationController
     @publicaciones = Publicacion.all
     @archi = Archivo.select("id, nombre, ruta, publicacion_id")
     @archivos = Dir.entries(Ruta_directorio_archivos)
-    @urgentes = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: true, condicion de que la fecha actual sea menor a la de termino)
-    @publicaciones = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: false, condicion de que la fecha actual sea menor a la de termino)
+    @urgentes = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: true)
+    @publicaciones = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: false)
   end
 
   # GET /publicaciones/1
@@ -30,26 +30,44 @@ class PublicacionesController < ApplicationController
   # POST /publicaciones
   # POST /publicaciones.json
   def create
-    if params[:publicacion][:file]#si contiene un archivo
-      archivo = params[:publicacion][:file]
-      nombre = archivo.original_filename
+    if params[:publicacion][:archivo]#si contiene un archivo
+      archivo = params[:publicacion][:archivo]
+      @nombre = archivo.original_filename
       dir = Ruta_directorio_archivos
-      ext = nombre.slice(nombre.rindex("."), nombre.length).downcase
+      ext = @nombre.slice(@nombre.rindex("."), @nombre.length).downcase
       if ext == ".pdf" || ext == ".pptx" || ext == ".docx" || ext == ".xlsx"|| ext == ".ppt" || ext == ".doc" || ext == ".xls" || ext == ".rar"|| ext == ".zip"
-        path = File.join(dir, nombre)
+        path = File.join(dir, @nombre)
         resultado = File.open(path, "wb") {|f| f.write(archivo.read)}
         if resultado
           subir = "ok"
           @ruta = path
+          #@titulo = params[:publicacion][:titulo]
+          #@mensaje = params[:publicacion][:mensaje]
+          #@fecha_de_termino = params[:publicacion][:fecha_de_termino]
+          #if params[:publicacion][:urgente]
+          #  @publicacion = Publicacion.new({
+          #  titulo: @titulo,
+          #  mensaje: @mensaje,
+          #  fecha_de_termino: @fecha_de_termino,
+          #  prioridad: true
+          #})
+          #else
+          #  @publicacion = Publicacion.new({
+          #  titulo: @titulo,
+          #  mensaje: @mensaje,
+          #  fecha_de_termino: @fecha_de_termino,
+          #  prioridad: false
+          #})
+          #end
           @publicacion = Publicacion.new(publicacion_params)
           respond_to do |format|
             if @publicacion.save()
               id = Publicacion.last.id
               @tarea = Publicacion.find(id)
               @archivo = Archivo.new({
-                nombre: nombre,
-                ruta: @ruta,
-                publicacion: @tarea
+                publicacion_id: id,
+                nombre: @nombre,
+                ruta: @ruta
               })
               if @archivo.save()
                 format.html { redirect_to @publicacion, notice: 'La publicación ha sido creada satisfactoriamente.' }
@@ -78,7 +96,7 @@ class PublicacionesController < ApplicationController
         else
           format.html { render :new }
           format.json { render json: @publicacion.errors, status: :unprocessable_entity }
-        end
+       end
       end
     end
   end
