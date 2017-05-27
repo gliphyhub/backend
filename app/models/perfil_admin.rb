@@ -30,8 +30,6 @@ class PerfilAdmin < ApplicationRecord
   belongs_to :user
   belongs_to :genero
   ###################################################
-
-  ###################################################
   ##################Validaciones#####################
   #validates :user_id, presence: true, numericality: {only_integer: true}
   validates :nss, presence:true, length: {in: 5..30}

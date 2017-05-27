@@ -133,6 +133,9 @@ class PublicacionesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publicacion_params
-      params.require(:publicacion).permit(:titulo, :mensaje, :fecha_de_termino, :prioridad)
+      params.require(:publicacion).permit(:titulo, 
+                                          :mensaje, 
+                                          :fecha_de_termino, 
+                                          :prioridad)
     end
 end

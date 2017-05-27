@@ -1,4 +1,5 @@
 -tipoUser = current_user.tipo.tipo_de_usuario
+
 -if current_user.tipo.id == 1
 	-unless current_user.perfil_admin.nil?
 		-if current_user.perfilado == true
@@ -19,18 +20,27 @@
 		-imgPerfil = "users/desconocido.png"
 		-imgCover = "covers/desconocido.png"
 
+-elsif current_user.tipo.id == 2
+	-unless current_user.perfil_profesor.nil?
+		-if current_user.perfilado == true
+			-nombres =  current_user.perfil_profesor.nombre.capitalize
+			-ap_paterno = current_user.perfil_profesor.ap_paterno.capitalize
+			-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
+			-sexo = current_user.perfil_profesor.genero.sexo
+			-if sexo == "masculino"
+				-imgPerfil = "users/user01.jpg"
+			-else
+				-imgPerfil = "users/user02.jpg"
+			-imgCover = "covers/teacher-cover.jpg"
+			-menuLateral=[{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
+			-notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
+		-else
+			-imgPerfil = "users/desconocido.png"
+			-imgCover = "covers/desconocido.png"
+	-else
+		-imgPerfil = "users/desconocido.png"
+		-imgCover = "covers/desconocido.png"
 
--#-elsif current_user.tipo.id == 2
--#	-unless current_user.perfil_profesor.nil? 
--# 	-nombres =  current_user.perfil_profesor.nombre.capitalize
--# 	-ap_paterno = current_user.perfil_profesor.ap_paterno.capitalize
--# 	-ap_materno = current_user.perfil_profesor.ap_materno.capitalize
--# 	-correo = current_user.email
--# 	-fecha_de_nacimiento = current_user.perfil_profesor.fecha_de_nacimiento
--# 	-sexo = current_user.perfil_profesor.genero.sexo
--# 	-imgCover = "covers/teacher-cover.jpg"
--# 	-menuLateral=[{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},
--# 				{title:"Agregar",link:new_publicacion_path, icon:"add"}]
 -# -elsif current_user.tipo.id == 3
 -# 	-nombres =  current_user.perfil_tutor.nombre.capitalize
 -# 	-ap_paterno = current_user.perfil_tutor.ap_paterno.capitalize

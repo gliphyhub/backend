@@ -4,16 +4,16 @@ class HomeController < ApplicationController
   def index
     @seccion="Inicio"
     if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
-      @perfil_admin = PerfilAdmin.new       
-    else
-       
+      @perfil_admin = PerfilAdmin.new
+    elsif current_user.tipo.id == 2 && current_user.perfil_profesor.nil?
+      @perfil_profesor = PerfilProfesor.new
     end 
 
   end
 
 
   def help
-    
+    @seccion="Ayuda"
   end
 
 
