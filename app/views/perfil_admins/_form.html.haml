@@ -1,10 +1,11 @@
 = form_for @perfil_admin do |f|
-	- if @perfil_admin.errors.any?
-		%h6= "#{pluralize(@perfil_admin.errors.count, "error")} ocurrio al guardar el perfil"
-		- @perfil_admin.errors.full_messages.each do |msg|
-			%li= msg
-			%script Materialize.toast("#{msg}", 10000);
 	.container
+		- if @perfil_admin.errors.any?
+			%blockquote= "#{pluralize(@perfil_admin.errors.count, "probelma(s)")} al guardar el perfil"
+			- @perfil_admin.errors.full_messages.each do |msg|
+				-#%li= msg
+				-#%blockquote= msg
+				%script Materialize.toast("#{msg}", 12000);
 		.input-field
 			= f.label :nss
 			= f.text_field :nss
@@ -60,6 +61,6 @@
 			= f.label :extension_recados
 			= f.text_field :extension_recados
 		.input-field.center
-			= f.submit 'Guardar', class:"col s12 btn waves-effect waves-light"
+			= f.submit 'Guardar', class:"btn waves-effect waves-light"
 		%br/
 		%br/

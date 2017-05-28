@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :perfil_alumnos, only: [:create]
-  resources :perfil_tutores, only: [:create]
-  resources :perfil_profesores, only: [:create]
-  resources :perfil_admins, only: [:create]
+  resources :perfil_alumnos#, only: [:create]
+  resources :perfil_tutores#, only: [:create]
+  resources :perfil_profesores#, only: [:create]
+  resources :perfil_admins#, only: [:create]
   mount RailsAdmin::Engine => '/basededatos', as: 'rails_admin'
   resources :publicaciones
 

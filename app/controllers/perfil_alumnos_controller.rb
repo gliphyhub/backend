@@ -1,16 +1,16 @@
 class PerfilAlumnosController < ApplicationController
-  #before_action :set_perfil_alumno, only: [:show, :edit, :update, :destroy]
+  before_action :set_perfil_alumno, only: [:show, :edit, :update, :destroy]
 
   # GET /perfil_alumnos
   # GET /perfil_alumnos.json
-  #def index
-  #  @perfil_alumnos = PerfilAlumno.all
-  #end
+  def index
+    @perfil_alumnos = PerfilAlumno.all
+  end
 
   # GET /perfil_alumnos/1
   # GET /perfil_alumnos/1.json
-  #def show
-  #end
+  def show
+  end
 
   # GET /perfil_alumnos/new
   def new
@@ -33,7 +33,7 @@ class PerfilAlumnosController < ApplicationController
         respond_to do |format|
           if @perfil_alumno.save
             current_user.update(perfilado:true)
-            format.html { redirect_to root_path, notice: '¡Bienvenido! Ahora tienes perfil, ya puedes disfrutar de tu cuenta' }
+            format.html { redirect_to root_path, notice:  '¡Bienvenido! Ya puedes disfrutar de tu cuenta' }
             #format.json { render :show, status: :created, location: @perfil_alumno }
           else
             format.html { render :new }
@@ -41,11 +41,11 @@ class PerfilAlumnosController < ApplicationController
           end
         end
       else
-        flash[:error] = "No es un tutor"
+        flash[:error] = "El usuario no es un tutor"
         render:new 
       end 
     else
-      flash[:error] = "Tutor no encontrado"
+      flash[:error] = "Tutor correo no encontrado"
       render:new 
     end     
 
@@ -56,33 +56,33 @@ class PerfilAlumnosController < ApplicationController
 
   # PATCH/PUT /perfil_alumnos/1
   # PATCH/PUT /perfil_alumnos/1.json
-  # def update
-  #   respond_to do |format|
-  #     if @perfil_alumno.update(perfil_alumno_params)
-  #       format.html { redirect_to @perfil_alumno, notice: 'Perfil alumno was successfully updated.' }
-  #       format.json { render :show, status: :ok, location: @perfil_alumno }
-  #     else
-  #       format.html { render :edit }
-  #       format.json { render json: @perfil_alumno.errors, status: :unprocessable_entity }
-  #     end
-  #   end
-  # end
+  def update
+    respond_to do |format|
+      if @perfil_alumno.update(perfil_alumno_params)
+        format.html { redirect_to @perfil_alumno, notice: 'Perfil alumno was successfully updated.' }
+        format.json { render :show, status: :ok, location: @perfil_alumno }
+      else
+        format.html { render :edit }
+        format.json { render json: @perfil_alumno.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # # DELETE /perfil_alumnos/1
   # # DELETE /perfil_alumnos/1.json
-  # def destroy
-  #   @perfil_alumno.destroy
-  #   respond_to do |format|
-  #     format.html { redirect_to perfil_alumnos_url, notice: 'Perfil alumno was successfully destroyed.' }
-  #     format.json { head :no_content }
-  #   end
-  # end
+  def destroy
+    @perfil_alumno.destroy
+    respond_to do |format|
+      format.html { redirect_to perfil_alumnos_url, notice: 'Perfil alumno was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    #def set_perfil_alumno
-    #  @perfil_alumno = PerfilAlumno.find(params[:id])
-    #end
+    def set_perfil_alumno
+      @perfil_alumno = PerfilAlumno.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def perfil_alumno_params

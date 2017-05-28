@@ -21,8 +21,8 @@
 			-#=========================================
 			.right
 				%a.user-activator.btn-flat.white-bonis.hide-on-small-only.no-upper{href:"#!", data:{activates:"user-menu"}}
-					=image_tag "#{imgPerfil}",class:"admin-img left"
-					%span #{nombreCorto}
+					=image_tag "#{@imgPerfil}",class:"admin-img left"
+					%span #{@nombreCorto}
 				%a.user-activator.btn-flat.white-bonis.hide-on-med-and-up{href:"#!",data:{activates:"user-menu"}}
 					%i.material-icons.left apps
 					%span OPCIONES
@@ -36,7 +36,7 @@
 			-#========== Navegación - menú =================
 			-#=========================================
 			.col.s8.margincito-left.hide-on-small-only.truncate
-				%a.breadcrumb= "Gliphy#{tipoUser.capitalize}"
+				%a.breadcrumb= "Gliphy#{@tipoUser.capitalize}"
 				%a.breadcrumb= "#{@seccion}"
 
 -#=========================================
@@ -46,8 +46,8 @@
 	.side-contenedor
 		.side-lista
 			%br/
-			-unless menuLateral.nil?
-				-menuLateral.each do |item|		
+			-unless @menuLateral.nil?
+				-@menuLateral.each do |item|		
 					-if item[:title] == "Base de Datos"
 						%li
 							%ul.collapsible.collapsible-accordion
@@ -79,8 +79,8 @@
 	.side-contenedor
 		.side-lista
 			%br/
-			-unless menuLateral.nil?
-				-menuLateral.each do |item|		
+			-unless @menuLateral.nil?
+				-@menuLateral.each do |item|		
 					-if item[:title] == "Base de Datos"
 						%li
 							%ul.collapsible.collapsible-accordion

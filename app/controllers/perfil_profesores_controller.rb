@@ -11,9 +11,9 @@ class PerfilProfesoresController < ApplicationController
   # GET /perfil_profesores/1.json
   #def show
   #end
-  def set_current_user
-    PerfilProfesor.current_user = current_user    
-  end
+  #def set_current_user
+    #PerfilProfesor.current_user = current_user
+  #end
 
   # GET /perfil_profesores/new
   def new
@@ -29,12 +29,26 @@ class PerfilProfesoresController < ApplicationController
   def create
     @perfil_profesor = PerfilProfesor.new(perfil_profesor_params)
     @perfil_profesor.user= current_user
-    @perfil_profesor.grupos = params[:grupos]
-    @perfil_profesor.materias = params[:materias]
+    #@perfil_profesor.grupos = params[:grupos]
+    #@perfil_profesor.materias = params[:materias]
+    #raise @perfil_profesor
+    @grupos=params[:grupos]
+    @materias=params[:materias]
+
     respond_to do |format|
       if @perfil_profesor.save
         current_user.update(perfilado:true)
-        format.html { redirect_to root_path, notice: '¡Bienvenido! Ahora tienes perfil, ya puedes disfrutar de tu cuenta' }
+         unless @grupos.nil?
+            @grupos.each do |grupo, valor|
+              ProfesorGrupo.create(grupo_id: valor,perfil_profesor_id:  @perfil_profesor.id)
+            end      
+         end
+        unless @materias.nil?
+          @materias.each do |materia, valor|
+            ProfesorMateria.create(materia_id: valor,perfil_profesor_id:  @perfil_profesor.id)
+          end      
+        end
+        format.html { redirect_to root_path, notice: '¡Bienvenido! Ya puedes disfrutar de tu cuenta' }
         #format.json { render :show, status: :created, location: @perfil_profesor }
       else
         format.html { render :new }

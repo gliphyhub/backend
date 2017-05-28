@@ -1,10 +1,10 @@
 = form_for @perfil_profesor do |f|
-	- if @perfil_profesor.errors.any?
-		%h6= "#{pluralize(@perfil_profesor.errors.count, "error")} ocurrio al guardar el perfil"
-		- @perfil_profesor.errors.full_messages.each do |msg|
-			%li= msg
-			%script Materialize.toast("#{msg}", 10000);
 	.container
+		- if @perfil_profesor.errors.any?
+			%blockquote= "#{pluralize(@perfil_profesor.errors.count, "probelma(s)")} ocurrio al guardar el perfil, asigne de nuevo los grupos"
+			- @perfil_profesor.errors.full_messages.each do |msg|
+				-#%li= msg
+				%script Materialize.toast("#{msg}", 12000);
 		.input-field
 			= f.label :nss
 			= f.text_field :nss
@@ -77,6 +77,6 @@
 									&nbsp;&nbsp;
 							%hr{style:"margin-top:60px"}
 		.input-field.center
-			= f.submit 'Guardar', class:"col s12 btn waves-effect waves-light"
+			= f.submit 'Guardar', class:"btn waves-effect waves-light"
 		%br/
 		%br/

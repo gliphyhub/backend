@@ -1,4 +1,3 @@
-acabar los registros de los usuarios
-unique a la matricula en la bd
-concerns
 editar perfiles
+concerns
+validate al correo

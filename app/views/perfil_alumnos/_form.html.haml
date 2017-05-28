@@ -1,10 +1,13 @@
 = form_for @perfil_alumno do |f|
-	- if @perfil_alumno.errors.any?
-		%h6= "#{pluralize(@perfil_alumno.errors.count, "error")} ocurrio al guardar el perfil"
-		- @perfil_alumno.errors.full_messages.each do |msg|
-			%li= msg
-			%script Materialize.toast("#{msg}", 10000);
 	.container
+		- if @perfil_alumno.errors.any?
+			%blockquote= "#{pluralize(@perfil_alumno.errors.count,"probelma(s)")} ocurrio al guardar el perfil, debe asignar de nuevo el tutor"
+			- @perfil_alumno.errors.full_messages.each do |msg|
+				-#%li= msg
+				%script Materialize.toast("#{msg}", 12000);
+		.input-field
+			= label_tag "tutor_mail", "Correo del tutor"
+			= email_field_tag :tutor_mailcito
 		.input-field
 			= f.label :matricula #hacerla unique en el bd
 			= f.text_field :matricula
@@ -17,9 +20,6 @@
 		.input-field
 			= f.label :nombre
 			= f.text_field :nombre
-		.input-field
-			= label_tag "tutor_mail", "Correo del tutor"
-			= email_field_tag :tutor_mailcito
 		.input-field
 			= f.label :fecha_de_nacimiento
 			%br/
@@ -84,6 +84,6 @@
 			%br/
 			%br/
 		.input-field.center
-			= f.submit 'Guardar', class:"col s12 btn waves-effect waves-light"
+			= f.submit 'Guardar', class:"btn waves-effect waves-light"
 		%br/
 		%br/

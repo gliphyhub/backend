@@ -2,7 +2,7 @@
 	.input-field.col.s12.l6
 		%i.material-icons.prefix.medium account_circle
 		= f.email_field :email, autofocus: true, class:"validate"
-		= f.label :email
+		= f.label :email,data:{error:"No es un correo", success:"✓"}
 	.input-field.col.s12.l6
 		%i.material-icons.prefix.medium lock_outline
 		= f.password_field :password, autocomplete: "off", class:"validate"

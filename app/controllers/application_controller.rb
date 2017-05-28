@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
    before_action :set_current_user
 
+   #=== se abandono la idea no borrar puede ser ultil despues====
 	def set_current_user
 	  #ir al controlador del profesor y alumno
 	end
