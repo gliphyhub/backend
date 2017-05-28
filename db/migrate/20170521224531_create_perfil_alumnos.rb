@@ -2,7 +2,7 @@ class CreatePerfilAlumnos < ActiveRecord::Migration[5.0]
   def change
     create_table :perfil_alumnos do |t|
       t.belongs_to :user, foreign_key: true, index:{unique: true}
-      t.string :matricula
+      t.string :matricula, index:{unique: true}
       t.string :ap_paterno
       t.string :ap_materno
       t.string :nombre

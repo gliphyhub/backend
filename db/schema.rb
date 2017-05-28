@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170521224531) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["genero_id"], name: "index_perfil_admins_on_genero_id"
+    t.index ["nss"], name: "index_perfil_admins_on_nss", unique: true
     t.index ["user_id"], name: "index_perfil_admins_on_user_id", unique: true
   end
 
@@ -129,6 +130,7 @@ ActiveRecord::Schema.define(version: 20170521224531) do
     t.index ["generacion_id"], name: "index_perfil_alumnos_on_generacion_id"
     t.index ["genero_id"], name: "index_perfil_alumnos_on_genero_id"
     t.index ["grupo_id"], name: "index_perfil_alumnos_on_grupo_id"
+    t.index ["matricula"], name: "index_perfil_alumnos_on_matricula", unique: true
     t.index ["perfil_tutor_id"], name: "index_perfil_alumnos_on_perfil_tutor_id"
     t.index ["user_id"], name: "index_perfil_alumnos_on_user_id", unique: true
   end
@@ -154,6 +156,7 @@ ActiveRecord::Schema.define(version: 20170521224531) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
     t.index ["genero_id"], name: "index_perfil_profesores_on_genero_id"
+    t.index ["nss"], name: "index_perfil_profesores_on_nss", unique: true
     t.index ["user_id"], name: "index_perfil_profesores_on_user_id", unique: true
   end
 

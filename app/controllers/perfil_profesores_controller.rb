@@ -30,7 +30,7 @@ class PerfilProfesoresController < ApplicationController
     @perfil_profesor = PerfilProfesor.new(perfil_profesor_params)
     @perfil_profesor.user= current_user
     @perfil_profesor.grupos = params[:grupos]
-    #@perfil_profesor.materias = params[:materias]
+    @perfil_profesor.materias = params[:materias]
     respond_to do |format|
       if @perfil_profesor.save
         current_user.update(perfilado:true)

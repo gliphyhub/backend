@@ -275,7 +275,7 @@ $(function() {
 	grado_1=0
 	for (var i=1; i<=20; i++) {
 		$("#grupos_"+i).on("click", function() {
-			for (var y=1; y<=20; y++) {
+			for (var y=1 ;y<=20; y++) {
 				if($("#grupos_"+y).prop('checked')){
 					//console.log("habilitado")
 					grado_1++
@@ -284,7 +284,7 @@ $(function() {
 					grado_1--
 				}
 			}
-			//console.log(grado_1)
+
 			if(grado_1==-20){
 				for (var x=1; x<=10; x++) {
 					$("#materias_"+ x).attr("disabled", true);
