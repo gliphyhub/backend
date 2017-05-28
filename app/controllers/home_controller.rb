@@ -1,14 +1,18 @@
 class HomeController < ApplicationController
   def bienvenida
   end
+
   def index
     @seccion="Inicio"
     if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
       @perfil_admin = PerfilAdmin.new
     elsif current_user.tipo.id == 2 && current_user.perfil_profesor.nil?
       @perfil_profesor = PerfilProfesor.new
-    end 
-
+    elsif current_user.tipo.id == 3 && current_user.perfil_tutor.nil?
+      @perfil_tutor = PerfilTutor.new
+    elsif current_user.tipo.id == 4 && current_user.perfil_alumno.nil?
+      @perfil_alumno = PerfilAlumno.new
+    end
   end
 
 

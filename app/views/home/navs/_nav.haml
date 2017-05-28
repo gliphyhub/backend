@@ -1,73 +1,3 @@
--tipoUser = current_user.tipo.tipo_de_usuario
-
--if current_user.tipo.id == 1
-	-unless current_user.perfil_admin.nil?
-		-if current_user.perfilado == true
-			-nombres =  current_user.perfil_admin.nombre.capitalize
-			-ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
-			-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
-			-sexo = current_user.perfil_admin.genero.sexo
-			-if sexo == "masculino"
-				-imgPerfil = "users/user01.jpg"
-			-else
-				-imgPerfil = "users/user02.jpg"
-			-imgCover="covers/admin-cover.jpg"
-			-notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
-		-else
-			-imgPerfil = "users/desconocido.png"
-			-imgCover = "covers/desconocido.png"
-	-else
-		-imgPerfil = "users/desconocido.png"
-		-imgCover = "covers/desconocido.png"
-
--elsif current_user.tipo.id == 2
-	-unless current_user.perfil_profesor.nil?
-		-if current_user.perfilado == true
-			-nombres =  current_user.perfil_profesor.nombre.capitalize
-			-ap_paterno = current_user.perfil_profesor.ap_paterno.capitalize
-			-nombreCorto = -nombres.split(/ /)[0] + " " + -ap_paterno
-			-sexo = current_user.perfil_profesor.genero.sexo
-			-if sexo == "masculino"
-				-imgPerfil = "users/user01.jpg"
-			-else
-				-imgPerfil = "users/user02.jpg"
-			-imgCover = "covers/teacher-cover.jpg"
-			-menuLateral=[{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
-			-notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
-		-else
-			-imgPerfil = "users/desconocido.png"
-			-imgCover = "covers/desconocido.png"
-	-else
-		-imgPerfil = "users/desconocido.png"
-		-imgCover = "covers/desconocido.png"
-
--# -elsif current_user.tipo.id == 3
--# 	-nombres =  current_user.perfil_tutor.nombre.capitalize
--# 	-ap_paterno = current_user.perfil_tutor.ap_paterno.capitalize
--# 	-ap_materno = current_user.perfil_tutor.ap_materno.capitalize
--# 	-correo = current_user.email
--# 	-fecha_de_nacimiento = current_user.perfil_tutor.fecha_de_nacimiento
--# 	-sexo = current_user.perfil_tutor.genero.sexo
--# 	-imgCover = "covers/student-cover.jpg"
--# -else
--# 	-nombres =  current_user.perfil_alumno.nombre.capitalize
--# 	-ap_paterno = current_user.perfil_alumno.ap_paterno.capitalize
--# 	-ap_materno = current_user.perfil_alumno.ap_materno.capitalize
--# 	-correo = current_user.email
--# 	-fecha_de_nacimiento = current_user.perfil_alumno.fecha_de_nacimiento
--# 	-sexo = current_user.perfil_alumno.genero.sexo
--# 	-grupo = current_user.perfil_alumno.grupo.grupo
--# 	-imgCover = "covers/student-cover.jpg"
-
--#
-
--#-if sexo == "masculino"
--#	-imgPerfil = "users/user01.jpg"
--#-else
--#-imgPerfil = "users/user02.jpg"
--#-imgCover = "covers/student-cover.jpg"
-
-
 -#=========================================
 -#=========== Barra de navegación ================
 -#=========================================
@@ -76,13 +6,8 @@
 	=render "home/navs/admin"
 -elsif current_user.tipo.id == 2
 	=render "home/navs/prof"
--elsif current_user.tipo.id == 4
-	-if current_user.perfil_alumno.grupo.nivel.id == 1
-		=render "home/navs/secundaria"
-	-else
-		=render "home/navs/bachillerato"
 -else
-	=render "home/navs/tutor"
+	=render "home/navs/general"
 
 -#=========================================
 -#=========== Opciones de usuario =========
@@ -90,22 +15,13 @@
 %ul#user-menu.side-nav.blue-grey.darken-4
 	%li.userView
 		.background
-			=image_tag "#{imgCover}"
+			=image_tag "#{@imgCover}"
 		.white-bonis
-			=image_tag "#{imgPerfil}", class:"circle"
-			%span.white-text.name #{nombreCorto}
-			%span.white-text.email.separado #{tipoUser}
+			=image_tag "#{@imgPerfil}", class:"circle"
+			%span.white-text.name #{@nombreCorto}
+			%span.white-text.email.separado #{@tipoUser}
 	%li.waves-effect
-		-if current_user.tipo.id == 1 && current_user.perfilado== true
-			%i.material-icons.left.white-bonis person
-			=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
-		-elsif current_user.tipo.id == 2 && current_user.perfilado== true
-			%i.material-icons.left.white-bonis person
-			=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
-		-elsif current_user.tipo.id == 3 && current_user.perfilado== true
-			%i.material-icons.left.white-bonis person
-			=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
-		-elsif current_user.tipo.id == 4 && current_user.perfilado== true
+		-if current_user.perfilado== true
 			%i.material-icons.left.white-bonis person
 			=link_to "Mi perfil", edit_user_registration_path, class:"white-bonis waves-effect"
 	%li.waves-effect
@@ -120,8 +36,8 @@
 		%li.white-text
 			%h6.center-align.upper Notificaciones
 		%ul.notificaciones
-			-unless notificationes.nil?
-				-notificationes.each do |item|
+			-unless @notificationes.nil?
+				-@notificationes.each do |item|
 					%li 
 						%ul.collapsible.collapsible-accordion
 							%li

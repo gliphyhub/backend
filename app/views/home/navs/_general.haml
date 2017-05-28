@@ -1,8 +1,18 @@
+-if current_user.tipo.id == 3
+	-@colorFondo = "#01579b"
+-else
+	-if current_user.perfilado == false
+		-@colorFondo = "#e64a19"
+	-else 
+		-if current_user.perfil_alumno.grupo.nivel.id == 1
+			-@colorFondo = "#d32f2f"
+		-else
+			-@colorFondo = "#00796b"
 -#=========================================
 -#=========== Barra de navegación ================
 -#=========================================
 #nav-user.navbar-fixed
-	%nav.teal.darken-2
+	%nav{style:"background-color: #{@colorFondo} !important"}
 		.nav-wrapper
 			-#=========================================
 			-#============= Botón Notificaciones === ================

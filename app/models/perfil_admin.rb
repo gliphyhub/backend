@@ -32,7 +32,7 @@ class PerfilAdmin < ApplicationRecord
   ###################################################
   ##################Validaciones#####################
   #validates :user_id, presence: true, numericality: {only_integer: true}
-  validates :nss, presence:true, length: {in: 5..30}
+  validates :nss, presence:true, length: {in: 5..30}, numericality: {only_integer: true}, uniqueness: true
   validates :ap_paterno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,
     message: "no puede contener numeros" }
   validates :ap_materno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,

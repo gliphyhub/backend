@@ -28,21 +28,21 @@ class PerfilProfesor < ApplicationRecord
   cattr_accessor :current_user
   ###################################################
   ##################Validaciones#####################
-  #validates :nss, presence:true, length: {in: 5..30}
+  validates :nss, presence:true, length: {in: 5..30}, numericality: {only_integer: true}, uniqueness: true
   validates :ap_paterno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,
     message: "no puede contener numeros" }
   validates :ap_materno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,
     message: "no puede contener numeros" }
   validates :nombre, presence: true, length: {in: 2..50}
-  #validates :fecha_de_nacimiento, presence: true
-  #validates :calle, presence: true, length: {in: 4..30}
-  #validates :numero_exterior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
-  #validates :numero_interior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
-  #validates :colonia, presence: true, length: {in: 4..30}
-  #validates :delegacion_municipio, presence: true, length: {in: 4..30}
-  #validates :codigo_postal, presence: true, length: {is: 5}, numericality: {only_integer: true}
-  #validates :telefono_casa, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
-  #validates :telefono_celular, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
+  validates :fecha_de_nacimiento, presence: true
+  validates :calle, presence: true, length: {in: 4..30}
+  validates :numero_exterior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
+  validates :numero_interior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
+  validates :colonia, presence: true, length: {in: 4..30}
+  validates :delegacion_municipio, presence: true, length: {in: 4..30}
+  validates :codigo_postal, presence: true, length: {is: 5}, numericality: {only_integer: true}
+  validates :telefono_casa, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
+  validates :telefono_celular, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
   ###################################################
   ##################Relaciones#######################
   belongs_to :user
@@ -67,16 +67,20 @@ class PerfilProfesor < ApplicationRecord
     @grupos=value #se guarda el arreglo
   end
   def guarda_grupos
-    @grupos.each do |grupo, valor|
-      ProfesorGrupo.create(grupo_id: valor,perfil_profesor_id: PerfilProfesor.current_user.id)
+    unless @grupos.nil?
+      @grupos.each do |grupo, valor|
+        ProfesorGrupo.create(grupo_id: valor,perfil_profesor_id: PerfilProfesor.current_user.id)
+      end      
     end
   end
   def materias=(value)
     @materias=value #se guarda el arreglo
   end
   def guarda_materias
-    @materias.each do |materia, valor|
-      ProfesorMateria.create(materia_id: valor,perfil_profesor_id: PerfilProfesor.current_user.id)
+    unless @materias.nil?
+      @materias.each do |materia, valor|
+        ProfesorMateria.create(materia_id: valor,perfil_profesor_id: PerfilProfesor.current_user.id)
+      end      
     end
   end
 end

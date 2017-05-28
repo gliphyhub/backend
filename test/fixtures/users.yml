@@ -4,6 +4,7 @@
 #
 #  id                     :integer          not null, primary key
 #  tipo_id                :integer
+#  perfilado              :boolean          default("f")
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string

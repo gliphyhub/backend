@@ -1,17 +1,10 @@
--#=================================================================
--#========================= Contenido - Layout ===========================
--#=================================================================
--#-if current_user.tipo.id == 1 || current_user.tipo.id == 2
--#	%main.navegacion-espacio
--#-else
--#	%main
 %main.navegacion-espacio
 	=current_user.tipo.tipo_de_usuario
 	-if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
 		=render "perfil_admins/form"
 	-elsif current_user.tipo.id == 2 && current_user.perfil_profesor.nil?
 		=render "perfil_profesores/form"
-	-# -elsif current_user.tipo.id == 3
-	-# 	=render "perfil_tutores/form"		
-	-# -else
-	-# 	=render "perfil_alumnos/form"
+	-elsif current_user.tipo.id == 3 && current_user.perfil_tutor.nil?
+		=render "perfil_tutores/form"
+	-elsif current_user.tipo.id == 4 && current_user.perfil_alumno.nil?
+		=render "perfil_alumnos/form"

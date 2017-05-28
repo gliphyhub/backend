@@ -12,4 +12,5 @@ class ApplicationController < ActionController::Base
   def set_layout
   	"application"
   end
+  
 end
