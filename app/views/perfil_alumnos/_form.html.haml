@@ -18,6 +18,9 @@
 			= f.label :nombre
 			= f.text_field :nombre
 		.input-field
+			= label_tag "tutor_mail", "Correo del tutor"
+			= email_field_tag :tutor_mailcito
+		.input-field
 			= f.label :fecha_de_nacimiento
 			%br/
 			= f.date_select :fecha_de_nacimiento, start_year:1995, end_year:2010
@@ -59,9 +62,6 @@
 		.input-field
 			= f.label :extension_recados
 			= f.text_field :extension_recados
-		.input-field
-			= label_tag "tutor_mail", "Correo del tutor"
-			= email_field_tag :tutor_mail
 		.input-field			
 			-Grado.all.each do |grado|
 				%hr{style:"margin-bottom:15px"}
@@ -81,6 +81,9 @@
 				= f.radio_button :generacion_id,generacion.id
 				= f.label "generacion_id_#{generacion.id}", generacion.generacion
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
+			%br/
+			%br/
 		.input-field.center
 			= f.submit 'Guardar', class:"col s12 btn waves-effect waves-light"
+		%br/
+		%br/

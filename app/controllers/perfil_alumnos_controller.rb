@@ -26,8 +26,8 @@ class PerfilAlumnosController < ApplicationController
   def create
     @perfil_alumno = PerfilAlumno.new(perfil_alumno_params)
     @perfil_alumno.user= current_user
-    @tutor_pertenece=  User.find_by("email = ?",params[:tutor_mail])
-    if @tutor_pertenece
+    @tutor_pertenece=  User.find_by("email = ?",params[:tutor_mailcito])
+    unless @tutor_pertenece.nil?
       if @tutor_pertenece.tipo.id == 3
         @perfil_alumno.perfil_tutor_id=@tutor_pertenece.perfil_tutor.id
         respond_to do |format|
@@ -41,9 +41,12 @@ class PerfilAlumnosController < ApplicationController
           end
         end
       else
-        flash[:error] = "tutor no encontrado"
-        render :new 
-      end   
+        flash[:error] = "No es un tutor"
+        render:new 
+      end 
+    else
+      flash[:error] = "Tutor no encontrado"
+      render:new 
     end     
 
     #raise @perfil_alumno.to_yaml
@@ -100,7 +103,6 @@ class PerfilAlumnosController < ApplicationController
                                             :telefono_recados, 
                                             :extension_recados, 
                                             :grupo_id, 
-                                            :generacion_id,
-                                            :tutor_mail)
+                                            :generacion_id)
     end
 end
