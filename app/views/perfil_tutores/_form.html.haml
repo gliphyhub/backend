@@ -18,6 +18,8 @@
       = f.label :fecha_de_nacimiento
       %br/
       = f.date_select :fecha_de_nacimiento, start_year:1950, end_year:2010
+    %br/
+    %b Genero
     .input-field
       -Genero.all.each do |genero|
         = f.radio_button :genero_id,genero.id

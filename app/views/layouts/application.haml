@@ -67,7 +67,7 @@
 				-@nombres =  current_user.perfil_alumno.nombre.capitalize
 				-@ap_paterno = current_user.perfil_alumno.ap_paterno.capitalize
 				-@nombreCorto = -@nombres.split(/ /)[0] + " " + -@ap_paterno
-				-@sexo = current_user.perfil_tutor.genero.sexo
+				-@sexo = current_user.perfil_alumno.genero.sexo
 				-if @sexo == "masculino"
 					-@imgPerfil = "users/user01.jpg"
 				-else

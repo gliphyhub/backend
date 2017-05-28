@@ -26,17 +26,29 @@ class PerfilAlumnosController < ApplicationController
   def create
     @perfil_alumno = PerfilAlumno.new(perfil_alumno_params)
     @perfil_alumno.user= current_user
-
-    respond_to do |format|
-      if @perfil_alumno.save
-        current_user.update(perfilado:true)
-        format.html { redirect_to root_path, notice: 'Bienvenido' }
-        #format.json { render :show, status: :created, location: @perfil_alumno }
+    @tutor_pertenece=  User.find_by("email = ?",params[:tutor_mail])
+    if @tutor_pertenece
+      if @tutor_pertenece.tipo.id == 3
+        @perfil_alumno.perfil_tutor_id=@tutor_pertenece.perfil_tutor.id
+        respond_to do |format|
+          if @perfil_alumno.save
+            current_user.update(perfilado:true)
+            format.html { redirect_to root_path, notice: '¡Bienvenido! Ahora tienes perfil, ya puedes disfrutar de tu cuenta' }
+            #format.json { render :show, status: :created, location: @perfil_alumno }
+          else
+            format.html { render :new }
+            #format.json { render json: @perfil_alumno.errors, status: :unprocessable_entity }
+          end
+        end
       else
-        format.html { render :new }
-        #format.json { render json: @perfil_alumno.errors, status: :unprocessable_entity }
-      end
-    end
+        flash[:error] = "tutor no encontrado"
+        render :new 
+      end   
+    end     
+
+    #raise @perfil_alumno.to_yaml
+    #@perfil_alumno.perfil_tutor =
+
   end
 
   # PATCH/PUT /perfil_alumnos/1
@@ -88,7 +100,7 @@ class PerfilAlumnosController < ApplicationController
                                             :telefono_recados, 
                                             :extension_recados, 
                                             :grupo_id, 
-                                            :generacion_id, 
-                                            :perfil_tutor_id)
+                                            :generacion_id,
+                                            :tutor_mail)
     end
 end

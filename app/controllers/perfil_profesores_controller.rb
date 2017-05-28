@@ -34,7 +34,7 @@ class PerfilProfesoresController < ApplicationController
     respond_to do |format|
       if @perfil_profesor.save
         current_user.update(perfilado:true)
-        format.html { redirect_to root_path, notice: 'Bienvenido' }
+        format.html { redirect_to root_path, notice: '¡Bienvenido! Ahora tienes perfil, ya puedes disfrutar de tu cuenta' }
         #format.json { render :show, status: :created, location: @perfil_profesor }
       else
         format.html { render :new }

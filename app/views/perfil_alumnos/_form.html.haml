@@ -20,7 +20,9 @@
 		.input-field
 			= f.label :fecha_de_nacimiento
 			%br/
-			= f.date_select :fecha_de_nacimiento, start_year:1950, end_year:2010
+			= f.date_select :fecha_de_nacimiento, start_year:1995, end_year:2010
+		%br/
+		%b Genero
 		.input-field
 			-Genero.all.each do |genero|
 				= f.radio_button :genero_id,genero.id
@@ -58,18 +60,27 @@
 			= f.label :extension_recados
 			= f.text_field :extension_recados
 		.input-field
-			-Grupo.all.each do |grupo|
-				= f.radio_button :grupo_id,grupo.id
-				= f.label "grupo_id_#{grupo.id}", grupo.grupo
-				&nbsp;&nbsp;&nbsp;&nbsp;
-			%br/
+			= label_tag "tutor_mail", "Correo del tutor"
+			= email_field_tag :tutor_mail
+		.input-field			
+			-Grado.all.each do |grado|
+				%hr{style:"margin-bottom:15px"}
+				%b= grado.grado
+				%br/
+				-grado.grupos.each do |grupo| 
+					= f.radio_button :grupo_id, grupo.id
+					= f.label "grupo_id_#{grupo.id}", grupo.grupo
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					-if grupo.id == 20 || grupo.id == 40 || grupo.id == 60 || grupo.id == 68 || grupo.id == 76|| grupo.id == 84 || grupo.id == 92 || grupo.id == 100 || grupo.id == 108
+						%br/
+						%hr{style:"margin-top:60px"}
+		%br/
+		%b Generación
 		.input-field
 			-Generacion.all.each do |generacion|
 				= f.radio_button :generacion_id,generacion.id
 				= f.label "generacion_id_#{generacion.id}", generacion.generacion
-				&nbsp;&nbsp;&nbsp;&nbsp;
-		.input-field
-			= f.label :perfil_tutor
-			= f.text_field :perfil_tutor
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 		.input-field.center
 			= f.submit 'Guardar', class:"col s12 btn waves-effect waves-light"

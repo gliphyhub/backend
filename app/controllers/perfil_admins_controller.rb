@@ -31,7 +31,7 @@ class PerfilAdminsController < ApplicationController
     respond_to do |format|
       if @perfil_admin.save
         current_user.update(perfilado:true)
-        format.html { redirect_to root_path, notice: '¡Bienvenido!' }
+        format.html { redirect_to root_path, notice: '¡Bienvenido! Ahora tienes perfil, ya puedes disfrutar de tu cuenta' }
         #format.json { render :show, status: :created, location: @perfil_admin }
       else
         format.html { render :new }
