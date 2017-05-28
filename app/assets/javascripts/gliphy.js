@@ -269,6 +269,235 @@ $(function() {
 		$(".editar").addClass("ocultado");
 		editable = !editable;
 	});
+	
+/*###################habilitar y deshabilitar materias#############*/
+	var  grado_1
+	grado_1=0
+	for (var i=1; i<=20; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=1; y<=20; y++) {
+				if($("#grupos_"+y).prop('checked')){
+					//console.log("habilitado")
+					grado_1++
+				}else{
+					//console.log("deshabilitado")
+					grado_1--
+				}
+			}
+			//console.log(grado_1)
+			if(grado_1==-20){
+				for (var x=1; x<=10; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
 
+			}else{
+				for (var x=1; x<=10; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_1=0
+		});
+	}
+	var  grado_2
+	grado_2=0
+	for (var i=21; i<=40; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=21; y<=40; y++) {
+				if($("#grupos_"+y).prop('checked')){					
+					grado_2++
+				}else{					
+					grado_2--
+				}
+			}			
+			if(grado_2==-20){
+				for (var x=11; x<=20; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
+
+			}else{
+				for (var x=11; x<=20; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_2=0
+		});
+	}
+	var  grado_3
+	grado_3=0
+	for (var i=41; i<=60; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=41; y<=60; y++) {
+				if($("#grupos_"+y).prop('checked')){					
+					grado_3++
+				}else{					
+					grado_3--
+				}
+			}			
+			if(grado_3==-20){
+				for (var x=21; x<=30; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
+
+			}else{
+				for (var x=21; x<=30; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_3=0
+		});
+	}
+	var  grado_4
+	grado_4=0
+	for (var i=61; i<=68; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=61; y<=68; y++) {
+				if($("#grupos_"+y).prop('checked')){					
+					grado_4++
+				}else{					
+					grado_4--
+				}
+			}			
+			if(grado_4==-8){
+				for (var x=31; x<=40; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
+
+			}else{
+				for (var x=31; x<=40; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_4=0
+		});
+	}
+	var  grado_5
+	grado_5=0
+	for (var i=69; i<=76; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=69; y<=76; y++) {
+				if($("#grupos_"+y).prop('checked')){					
+					grado_5++
+				}else{					
+					grado_5--
+				}
+			}			
+			if(grado_5==-8){
+				for (var x=41; x<=50; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
+
+			}else{
+				for (var x=41; x<=50; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_5=0
+		});
+	}
+	var  grado_6
+	grado_6=0
+	for (var i=77; i<=84; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=77; y<=84; y++) {
+				if($("#grupos_"+y).prop('checked')){					
+					grado_6++
+				}else{					
+					grado_6--
+				}
+			}			
+			if(grado_6==-8){
+				for (var x=51; x<=60; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
+
+			}else{
+				for (var x=51; x<=60; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_6=0
+		});
+	}
+	var  grado_7
+	grado_7=0
+	for (var i=85; i<=92; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=85; y<=92; y++) {
+				if($("#grupos_"+y).prop('checked')){					
+					grado_7++
+				}else{					
+					grado_7--
+				}
+			}			
+			if(grado_7==-8){
+				for (var x=61; x<=70; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
+
+			}else{
+				for (var x=61; x<=70; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_7=0
+		});
+	}
+	var  grado_8
+	grado_8=0
+	for (var i=93; i<=100; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=93; y<=100; y++) {
+				if($("#grupos_"+y).prop('checked')){					
+					grado_8++
+				}else{					
+					grado_8--
+				}
+			}			
+			if(grado_8==-8){
+				for (var x=71; x<=81; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
+
+			}else{
+				for (var x=71; x<=81; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_8=0
+		});
+	}
+	var  grado_9
+	grado_9=0
+	for (var i=101; i<=108; i++) {
+		$("#grupos_"+i).on("click", function() {
+			for (var y=101; y<=108; y++) {
+				if($("#grupos_"+y).prop('checked')){					
+					grado_9++
+				}else{					
+					grado_9--
+				}
+			}			
+			if(grado_9==-8){
+				for (var x=82; x<=89; x++) {
+					$("#materias_"+ x).attr("disabled", true);
+					$("#materias_"+ x).prop('checked', false);
+				}
+
+			}else{
+				for (var x=82; x<=89; x++) {
+					$("#materias_"+ x).attr("disabled", false);
+				}
+			}
+			grado_9=0
+		});
+	}
 });
 

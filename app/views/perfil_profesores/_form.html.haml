@@ -57,14 +57,24 @@
 		.input-field
 			= f.label :extension_recados
 			= f.text_field :extension_recados
-		%h6 Grupos
-		.input-field
-			-Grupo.all.each do |grupo|
-				= check_box_tag "grupos[#{grupo.grupo}]", grupo.id
-				=label_tag "grupos[#{grupo.grupo}]", grupo.grupo
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				-if grupo.id == 60
-					%br/
+		%h4 Grupos y Materias
+		.input-field#gruposmaterias
+			-Grado.all.each do |grado|
+				%hr{style:"margin-bottom:15px"}
+				%h5= grado.grado
+				.input-field
+					-grado.grupos.each do |grupo| 
+						= check_box_tag "grupos[#{grupo.id}]", grupo.id
+						=label_tag "grupos[#{grupo.id}]", grupo.grupo
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						-if grupo.id == 20 || grupo.id == 40 || grupo.id == 60 || grupo.id == 68 || grupo.id == 76|| grupo.id == 84 || grupo.id == 92 || grupo.id == 100 || grupo.id == 108
+							.input-field
+								-grado.materias.each do |materia| 	
+									= check_box_tag "materias[#{materia.id}]", materia.id,false, disabled:true
+									=label_tag "materias[#{materia.id}]", materia.materia
+									&nbsp;&nbsp;
+							%hr{style:"margin-top:60px"}
+
 		.input-field.center
 			= f.submit 'Guardar', class:"col s12 btn waves-effect waves-light"
 		%br/

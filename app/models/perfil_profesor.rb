@@ -57,10 +57,11 @@ class PerfilProfesor < ApplicationRecord
   ############Validaciones de relaciones#############
   #validates_associated :profesor_publicaciones
   #validates_associated :profesor_materias
-  #validates_associated :profesor_grupos
+  validates_associated :profesor_grupos
   ###################################################
   ###################################################
   after_create :guarda_grupos
+  #after_create :guarda_materias
 
   def grupos=(value)
     @grupos=value #se guarda el arreglo
@@ -70,4 +71,12 @@ class PerfilProfesor < ApplicationRecord
       ProfesorGrupo.create(grupo_id: valor,perfil_profesor_id: PerfilProfesor.current_user.id)
     end
   end
+  #def materias=(value)
+  #  @materias=value #se guarda el arreglo
+  #end
+  #def guarda_materias
+  #  @materias.each do |materia, valor|
+  #    ProfesorMateria.create(materia_id: valor,perfil_profesor_id: PerfilProfesor.current_user.id)
+  #  end
+  #end
 end
