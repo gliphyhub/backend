@@ -1,8 +1,10 @@
 class PublicacionesController < ApplicationController
-  Ruta_directorio_archivos = "public/archivos"
-  before_action :authenticate_user!
   before_action :set_publicacion, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :solo_admin!, only:[:new,:create,:destroy]
 
+
+  Ruta_directorio_archivos = "public/archivos"
   # GET /publicaciones
   # GET /publicaciones.json
   def index
@@ -24,8 +26,8 @@ class PublicacionesController < ApplicationController
   end
 
   # GET /publicaciones/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /publicaciones
   # POST /publicaciones.json
@@ -96,24 +98,25 @@ class PublicacionesController < ApplicationController
         else
           format.html { render :new }
           format.json { render json: @publicacion.errors, status: :unprocessable_entity }
-       end
+        end
       end
     end
+
   end
 
   # PATCH/PUT /publicaciones/1
   # PATCH/PUT /publicaciones/1.json
-  def update
-    respond_to do |format|
-      if @publicacion.update(publicacion_params)
-        format.html { redirect_to @publicacion, notice: 'Publicacion was successfully updated.' }
-        format.json { render :show, status: :ok, location: @publicacion }
-      else
-        format.html { render :edit }
-        format.json { render json: @publicacion.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #def update
+  #  respond_to do |format|
+  #    if @publicacion.update(publicacion_params)
+  #      format.html { redirect_to @publicacion, notice: 'Publicacion was successfully updated.' }
+  #      format.json { render :show, status: :ok, location: @publicacion }
+  #    else
+  #      format.html { render :edit }
+  #      format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   # DELETE /publicaciones/1
   # DELETE /publicaciones/1.json

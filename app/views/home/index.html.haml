@@ -1,4 +1,4 @@
-%main.navegacion-espacio
+%main
 	=current_user.tipo.tipo_de_usuario
 	-if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
 		=render "perfil_admins/form"

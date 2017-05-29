@@ -47,5 +47,6 @@ class User < ApplicationRecord
   #accepts_nested_attributes_for :perfil_profesor
   #accepts_nested_attributes_for :perfil_tutor
   #accepts_nested_attributes_for :perfil_alumno
+  include PermissionsConcern
 
 end

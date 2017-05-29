@@ -1,14 +1,10 @@
 -#=========================================
--#=========== Barra de navegación ================
+-#=========== Barra de navegación =========
 -#=========================================
-
--if current_user.tipo.id == 1
-	=render "home/navs/admin"
--elsif current_user.tipo.id == 2
-	=render "home/navs/prof"
+-if current_user.tipo.id <= 2
+	=render "home/navs/especial"
 -else
 	=render "home/navs/general"
-
 -#=========================================
 -#=========== Opciones de usuario =========
 -#=========================================

@@ -8,18 +8,6 @@
       %th Ap paterno
       %th Ap materno
       %th Nombre
-      %th Fecha de nacimiento
-      %th Genero
-      %th Calle
-      %th Numero exterior
-      %th Numero interior
-      %th Colonia
-      %th Delegacion municipio
-      %th Codigo postal
-      %th Telefono casa
-      %th Telefono celular
-      %th Telefono recados
-      %th Extension recados
       %th
       %th
       %th
@@ -27,23 +15,11 @@
   %tbody
     - @perfil_profesores.each do |perfil_profesor|
       %tr
-        %td= perfil_profesor.user
+        %td= perfil_profesor.user.email
         %td= perfil_profesor.nss
         %td= perfil_profesor.ap_paterno
         %td= perfil_profesor.ap_materno
         %td= perfil_profesor.nombre
-        %td= perfil_profesor.fecha_de_nacimiento
-        %td= perfil_profesor.genero
-        %td= perfil_profesor.calle
-        %td= perfil_profesor.numero_exterior
-        %td= perfil_profesor.numero_interior
-        %td= perfil_profesor.colonia
-        %td= perfil_profesor.delegacion_municipio
-        %td= perfil_profesor.codigo_postal
-        %td= perfil_profesor.telefono_casa
-        %td= perfil_profesor.telefono_celular
-        %td= perfil_profesor.telefono_recados
-        %td= perfil_profesor.extension_recados
         %td= link_to 'Show', perfil_profesor
         %td= link_to 'Edit', edit_perfil_profesor_path(perfil_profesor)
         %td= link_to 'Destroy', perfil_profesor, :method => :delete, :data => { :confirm => 'Are you sure?' }

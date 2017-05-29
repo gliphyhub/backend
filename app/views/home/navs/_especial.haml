@@ -1,8 +1,12 @@
+-if current_user.tipo.id == 1
+	-@colorFondo = "#404040"
+-else
+	-@colorFondo = "#512da8"
 -#=========================================
--#=========== Barra de navegación ================
+-#=========== Barra de navegación =========
 -#=========================================
 #nav-user.navbar-fixed
-	%nav.negro-flat
+	%nav.negro-flat{style:"background-color: #{@colorFondo} !important"}
 		.nav-wrapper
 			-#=========================================
 			-#============= Botón Menú === ================

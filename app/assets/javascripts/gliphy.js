@@ -217,37 +217,45 @@ $(function() {
 	var editable = false
 	$("#editarDatosProfile").on("click", function() {
 		if (editable) {
-			$("#passOne").prop("disabled", true);
-			$("#passOne").attr("placeholder", "********");
-			$("#passOne").val("");
-			$("#passTwo").parent().addClass("ocultado");
-			$("#passTwo").prop("disabled", true);
-			$("#passTwo").attr("placeholder", "********");
-			$("#passTwo").val("");
-			$("#correoUser").addClass("grey-text");
-			$("#correoUser").prop("disabled", true);
-			$("#editarDatosProfile").text("editar");
-			$("#cancelarDatosProfile").addClass("ocultado");
-			$("#validarPass").addClass("ocultado");
-			$("#validarPass input").prop("disabled", true);
-			$("#validarPass").val("");
-			$(".editar").addClass("ocultado");
-			editable = !editable;
+			// $("#passOne").prop("disabled", true);
+			// $("#passOne").attr("placeholder", "********");
+			// $("#passOne").val("");
+			// $("#passTwo").parent().addClass("ocultado");
+			// $("#passTwo").prop("disabled", true);
+			// $("#passTwo").attr("placeholder", "********");
+			// $("#passTwo").val("");
+			// $("#correoUser").addClass("grey-text");
+			// $("#user_email").prop("disabled", true);
+			// $("#editarDatosProfile").text("editar");
+			// $("#cancelarDatosProfile").addClass("ocultado");
+			// $("#validarPass").addClass("ocultado");
+			// $("#validarPass input").prop("disabled", true);
+			// $("#validarPass").val("");
+			// $(".editar").addClass("ocultado");
+			// editable = !editable;
 		}
 		else {
-			$("#passOne").prop("disabled", false);
-			$("#passOne").attr("placeholder", "Ingresa la nueva contraseña");
-			$("#passTwo").parent().removeClass("ocultado");
-			$("#passTwo").prop("disabled", false);
-			$("#passTwo").attr("placeholder", "Repite la contraseña");
-			$("#correoUser").removeClass("grey-text");
-			$("#correoUser").prop("disabled", false);
-			$("#editarDatosProfile").text("guardar");
-			$("#cancelarDatosProfile").removeClass("ocultado");
-			$("#validarPass").removeClass("ocultado");
-			$("#validarPass input").prop("disabled", false);
-			$(".editar").removeClass("ocultado");
-			editable = !editable;
+			$("#user_email").prop("disabled", false);
+			$("#user_email").removeClass("grey-text");
+			$("#user_password").prop("disabled", false);
+			$("#user_password").removeClass("grey-text");
+			$("#editar-devise").parent().removeClass("ocultado");
+			$("#editarDatosProfile").addClass("ocultado");
+			$("#confirmar-col").removeClass("ocultado");
+			$("#user_password_confirmation").prop("disabled", false);
+			// $("#passOne").prop("disabled", false);
+			// $("#passOne").attr("placeholder", "Ingresa la nueva contraseña");
+			// $("#passTwo").parent().removeClass("ocultado");
+			// $("#passTwo").prop("disabled", false);
+			// $("#passTwo").attr("placeholder", "Repite la contraseña");
+			// $("#correoUser").removeClass("grey-text");
+			// $("#correoUser").prop("disabled", false);
+			// $("#editarDatosProfile").text("guardar");
+			// $("#cancelarDatosProfile").removeClass("ocultado");
+			// $("#validarPass").removeClass("ocultado");
+			// $("#validarPass input").prop("disabled", false);
+			// $(".editar").removeClass("ocultado");
+			// editable = !editable;
 		}
 	});
 

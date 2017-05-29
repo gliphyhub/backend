@@ -56,8 +56,8 @@ class PerfilProfesor < ApplicationRecord
   ###################################################
   ############Validaciones de relaciones#############
   #validates_associated :profesor_publicaciones
-  validates_associated :profesor_materias
-  validates_associated :profesor_grupos
+  #validates_associated :profesor_materias
+  #validates_associated :profesor_grupos
   ###################################################
   ###################################################
   # after_create :guarda_grupos

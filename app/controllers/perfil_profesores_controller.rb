@@ -1,16 +1,18 @@
 class PerfilProfesoresController < ApplicationController
-  #before_action :set_perfil_profesor, only: [:show, :edit, :update, :destroy]
+  before_action :set_perfil_profesor, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin!, only:[:index,:show,:update,:destroy,:edit]
 
   # GET /perfil_profesores
   # GET /perfil_profesores.json
-  #def index
-  #  @perfil_profesores = PerfilProfesor.all
-  #end
+  def index
+    @perfil_profesores = PerfilProfesor.all
+  end
 
   # GET /perfil_profesores/1
   # GET /perfil_profesores/1.json
-  #def show
-  #end
+  def show
+  end
   #def set_current_user
     #PerfilProfesor.current_user = current_user
   #end
@@ -21,8 +23,8 @@ class PerfilProfesoresController < ApplicationController
   end
 
   # GET /perfil_profesores/1/edit
-  #def edit
-  #end
+  def edit
+  end
 
   # POST /perfil_profesores
   # POST /perfil_profesores.json
@@ -59,33 +61,33 @@ class PerfilProfesoresController < ApplicationController
 
   # PATCH/PUT /perfil_profesores/1
   # PATCH/PUT /perfil_profesores/1.json
-  #def update
-  #  respond_to do |format|
-  #    if @perfil_profesor.update(perfil_profesor_params)
-  #      format.html { redirect_to @perfil_profesor, notice: 'Perfil profesor was successfully updated.' }
-  #      format.json { render :show, status: :ok, location: @perfil_profesor }
-  #    else
-  #      format.html { render :edit }
-  #      format.json { render json: @perfil_profesor.errors, status: :unprocessable_entity }
-  #    end
-  # end
-  #end
+  def update
+    respond_to do |format|
+      if @perfil_profesor.update(perfil_profesor_params)
+        format.html { redirect_to @perfil_profesor, notice: 'Perfil profesor was successfully updated.' }
+        format.json { render :show, status: :ok, location: @perfil_profesor }
+      else
+        format.html { render :edit }
+        format.json { render json: @perfil_profesor.errors, status: :unprocessable_entity }
+      end
+   end
+  end
 
   # DELETE /perfil_profesores/1
-  # DELETE /perfil_profesores/1.json
-  #def destroy
-  #  @perfil_profesor.destroy
-  #  respond_to do |format|
-  #    format.html { redirect_to perfil_profesores_url, notice: 'Perfil profesor was successfully destroyed.' }
-  #    format.json { head :no_content }
-  #  end
-  #end
+  #DELETE /perfil_profesores/1.json
+  def destroy
+   @perfil_profesor.destroy
+   respond_to do |format|
+     format.html { redirect_to perfil_profesores_url, notice: 'Perfil profesor was successfully destroyed.' }
+     format.json { head :no_content }
+   end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    #def set_perfil_profesor
-    #  @perfil_profesor = PerfilProfesor.find(params[:id])
-    #end
+    def set_perfil_profesor
+      @perfil_profesor = PerfilProfesor.find(params[:id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def perfil_profesor_params

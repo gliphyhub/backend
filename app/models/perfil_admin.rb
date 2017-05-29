@@ -42,7 +42,7 @@ class PerfilAdmin < ApplicationRecord
   validates :calle, presence: true, length: {in: 4..30}
   validates :numero_exterior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
   validates :numero_interior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
-  validates :colonia, presence: true, length: {in: 4..30}
+  validates :colonia, presence: true, length: {in: 2..30}
   validates :delegacion_municipio, presence: true, length: {in: 4..30}
   validates :codigo_postal, presence: true, length: {is: 5}, numericality: {only_integer: true}
   validates :telefono_casa, presence: true, length: {in: 8..15}, numericality: {only_integer: true}

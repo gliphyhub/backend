@@ -7,18 +7,6 @@
       %th Ap paterno
       %th Ap materno
       %th Nombre
-      %th Fecha de nacimiento
-      %th Genero
-      %th Calle
-      %th Numero exterior
-      %th Numero interior
-      %th Colonia
-      %th Delegacion municipio
-      %th Codigo postal
-      %th Telefono casa
-      %th Telefono celular
-      %th Telefono recados
-      %th Extension recados
       %th
       %th
       %th
@@ -26,22 +14,10 @@
   %tbody
     - @perfil_tutores.each do |perfil_tutor|
       %tr
-        %td= perfil_tutor.user
+        %td= perfil_tutor.user.email
         %td= perfil_tutor.ap_paterno
         %td= perfil_tutor.ap_materno
         %td= perfil_tutor.nombre
-        %td= perfil_tutor.fecha_de_nacimiento
-        %td= perfil_tutor.genero
-        %td= perfil_tutor.calle
-        %td= perfil_tutor.numero_exterior
-        %td= perfil_tutor.numero_interior
-        %td= perfil_tutor.colonia
-        %td= perfil_tutor.delegacion_municipio
-        %td= perfil_tutor.codigo_postal
-        %td= perfil_tutor.telefono_casa
-        %td= perfil_tutor.telefono_celular
-        %td= perfil_tutor.telefono_recados
-        %td= perfil_tutor.extension_recados
         %td= link_to 'Show', perfil_tutor
         %td= link_to 'Edit', edit_perfil_tutor_path(perfil_tutor)
         %td= link_to 'Destroy', perfil_tutor, :method => :delete, :data => { :confirm => 'Are you sure?' }

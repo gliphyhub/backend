@@ -1,5 +1,7 @@
 class PerfilAlumnosController < ApplicationController
   before_action :set_perfil_alumno, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin!, only:[:index,:show,:update,:destroy,:edit]
 
   # GET /perfil_alumnos
   # GET /perfil_alumnos.json
@@ -18,8 +20,8 @@ class PerfilAlumnosController < ApplicationController
   end
 
   # GET /perfil_alumnos/1/edit
-  #def edit
-  #end
+  def edit
+  end
 
   # POST /perfil_alumnos
   # POST /perfil_alumnos.json

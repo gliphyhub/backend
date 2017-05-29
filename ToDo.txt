@@ -1,3 +1,2 @@
-editar perfiles
-concerns
+crear usuarios de admin,  cambiar los before_action de los controllers
 validate al correo
