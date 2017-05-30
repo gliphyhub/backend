@@ -4,7 +4,7 @@ validate al correo => registro, edit, login
 
 opcional los numero de recados
 
-calendario
+disñeo a calendario
 
 drag and drop
 

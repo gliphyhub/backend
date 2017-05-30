@@ -12,7 +12,7 @@ class PublicacionesController < ApplicationController
     @archi = Archivo.select("id, nombre, ruta, publicacion_id")
     @archivos = Dir.entries(Ruta_directorio_archivos)
     @urgentes = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: true)
-    @publicaciones = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: false)
+    # descomentar @publicaciones = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: false)
   end
 
   # GET /publicaciones/1
