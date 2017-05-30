@@ -1,4 +1,14 @@
 $(function() {
+
+	/*var editor = new EpicEditor({
+	file:{
+	name:"nueva-publicacion"
+	}
+	});
+	$("#formulario_publicacion").on("submit",function(){
+	$("#publicacion_mensaje").val( editor.exportFile("nueva-publicacion","html"));
+	});*/
+
 	  /*============evitar inciar sesion=====================
 	  $("form button").click(function (e) {
 	    e.preventDefault();

@@ -5,6 +5,7 @@
 #  id               :integer          not null, primary key
 #  titulo           :string
 #  mensaje          :text
+#  mensaje_markdown :text
 #  fecha_de_termino :date
 #  prioridad        :boolean
 #  created_at       :datetime         not null

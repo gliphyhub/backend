@@ -47,7 +47,7 @@
 			- @publicaciones.each do |publicacion|
 				%tr
 					%td= publicacion.titulo
-					%td= publicacion.mensaje
+					%td= Sanitize.fragment(publicacion.mensaje, Sanitize::Config::RELAXED).html_safe
 					%td= publicacion.fecha_de_termino
 					%td= publicacion.prioridad
 					%td= link_to 'Show', publicacion

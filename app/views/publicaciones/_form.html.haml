@@ -1,4 +1,4 @@
-= form_for @publicacion do |f|
+= form_for @publicacion,:html=>{:id=>"formulario_publicacion"} do |f|
 	.row
 		.input-fiedl.col.s12
 			- if @publicacion.errors.any?
@@ -8,10 +8,16 @@
 				%script Materialize.toast("#{msg}", 10000);
 		.input-field.col.s12
 			= f.label :titulo
-			= f.text_field :titulo
+			= f.text_field :titulo, data:{length:"30"}
 		.input-field.col.s12
-			= f.label :mensaje
-			= f.text_area :mensaje, class:"materialize-textarea", data:{length:"400"}
+			-#= f.label :mensaje
+			=label_tag "Mensaje"
+			%br/
+			%br/
+			#epiceditor.materialize-textarea
+			= f.hidden_field :mensaje
+			= f.hidden_field :mensaje_markdown
+			-# class:"materialize-textarea", data:{length:"400"}
 		.col.s12.input-field
 			%i.material-icons.prefix today
 			= f.label :fecha_de_termino
@@ -35,6 +41,20 @@
 			%p.right
 				%a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href:"#"} Volver
 				= f.submit 'Publicar',class:"modal-action modal-close  waves-effect waves-green btn"
+				%br/
+				%br/
 - if @formato_erroneo
 	%div
 		%p El formato ingresado es incorrecto. Solo puedes subir archivos .doc, .docx, .pdf, .xlsx, .pptx, .ppt, .xls
+%script
+	var editor = new EpicEditor({
+	textarea: "publicacion_mensaje_markdown",
+	file:{
+	name:"nueva-publicacion"
+	}
+	});
+	editor.load();
+	$("#formulario_publicacion").on("submit",function(){
+	$("#publicacion_mensaje").val( editor.exportFile("nueva-publicacion","html"));
+	$("#publicacion_mensaje_markdown").val( editor.exportFile("nueva-publicacion"));
+	});

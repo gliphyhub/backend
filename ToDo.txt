@@ -1,11 +1,33 @@
-crear usuarios de admin,  cambiar los before_action de los controllers
+crear usuarios de admin,  cambiar los before_action de los controllers para editar...
 
-validate al correo => registro, edit, login
+validate al correo => registro, edit, login...
 
-opcional los numero de recados
+opcional los numero de recados...
+erroresen lista y....
 
-disñeo a calendario
+disñeo a calendario...
 
-drag and drop
+drag and drop...
 
-mark down
+mark down.../// done 
+
+paginacion...
+
+rails admin....
+
+mails...
+
+notificaciones....
+
+
+
+scopes
+en el modelo
+
+scope :publicados, ->{ where (state:"published")}
+
+scope :ultimos, ->{order("created_at" DESC).limit(10)}
+
+En el controlador
+
+@publicaciones = Publicacion.publicados.ultimos

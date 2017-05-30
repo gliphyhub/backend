@@ -48,6 +48,9 @@ gem 'bcrypt', platforms: :ruby
 #gem 'jquery-turbolinks'
 gem 'annotate'
 gem "simple_calendar", "~> 2.0"
+gem 'epic-editor-rails', :git => 'https://github.com/GioRosales/epic-editor-rails.git'
+gem 'sanitize'
+
 #====================================================
 #====================================================
 group :development, :test do

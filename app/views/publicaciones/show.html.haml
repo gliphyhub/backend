@@ -5,7 +5,7 @@
   = @publicacion.titulo
 %p
   %b Mensaje:
-  = @publicacion.mensaje
+  = Sanitize.fragment(@publicacion.mensaje, Sanitize::Config::RELAXED).html_safe
 %p
   %b Fecha de termino:
   = @publicacion.fecha_de_termino

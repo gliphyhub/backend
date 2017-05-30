@@ -3,6 +3,7 @@ class CreatePublicaciones < ActiveRecord::Migration[5.0]
     create_table :publicaciones do |t|
       t.string :titulo
       t.text :mensaje
+      t.text :mensaje_markdown
       t.date :fecha_de_termino
       t.boolean :prioridad
 

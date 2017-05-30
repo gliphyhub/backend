@@ -222,6 +222,7 @@ ActiveRecord::Schema.define(version: 20170521224531) do
   create_table "publicaciones", force: :cascade do |t|
     t.string   "titulo"
     t.text     "mensaje"
+    t.text     "mensaje_markdown"
     t.date     "fecha_de_termino"
     t.boolean  "prioridad"
     t.datetime "created_at",       null: false
