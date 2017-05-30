@@ -35,7 +35,11 @@ rails g model ProfesorMateria perfil_profesor:belongs_to materia:belongs_to
 
 rails g model MateriaGrupo materia:belongs_to grupo:belongs_to
 
-rails g scaffold Publicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean 
+rails g scaffold Publicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_profesor:belongs_to materia:belongs_to
+
+rails g scaffold AdminPublicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_admin:belongs_to
+
+rails g model AdminArchivo admin_publicacion:belongs_to nombre ruta
 
 rails g model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
 rails d model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to

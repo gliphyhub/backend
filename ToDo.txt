@@ -19,7 +19,7 @@ mails...
 
 notificaciones....
 
-
+nadie puede editar publicacioness
 
 scopes
 en el modelo
@@ -31,3 +31,11 @@ scope :ultimos, ->{order("created_at" DESC).limit(10)}
 En el controlador
 
 @publicaciones = Publicacion.publicados.ultimos
+
+
+
+
+render @modeloplural
+
+_modelosingular
+	coasas en singular.metodo

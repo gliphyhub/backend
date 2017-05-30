@@ -14,6 +14,9 @@ class ApplicationController < ActionController::Base
   def solo_admin!
     redirect_to root_path if current_user.tipo.id!=1      
   end
+  def solo_prof!
+    redirect_to root_path if current_user.tipo.id!=2      
+  end
   def leer_datos
     if user_signed_in?
       @tipoUser = current_user.tipo.tipo_de_usuario
@@ -30,7 +33,7 @@ class ApplicationController < ActionController::Base
               @imgPerfil = "users/user02.jpg"
             end
             @imgCover="covers/admin-cover.jpg"
-            @menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Publicaciones",link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
+            @menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Publicaciones",link:admin_publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_admin_publicacion_path, icon:"add"}]
             @tablas=[{title:"Panel de administración", link:rails_admin_path},{title:"Archivo", link:"basededatos/archivo"},{title:"Color", link:"basededatos/color"}, {title:"Generación", link:"basededatos/generacion"},{title:"Grado", link:"basededatos/grado"},  {title:"Grupo", link:"basededatos/grupo"},{title:"Materia", link:"basededatos/materia"}, {title:"Administrativos", link:"basededatos/perfil_admin"},{title:"Profesores", link:"basededatos/perfil_profesor"},{title:"Alumnos", link:"basededatos/perfil_alumno"}, {title:"Tutores", link:"basededatos/perfil_tutor"}, {title:"Publicación", link:"basededatos/publicacion"},{title:"Tipos", link:"basededatos/tipo"}, {title:"Turno", link:"basededatos/turno"}, {title:"Usuario", link:"basededatos/user"}]
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else

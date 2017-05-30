@@ -2,14 +2,16 @@
 #
 # Table name: publicaciones
 #
-#  id               :integer          not null, primary key
-#  titulo           :string
-#  mensaje          :text
-#  mensaje_markdown :text
-#  fecha_de_termino :date
-#  prioridad        :boolean
-#  created_at       :datetime         not null
-#  updated_at       :datetime         not null
+#  id                 :integer          not null, primary key
+#  titulo             :string
+#  mensaje            :text
+#  mensaje_markdown   :text
+#  fecha_de_termino   :date
+#  prioridad          :boolean
+#  perfil_profesor_id :integer
+#  materia_id         :integer
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Titulo:
+  = @admin_publicacion.titulo
+%p
+  %b Mensaje:
+  = @admin_publicacion.mensaje
+%p
+  %b Mensaje markdown:
+  = @admin_publicacion.mensaje_markdown
+%p
+  %b Fecha de termino:
+  = @admin_publicacion.fecha_de_termino
+%p
+  %b Prioridad:
+  = @admin_publicacion.prioridad
+%p
+  %b Perfil admin:
+  = @admin_publicacion.perfil_admin
+
+= link_to 'Edit', edit_admin_publicacion_path(@admin_publicacion)
+\|
+= link_to 'Back', admin_publicaciones_path

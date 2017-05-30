@@ -1,34 +1,34 @@
 %main.navegacion-espacio
-	-# -@urgentes.each do |w|
-	-# 	%li
-	-# 		%h3
-	-# 			= w.titulo
-	-# 		%p
-	-# 			- @archi.each do |m| 
-	-# 				- if m.publicacion_id == w.id
-	-# 					- @archivos.each do |a| 
-	-# 						-if a == m.nombre
-	-# 							- if m == "." || m == ".." then next end
-	-# 							%strong=a
-	-# 							%br
-	-# 							%a{:target => "_blank", :href => "ruta_del_archivo/#{a}"}
-	-# 								Descargar archivo
-	-# 							%br
-	-# -@publicaciones.each do |w|
-	-# 	%li
-	-# 		%h3
-	-# 			= w.titulo
-	-# 		%p
-	-# 			- @archi.each do |m| 
-	-# 				- if m.publicacion_id == w.id
-	-# 					- @archivos.each do |a| 
-	-# 						-if a == m.nombre
-	-# 							- if m == "." || m == ".." then next end
-	-# 							%strong=a
-	-# 							%br
-	-# 							%a{:target => "_blank", :href => "ruta_del_archivo/#{a}"}
-	-# 								Descargar archivo
-	-# 							%br
+	-@urgentes.each do |w|
+		%li
+			%h3
+				= w.titulo
+			%p
+				- @archi.each do |m| 
+					- if m.publicacion_id == w.id
+						- @archivos.each do |a| 
+							-if a == m.nombre
+								- if m == "." || m == ".." then next end
+								%strong=a
+								%br
+								%a{:target => "_blank", :href => "ruta_del_archivo/#{a}"}
+									Descargar archivo
+								%br
+	-@publicaciones.each do |w|
+		%li
+			%h3
+				= w.titulo
+			%p
+				- @archi.each do |m| 
+					- if m.publicacion_id == w.id
+						- @archivos.each do |a| 
+							-if a == m.nombre
+								- if m == "." || m == ".." then next end
+								%strong=a
+								%br
+								%a{:target => "_blank", :href => "ruta_del_archivo/#{a}"}
+									Descargar archivo
+								%br
 
 	%h1 Listing publicaciones
 

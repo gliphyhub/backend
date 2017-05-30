@@ -1,0 +1,41 @@
+%p Seleccione las opciones que desee y necesite para la publicación de un nuevo comunicado.
+.col.s12
+	%br/
+	-current_user.perfil_admin.materias.each do |materia| 
+		= f.radio_button :materia_id,materia.id
+		= f.label "materia_id_#{materia.id}", materia.materia
+		&nbsp;&nbsp;&nbsp;&nbsp;
+
+		%input#todos-grupos{:name=>"todos-grupos", :type=>"radio"}
+		%label{:for=>"todos-grupos"} <b>Ambos</b>
+	%p
+		%input#matutino-grupos{:name=>"turno-grupos", :type=>"checkbox"}
+		%label{:for=>"matutino-grupos"} <b>Matutino</b>
+		%input#vespertino-grupos{:name=>"turno-grupos", :type=>"checkbox"}
+		%label{:for=>"vespertino-grupos",style:"margin-left: 1rem"} <b>Vespertino</b>
+	%p
+		%input#secundaria-grado{:name=>"nivel-grupos", :type=>"checkbox"}
+		%label{:for=>"secundaria-grado"} <b>Secundaria</b>
+		%input#bachillerato-grado{:name=>"nivel-grupos", :type=>"checkbox"}
+		%label{:for=>"bachillerato-grado",style:"margin-left: 1rem"} <b>Bachillerato</b>
+	%p{style:"margin-top: 2rem"}
+		.input-field
+			%select{multiple:""}
+				%option{value:"", disabled:"", selected:""} Elija por grado
+				%option{value:"1"} Primeros
+				%option{value:"2"} Segundos
+				%option{value:"3"} Terceros
+			%label Grado
+	%p{style:"margin-top: 2rem"}
+		.input-field
+			%select{multiple:""}
+				%option{value:"", disabled:"", selected:""} Eliga por grupo
+				%option{value:"1"} 6xxx
+				%option{value:"2"} 6xxx
+				%option{value:"3"} 6xxx
+			%label Grupos
+	.divider
+	%p{style:"margin-top: 3rem"}
+		.input-field.disabled
+			%textarea#grupos-en-concreto.materialize-textarea{type:"text", placeholder:"Grupos individuales elegidos"}
+			%label{for:"grupos-en-concreto"}Grupos elegidos

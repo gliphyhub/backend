@@ -51,8 +51,7 @@ class PerfilProfesor < ApplicationRecord
   has_many :grupos, :through => :profesor_grupos #hacer manual
   has_many :profesor_materias, dependent: :destroy
   has_many :materias, :through => :profesor_materias #hacer manual
-  has_many :profesor_publicaciones, dependent: :destroy
-  has_many :publicaciones, :through => :profesor_publicaciones #hacer manual
+  has_many :publicaciones, dependent: :destroy
   ###################################################
   ############Validaciones de relaciones#############
   #validates_associated :profesor_publicaciones
@@ -60,6 +59,7 @@ class PerfilProfesor < ApplicationRecord
   #validates_associated :profesor_grupos
   ###################################################
   ###################################################
+  #scope :publicados, ->{ where (grupos)}
   # after_create :guarda_grupos
   # after_create :guarda_materias
   #  def grupos=(value)

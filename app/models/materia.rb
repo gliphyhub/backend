@@ -26,6 +26,7 @@ class Materia < ApplicationRecord
   has_many :materia_grupos, dependent: :destroy
   has_many :grupos, :through => :materia_grupos #manual el destroy
   has_many :profesor_materias, dependent: :destroy
+  has_many :publicaciones
   has_many :perfil_profesores, :through => :profesor_materias #manual el destroy
   ###################################################
   ############Validaciones de relaciones#############
