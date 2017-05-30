@@ -47,6 +47,7 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'bcrypt', platforms: :ruby
 #gem 'jquery-turbolinks'
 gem 'annotate'
+gem "simple_calendar", "~> 2.0"
 #====================================================
 #====================================================
 group :development, :test do

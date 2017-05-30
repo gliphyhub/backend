@@ -34,6 +34,9 @@ class Publicacion < ApplicationRecord
     #validates_associated :perfil_profesores
     ###################################################
     ###################################################
+    def start_time
+        self.created_at ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+    end
     private
   def expiration_date_cannot_be_in_the_past
     if fecha_de_termino.present? && fecha_de_termino < Date.today

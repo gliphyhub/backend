@@ -8,3 +8,8 @@
 		=render "perfil_tutores/form"
 	-elsif current_user.tipo.id == 4 && current_user.perfil_alumno.nil?
 		=render "perfil_alumnos/form"
+
+	= month_calendar events: Publicacion.all do |date, publicacion|
+		= date.day
+			-publicacion.each do |p|
+			= p.titulo
