@@ -1,2 +1,11 @@
 crear usuarios de admin,  cambiar los before_action de los controllers
-validate al correo
+
+validate al correo => registro, edit, login
+
+opcional los numero de recados
+
+calendario
+
+drag and drop
+
+mark down

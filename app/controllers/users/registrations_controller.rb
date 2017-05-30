@@ -1,7 +1,11 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  skip_before_filter :require_no_authentication, only: [:new, :create, :cancel] #para que no me diga que ya estaba loggeado
   before_action :configure_sign_up_params, only: [:create]
-  #prepend_before_action :authenticate_scope!, only: [:new, :create, :cancel]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :solo_admins! #para que solo el admin!
+
+  def solo_admins!
+    redirect_to root_path unless user_signed_in? && current_user.tipo.id==1  
+  end
 
 
   # GET /resource/sign_up
