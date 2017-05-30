@@ -39,6 +39,19 @@ html, body,  {
       background-color: #2196F3;
    }
 
+.input-error{
+  input {
+    border-bottom: 1px solid #F44336;
+    box-shadow: 0 1px 0 0 #F44336;
+    margin: 0;
+  }
+  &::after {
+      content:"error";
+      color: red;
+      font-size: 10px;
+  }
+}
+
 
 .animar{
   transition: all 0.9s;

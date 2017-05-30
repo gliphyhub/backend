@@ -1,12 +1,5 @@
 %main.navegacion-espacio.row
 	-#=========== Sub - header ======================
 	%h2.red-text.center-align Nueva Publicación
-	-#==========Filtros para la publicacion====
-	.col.s12.l5
-		%h4.truncate.center-align Filtros
-		= render 'filtros'
-	-#===========Contenido de la publicacion==
-	.col.s12.l7{:style=>"margin-top: 1em"}
-		%h4.truncate.center-align Contenido
-		= render 'form'
+	= render 'form'
 

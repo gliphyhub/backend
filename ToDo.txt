@@ -2,6 +2,10 @@ crear usuarios de admin,  cambiar los before_action de los controllers para edit
 
 validate al correo => registro, edit, login...
 
+validar con acentos
+
+todos puedan editar
+
 opcional los numero de recados...
 erroresen lista y....
 

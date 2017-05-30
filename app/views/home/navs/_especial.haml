@@ -56,7 +56,7 @@
 						%li
 							%ul.collapsible.collapsible-accordion
 								%li
-									%a#base-datos-list.waves-effect.white-bonis.collapsible-header
+									%a.flecha.waves-effect.white-bonis.collapsible-header
 										%i.material-icons.left.white-bonis=item[:icon]
 										%span=item[:title]
 										%i.arrow.material-icons.white-bonis arrow_drop_down
@@ -66,11 +66,26 @@
 												%li
 													%a.waves-effect.white-bonis{href:tabla[:link]}
 														%span= 	tabla[:title]
+					-elsif item[:title] == "Editar perfil"
+						%li
+							%ul.collapsible.collapsible-accordion
+								%li
+									%a.flecha.waves-effect.white-bonis.collapsible-header
+										%i.material-icons.left.white-bonis=item[:icon]
+										%span=item[:title]
+										%i.arrow.material-icons.white-bonis arrow_drop_down
+									.collapsible-body
+										%ul.blue-grey.darken-3
+											-@tiposPerfiles.each do |tabla|
+												%li
+													%a.waves-effect.white-bonis
+														%span= 	tabla[:title]
 					-else
-						%li.waves-effect
-							%i.material-icons.left.white-bonis=item[:icon]
-							=link_to item[:title], item[:link], class:"white-bonis"
-				%br/
+						%li
+							%li.waves-effect
+								%i.material-icons.left.white-bonis=item[:icon]
+								=link_to item[:title], item[:link], class:"white-bonis"
+					%br/
 		.line-divider
 		%li.ayuda-btn
 			%a.waves-effect.white-bonis{href:"help.html"}
@@ -89,7 +104,7 @@
 						%li
 							%ul.collapsible.collapsible-accordion
 								%li
-									%a#base-datos-list.waves-effect.white-bonis.collapsible-header
+									%a.flecha.waves-effect.white-bonis.collapsible-header
 										%i.material-icons.left.white-bonis=item[:icon]
 										%span=item[:title]
 										%i.arrow.material-icons.white-bonis arrow_drop_down
@@ -99,6 +114,20 @@
 												%li
 													%a.waves-effect.white-bonis{href:tabla[:link]}
 														%span= 	tabla[:title]
+					-elsif item[:title] == "Editar perfil"
+						%li
+							%ul.collapsible.collapsible-accordion
+								%li
+									%a.flecha.waves-effect.white-bonis.collapsible-header
+										%i.material-icons.left.white-bonis=item[:icon]
+										%span=item[:title]
+										%i.arrow.material-icons.white-bonis arrow_drop_down
+									.collapsible-body
+										%ul.blue-grey.darken-3
+											-@tiposPerfiles.each do |tabla|
+												%li
+													%a.waves-effect.white-bonis
+														%span= 	tabla[:title]
 					-else
 						%li.waves-effect
 							%i.material-icons.left.white-bonis=item[:icon]
@@ -106,5 +135,6 @@
 				%br/
 		.line-divider
 		%li.ayuda-btn
-			%i.material-icons.left.white-bonis error
-			=link_to 'Ayuda', help_path,class:"waves-effect white-bonis"
+			%a.waves-effect.white-bonis{href:"help.html"}
+				%i.material-icons.left.white-bonis error
+				%span Ayuda

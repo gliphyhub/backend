@@ -1,34 +1,50 @@
 = form_for @publicacion,:html=>{:id=>"formulario_publicacion"} do |f|
 	.row
-		.input-fiedl.col.s12
-			- if @publicacion.errors.any?
-				%blockquote = "#{pluralize(@publicacion.errors.count, "error")} ocurrio al guardar publicar"
-			- @publicacion.errors.full_messages.each do |msg|
-				%li= msg
-				%script Materialize.toast("#{msg}", 10000);
-		.input-field.col.s12
-			= f.label :titulo
-			= f.text_field :titulo, data:{length:"30"}
-		.input-field.col.s12
-			-#= f.label :mensaje
-			=label_tag "Mensaje"
-			%br/
-			%br/
-			#epiceditor.materialize-textarea
-			= f.hidden_field :mensaje
-			= f.hidden_field :mensaje_markdown
-			-# class:"materialize-textarea", data:{length:"400"}
-		.col.s12.input-field
-			%i.material-icons.prefix today
-			= f.label :fecha_de_termino
-			= f.date_field :fecha_de_termino, value: @fecha_de_termino, class:"datepicker"
-		.col.s12
-			= f.file_field :archivo, value: @archivo
-			%br
-			%h5 Seleccione la prioridad del comunicado
+		.col.s12.l5
+			%h4.truncate.center-align Filtros
+			%p Seleccione las opciones que desee y necesite para la publicación de un nuevo comunicado.
+			.col.s12
+				%br/
+				-current_user.perfil_profesor.materias.each do |materia| 
+					= radio_button_tag :materia_id,materia.id
+					= label_tag "materia_id_#{materia.id}", materia.materia
+					&nbsp;&nbsp;&nbsp;&nbsp;
+				.input-field
+					-current_user.perfil_profesor.grupos.each do |grupo| 
+						.input-field
+							= check_box_tag "grupos[#{grupo.id}]", grupo.id
+							=label_tag "grupos[#{grupo.id}]", grupo.grupo					
+		.col.s12.l7{:style=>"margin-top: 1em"}
+			%h4.truncate.center-align Contenido
+			.input-fiedl.col.s12
+				- if @publicacion.errors.any?
+					%blockquote = "#{pluralize(@publicacion.errors.count, "error")} ocurrio al guardar publicar"
+				- @publicacion.errors.full_messages.each do |msg|
+					%li= msg
+					%script Materialize.toast("#{msg}", 10000);
+			.input-field.col.s12
+				= f.label :titulo
+				= f.text_field :titulo, data:{length:"30"}
+			.input-field.col.s12
+				-#= f.label :mensaje
+				=label_tag "Mensaje"
+				%br/
+				%br/
+				#epiceditor.materialize-textarea
+				= f.hidden_field :mensaje
+				= f.hidden_field :mensaje_markdown
+				-# class:"materialize-textarea", data:{length:"400"}
 			.col.s12.input-field
-				= f.check_box :prioridad
-				= f.label :prioridad,"Urgente"
+				%i.material-icons.prefix today
+				= f.label :fecha_de_termino
+				= f.date_field :fecha_de_termino, value: @fecha_de_termino, class:"datepicker"
+			.col.s12
+				= f.file_field :archivo, value: @archivo
+				%br
+				%h5 Seleccione la prioridad del comunicado
+				.col.s12.input-field
+					= f.check_box :prioridad
+					= f.label :prioridad,"Urgente"
 		-#===============Boton publicar================
 	.fixed-action-btn
 		%a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped.hoverable{href:"#mensaje-confirmar", data:{position:"left", delay:"50", tooltip:"Publicar"}}

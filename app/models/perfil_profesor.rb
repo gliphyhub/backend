@@ -59,7 +59,7 @@ class PerfilProfesor < ApplicationRecord
   #validates_associated :profesor_grupos
   ###################################################
   ###################################################
-  #scope :publicados, ->{ where (grupos)}
+  #scope :misgrupos, ->{ where (grupos)}
   # after_create :guarda_grupos
   # after_create :guarda_materias
   #  def grupos=(value)

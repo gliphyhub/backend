@@ -33,6 +33,7 @@ class PublicacionesController < ApplicationController
   # POST /publicaciones.json
   def create
     @publicacion = Publicacion.new(publicacion_params)
+    raise @publicacion
     @publicacion.perfil_profesor_id= current_user.perfil_profesor.id
     if params[:publicacion][:archivo]#si contiene un archivo
       archivo = params[:publicacion][:archivo]
@@ -132,6 +133,8 @@ class PublicacionesController < ApplicationController
                                           :mensaje,
                                           :mensaje_markdown,
                                           :fecha_de_termino, 
-                                          :prioridad)
+                                          :prioridad,
+                                          :grupos,
+                                          :materia_id)
     end
 end

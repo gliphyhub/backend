@@ -9,7 +9,10 @@ module DeviseHelper
 
     html = <<-HTML
     <div id="error_explanation">
-      <h5>#{sentence}</h5>
+      <div class="red lighten-2 black-text" style="padding: 10px">
+         <i class="material-icons left">warning</i>
+         <h6>#{sentence}</h6>
+      </div>
       <!-- <ul>#{messages}</ul> -->
       <script> Materialize.toast('#{messages}', 12000) </script>
     </div>
