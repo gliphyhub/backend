@@ -41,7 +41,7 @@ class PerfilProfesoresController < ApplicationController
       if @perfil_profesor.save
         current_user.update(perfilado:true)
          unless @grupos.nil?
-            @grupos.each do |grupo, valor|
+            @grupos.each do | valor|
               ProfesorGrupo.create(grupo_id: valor,perfil_profesor_id:  @perfil_profesor.id)
             end      
          end

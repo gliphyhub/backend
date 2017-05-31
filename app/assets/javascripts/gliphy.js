@@ -132,7 +132,7 @@ $(function() {
 
 	// Cabiar tags dependiendo del tamaño del dispositivo o resizing
 	var tagHrefRexponsive = "#contenido-responsivo"
-	var tagHrefLarge ="#!"
+	var tagHrefLarge ="#!" 
 
 	function cambiarHrefTag () {
 		// Comprueba el tamaño del dispositivo

@@ -5,18 +5,23 @@
 			%p Seleccione las opciones que desee y necesite para la publicación de un nuevo comunicado.
 			.col.s12
 				%br/
-				-current_user.perfil_profesor.materias.each do |materia| 
-					= radio_button_tag :materia_id,materia.id
-					= label_tag "materia_id_#{materia.id}", materia.materia
-					&nbsp;&nbsp;&nbsp;&nbsp;
-				.input-field
+				-Grado.all.each do |g| 
+					-current_user.perfil_profesor.materias.each do |materia| 
+						.input-field
+							-if g.grado == materia.grado.grado
+								= radio_button_tag :materia_para_la_publicacion,materia.id
+								= label_tag "materia_para_la_publicacion_#{materia.id}", materia.materia
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								%hr/
 					-current_user.perfil_profesor.grupos.each do |grupo| 
 						.input-field
-							= check_box_tag "grupos[#{grupo.id}]", grupo.id
-							=label_tag "grupos[#{grupo.id}]", grupo.grupo					
+							-if g.grado == grupo.grado.grado
+								= check_box_tag "grupos[#{grupo.id}]", grupo.id
+								=label_tag "grupos[#{grupo.id}]", grupo.grupo
+					
 		.col.s12.l7{:style=>"margin-top: 1em"}
 			%h4.truncate.center-align Contenido
-			.input-fiedl.col.s12
+			.input-field.col.s12
 				- if @publicacion.errors.any?
 					%blockquote = "#{pluralize(@publicacion.errors.count, "error")} ocurrio al guardar publicar"
 				- @publicacion.errors.full_messages.each do |msg|

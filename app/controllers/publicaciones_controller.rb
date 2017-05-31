@@ -8,11 +8,11 @@ class PublicacionesController < ApplicationController
   # GET /publicaciones
   # GET /publicaciones.json
   def index
-    @publicaciones = Publicacion.all
-    @archi = Archivo.select("id, nombre, ruta, publicacion_id")
+    @seccion = "Publicaciones"
+    @archi = Archivo.all
     @archivos = Dir.entries(Ruta_directorio_archivos)
-    @urgentes = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: true)
-    #@publicaciones = Publicacion.select("titulo, mensaje, fecha_de_termino").where(prioridad: false)
+    @urgentes = Publicacion.where(perfil_profesor_id: current_user.perfil_profesor.id, prioridad: true).reverse
+    @publicaciones = Publicacion.where(perfil_profesor_id: current_user.perfil_profesor.id, prioridad:false).reverse
   end
 
   # GET /publicaciones/1
@@ -22,6 +22,7 @@ class PublicacionesController < ApplicationController
 
   # GET /publicaciones/new
   def new
+    @seccion ="Nueva Publicacion"
     @publicacion = Publicacion.new
   end
 
@@ -32,71 +33,97 @@ class PublicacionesController < ApplicationController
   # POST /publicaciones
   # POST /publicaciones.json
   def create
+    @seccion ="Nueva Publicacion"
     @publicacion = Publicacion.new(publicacion_params)
-    raise @publicacion
+    #raise @publicacion
     @publicacion.perfil_profesor_id= current_user.perfil_profesor.id
-    if params[:publicacion][:archivo]#si contiene un archivo
-      archivo = params[:publicacion][:archivo]
-      @nombre = archivo.original_filename
-      dir = Ruta_directorio_archivos
-      ext = @nombre.slice(@nombre.rindex("."), @nombre.length).downcase
-      if ext == ".pdf" || 
-         ext == ".pptx" || 
-         ext == ".docx" || 
-         ext == ".xlsx"|| 
-         ext == ".ppt" || 
-         ext == ".doc" || 
-         ext == ".xls" ||
-         ext == ".png" ||
-         ext == ".jpg" ||
-         ext == ".jpeg" ||
-         ext == ".gif" ||
-         ext == ".rar"|| 
-         ext == ".zip"
-        path = File.join(dir, @nombre)
-        resultado = File.open(path, "wb") {|f| f.write(archivo.read)}
-        if resultado
-          respond_to do |format|
-            if @publicacion.save()
-              @archivo = AdminArchivo.new({
-                publicacion_id: @publicacion.id,
-                nombre: @nombre,
-                ruta: path
-              })
-              if @archivo.save()
-                format.html { redirect_to publicaciones_path, notice: 'La publicación ha sido creada satisfactoriamente.' }
-                #format.json { render :show, status: :created, location: @publicacion }
-              else
-                format.html { render :new }
-                #format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+    @grupos=params[:grupos]
+    @materia=params[:materia_para_la_publicacion]
+    unless @materia.nil?     
+      unless @grupos.nil?
+        @grupos.each do |id, g|
+            if Materia.find(@materia).grupos.exists?(id)
+              @publicacion.materia_id= @materia
+              if params[:publicacion][:archivo]#si contiene un archivo
+                archivo = params[:publicacion][:archivo]
+                @nombre = archivo.original_filename
+                dir = Ruta_directorio_archivos
+                ext = @nombre.slice(@nombre.rindex("."), @nombre.length).downcase
+                if ext == ".pdf" || 
+                   ext == ".pptx" || 
+                   ext == ".docx" || 
+                   ext == ".xlsx"|| 
+                   ext == ".ppt" || 
+                   ext == ".doc" || 
+                   ext == ".xls" ||
+                   ext == ".png" ||
+                   ext == ".jpg" ||
+                   ext == ".jpeg" ||
+                   ext == ".gif" ||
+                   ext == ".rar"|| 
+                   ext == ".zip"
+                  path = File.join(dir, @nombre)
+                  resultado = File.open(path, "wb") {|f| f.write(archivo.read)}
+                  if resultado
+                    respond_to do |format|
+                      if @publicacion.save()
+                        @grupos.each do |grupo, valor|
+                          PublicacionGrupo.create(grupo_id: valor,publicacion_id:  @publicacion.id)
+                        end   
+                        @archivo = Archivo.new({
+                          publicacion_id: @publicacion.id,
+                          nombre: @nombre,
+                          ruta: path
+                        })
+                        if @archivo.save()
+                          format.html { redirect_to publicaciones_path, notice: 'La publicación ha sido creada satisfactoriamente.' }
+                          #format.json { render :show, status: :created, location: @publicacion }
+                        else
+                          format.html { render :new }
+                          #format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+                        end
+                      else
+                        format.html { render :new }
+                        #format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+                      end
+                    end
+                  else
+                    flash[:error] = "No se pudo subir el archivo"
+                    render:new
+                  end
+                else
+                  flash[:error] = "El formato ingresado es incorrecto. Solo puedes subir archivos .doc, .docx, .pdf, .xlsx, .pptx, .ppt, .xls, .png, .gif, .jpg, .jpeg, .rar, .zip"
+                  render :new 
+                end
+              else#si no tiene archivo
+                respond_to do |format|
+                  if @publicacion.save()
+                    @grupos.each do |grupo, valor|
+                      PublicacionGrupo.create(grupo_id: valor,publicacion_id:  @publicacion.id)
+                    end   
+                    format.html { redirect_to publicaciones_path, notice: 'La publicación ha sido creada satisfactoriamente.' }
+                    #format.json { render :show, status: :created, location: @publicacion }
+                  else
+                    return render:new
+                    #format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+                  end
+                end
               end
             else
-              format.html { render :new }
-              #format.json { render json: @publicacion.errors, status: :unprocessable_entity }
+              flash[:error] = "El grupo y la materia debe coincidir"
+              return render:new
             end
-          end
-        else
-          flash[:error] = "No se pudo subir el archivo"
-          render:new
         end
       else
-        flash[:error] = "El formato ingresado es incorrecto. Solo puedes subir archivos .doc, .docx, .pdf, .xlsx, .pptx, .ppt, .xls, .png, .gif, .jpg, .jpeg, .rar, .zip"
-        render :new 
+        flash[:error] = "Debes seleccionar almenos un grupo"
+        render:new
       end
     else
-      respond_to do |format|
-        if @publicacion.save()
-          format.html { redirect_to publicaciones_path, notice: 'La publicación ha sido creada satisfactoriamente.' }
-          format.json { render :show, status: :created, location: @publicacion }
-        else
-          format.html { render :new }
-          #format.json { render json: @publicacion.errors, status: :unprocessable_entity }
-        end
-      end
+      flash[:error] = "Debes seleccionar una materia"
+      render:new
     end
 
   end
-
   # PATCH/PUT /publicaciones/1
   # PATCH/PUT /publicaciones/1.json
   #def update
@@ -135,6 +162,6 @@ class PublicacionesController < ApplicationController
                                           :fecha_de_termino, 
                                           :prioridad,
                                           :grupos,
-                                          :materia_id)
+                                          :materia_para_la_publicacion)
     end
 end
