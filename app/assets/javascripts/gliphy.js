@@ -287,6 +287,18 @@ $(function() {
 		$(".editar").addClass("ocultado");
 		editable = !editable;
 	});
+
+	// Toma todos los campos que contengan algún error y muestra un mensaje
+	$(".input-error").after("<div class='message-error'>error</div>");
+	// Si se cambia el contenido del input, se quitan los errores
+	$(".input-error").focus(function(e) {
+		var voID = "#" + e.target.id;
+		$(voID).change(function(e) {
+			$(this).siblings(".message-error").remove();
+			$(this).removeClass("input-error");
+		});
+	});
+
 	
 /*###################habilitar y deshabilitar materias#############*/
 	var  grado_1

@@ -1,82 +1,111 @@
-= form_for @perfil_profesor do |f|
-	.container
-		- if @perfil_profesor.errors.any?
-			%blockquote= "#{pluralize(@perfil_profesor.errors.count, "probelma(s)")} ocurrio al guardar el perfil, asigne de nuevo los grupos"
-			- @perfil_profesor.errors.full_messages.each do |msg|
-				-#%li= msg
-				%script Materialize.toast("#{msg}", 12000);
-		.input-field
-			= f.label :nss
-			= f.text_field :nss
-		.input-field
-			= f.label :ap_paterno
-			= f.text_field :ap_paterno
-		.input-field
-			= f.label :ap_materno
-			= f.text_field :ap_materno
-		.input-field
-			= f.label :nombre
-			= f.text_field :nombre
-		.input-field
-			= f.label :fecha_de_nacimiento
+%main.navegacion-espacio
+	.col.s12
+		%h3.red-text.center-align Llenar perfil
+	= form_for @perfil_profesor do |f|
+		.container
+			%p
+				%span Es importante que llenes de manera consiente este fomulario, para que no haya problemas en el futuro
+			- if @perfil_profesor.errors.any?
+				.red.lighten-2{style:"padding:10px"}
+					%i.material-icons.left warning
+					%h6= "#{pluralize(@perfil_profesor.errors.count, "problema(s)")} al guardar el perfil, asigne de nuevo los grupos"
+				- @perfil_profesor.errors.full_messages.each do |msg|
+					-#%li= msg
+					%script Materialize.toast("#{msg}", 5000);
+			.card.grey.lighten-3
+				.card-content
+					.col.s12
+						%i.material-icons.left face
+						%span.card-title Datos personales
+					%h6.red-text Identificación
+					.input-field
+						= f.label :nss
+						= f.text_field :nss
+					.input-field
+						= f.label :nombre
+						= f.text_field :nombre
+					.input-field
+						= f.label :ap_paterno
+						= f.text_field :ap_paterno
+					.input-field
+						= f.label :ap_materno
+						= f.text_field :ap_materno
+					%h6.red-text Fecha de nacimiento
+					.input-field
+						= f.date_select :fecha_de_nacimiento, start_year:1950, end_year:2010
+					%h6.red-text Género
+					.input-field
+						-Genero.all.each do |genero|
+							= f.radio_button :genero_id,genero.id
+							= f.label "genero_id_#{genero.id}", genero.sexo.humanize
+							&nbsp;&nbsp;&nbsp;&nbsp;
 			%br/
-			= f.date_select :fecha_de_nacimiento, start_year:1950, end_year:2010
-		%br/
-		%b Genero
-		.input-field
-			-Genero.all.each do |genero|
-				= f.radio_button :genero_id,genero.id
-				= f.label "genero_id_#{genero.id}", genero.sexo.humanize
-				&nbsp;&nbsp;&nbsp;&nbsp;
-		%br/
-		.input-field
-			= f.label :calle
-			= f.text_field :calle
-		.input-field
-			= f.label :numero_exterior
-			= f.text_field :numero_exterior
-		.input-field
-			= f.label :numero_interior
-			= f.text_field :numero_interior
-		.input-field
-			= f.label :colonia
-			= f.text_field :colonia
-		.input-field
-			= f.label :delegacion_municipio
-			= f.text_field :delegacion_municipio
-		.input-field
-			= f.label :codigo_postal
-			= f.text_field :codigo_postal
-		.input-field
-			= f.label :telefono_casa
-			= f.text_field :telefono_casa
-		.input-field
-			= f.label :telefono_celular
-			= f.text_field :telefono_celular
-		.input-field
-			= f.label :telefono_recados
-			= f.text_field :telefono_recados
-		.input-field
-			= f.label :extension_recados
-			= f.text_field :extension_recados
-		%h4 Grupos y Materias
-		.input-field#gruposmaterias
-			-Grado.all.each do |grado|
-				%hr{style:"margin-bottom:15px"}
-				%h5= grado.grado
-				.input-field
-					-grado.grupos.each do |grupo| 
-						= check_box_tag "grupos[#{grupo.id}]", grupo.id
-						=label_tag "grupos[#{grupo.id}]", grupo.grupo
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						-if grupo.id == 20 || grupo.id == 40 || grupo.id == 60 || grupo.id == 68 || grupo.id == 76|| grupo.id == 84 || grupo.id == 92 || grupo.id == 100 || grupo.id == 108
+			.card.grey.lighten-3
+				.card-content
+					.col.s12
+						%i.material-icons.left explore
+						%span.card-title Dirección
+					.input-field
+						= f.label :calle
+						= f.text_field :calle
+					.input-field
+						= f.label :colonia
+						= f.text_field :colonia
+					.input-field
+						= f.label :delegacion_municipio
+						= f.text_field :delegacion_municipio
+					.input-field
+						= f.label :codigo_postal
+						= f.text_field :codigo_postal
+					.input-field
+						= f.label :numero_exterior
+						= f.text_field :numero_exterior
+					%h6.red-text Opcional
+					.input-field
+						= f.label :numero_interior
+						= f.text_field :numero_interior
+			%br/
+			.card.grey.lighten-3
+				.card-content
+					.col.s12
+						%i.material-icons.left comment
+						%span.card-title Contacto
+					.input-field
+						= f.label :telefono_casa
+						= f.text_field :telefono_casa
+					.input-field
+						= f.label :telefono_celular
+						= f.text_field :telefono_celular
+					%h6.red-text Opcional
+					.input-field
+						= f.label :telefono_recados
+						= f.text_field :telefono_recados
+					.input-field
+						= f.label :extension_recados
+						= f.text_field :extension_recados
+			%br/
+			.card.grey.lighten-3
+				.card-content
+					.col.s12
+						%i.material-icons.left group
+						%span.card-title Grupos
+					.input-field#gruposmaterias
+						-Grado.all.each do |grado|
+							%hr{style:"margin-bottom:15px"}
+							%h5= grado.grado
 							.input-field
-								-grado.materias.each do |materia| 	
-									= check_box_tag "materias[#{materia.id}]", materia.id,false, disabled:true
-									=label_tag "materias[#{materia.id}]", materia.materia
-									&nbsp;&nbsp;
-							%hr{style:"margin-top:60px"}
-		.input-field.center
-			= f.submit 'Guardar', class:"btn waves-effect waves-light"
-		%br/
-		%br/
+								-grado.grupos.each do |grupo| 
+									= check_box_tag "grupos[#{grupo.id}]", grupo.id
+									=label_tag "grupos[#{grupo.id}]", grupo.grupo
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									-if grupo.id == 20 || grupo.id == 40 || grupo.id == 60 || grupo.id == 68 || grupo.id == 76|| grupo.id == 84 || grupo.id == 92 || grupo.id == 100 || grupo.id == 108
+										.input-field
+											-grado.materias.each do |materia| 	
+												= check_box_tag "materias[#{materia.id}]", materia.id,false, disabled:true
+												=label_tag "materias[#{materia.id}]", materia.materia
+												&nbsp;&nbsp;
+										%hr{style:"margin-top:60px"}
+			.input-field.center
+				= f.submit 'Guardar', class:"btn waves-effect waves-light"
+			%br/
+			%br/

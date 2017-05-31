@@ -5,6 +5,16 @@
 		.col.s12.m6.offset-m3
 			= devise_error_messages!
 		.col.s12
+			.col.s12.m6.l4
+				%h4.truncate Tipo de usuario
+				.card.grey.lighten-3
+					.card-content
+						.input-field{style:"height: 125px; margin: 0"}
+							-Tipo.all.each do |tipo|
+								.col.s12	 
+									= f.radio_button :tipo_id,tipo.id, checked:"checked"
+									= f.label "tipo_id_#{tipo.id}", tipo.tipo_de_usuario.humanize
+									&nbsp;&nbsp;&nbsp;&nbsp;
 			.col.s12.m6.l8
 				%h4.truncate Datos
 				.input-field
@@ -16,16 +26,7 @@
 				.input-field
 					= f.label :password_confirmation
 					= f.password_field :password_confirmation, autocomplete: "off"
-			.col.s12.m6.l4
-				%h4.truncate Tipo de usuario
-				.card.grey.lighten-3
-					.card-content
-						.input-field{style:"height: 125px; margin: 0"}
-							-Tipo.all.each do |tipo|
-								.col.s12	 
-									= f.radio_button :tipo_id,tipo.id, checked:"checked"
-									= f.label "tipo_id_#{tipo.id}", tipo.tipo_de_usuario.humanize
-									&nbsp;&nbsp;&nbsp;&nbsp;
+			
 			.col.s12	
 				.input-field
 				= f.submit "registrar", class:"btn waves-effect waves-light"

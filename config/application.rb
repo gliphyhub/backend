@@ -1,5 +1,4 @@
 require_relative 'boot'
-
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -14,8 +13,12 @@ module GliphyHub
     config.i18n.default_locale = :es
     config.action_view.field_error_proc = Proc.new { |html_tag, instance|
       if html_tag.include?("input")
-	     "<div class=\"input-error\">#{html_tag}</div>".html_safe
-
+        ar = html_tag.split(/ /)
+        final = [ar[0..-2], "class = \"input-error\"", ar[-1]].join (" ")
+        "#{final}".html_safe
+	      #"<div class=\"input-error\">#{html_tag}</div>".html_safe
+      else
+        "#{html_tag}".html_safe
       end
 	   #"#{html_tag}".html_safe
 	}
