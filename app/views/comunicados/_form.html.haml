@@ -1,0 +1,28 @@
+= form_for @comunicado do |f|
+  - if @comunicado.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@comunicado.errors.count, "error")} prohibited this comunicado from being saved:"
+      %ul
+        - @comunicado.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :titulo
+    = f.text_field :titulo
+  .field
+    = f.label :mensaje
+    = f.text_area :mensaje
+  .field
+    = f.label :mensaje_markdown
+    = f.text_area :mensaje_markdown
+  .field
+    = f.label :fecha_de_termino
+    = f.date_select :fecha_de_termino
+  .field
+    = f.label :prioridad
+    = f.check_box :prioridad
+  .field
+    = f.label :perfil_admin
+    = f.text_field :perfil_admin
+  .actions
+    = f.submit 'Save'

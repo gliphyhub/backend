@@ -6,7 +6,7 @@ class PerfilProfesoresController < ApplicationController
   # GET /perfil_profesores
   # GET /perfil_profesores.json
   def index
-    @perfil_profesores = PerfilProfesor.all.reverse
+    @perfil_profesores = PerfilProfesor.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
 
   # GET /perfil_profesores/1

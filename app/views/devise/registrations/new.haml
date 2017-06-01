@@ -18,8 +18,8 @@
 			.col.s12.m6.l8
 				%h4.truncate Datos
 				.input-field
-					= f.label :email
-					= f.email_field :email, autofocus: true
+					= f.email_field :email, autofocus: true, class:"validate"
+					= f.label :email,data:{error:"No es un correo", success:"✓"}
 				.input-field	
 					= f.label :password 
 					= f.password_field :password, autocomplete: "off" 

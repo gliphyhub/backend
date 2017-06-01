@@ -26,14 +26,9 @@ class ApplicationController < ActionController::Base
             @nombres =  current_user.perfil_admin.nombre.capitalize
             @ap_paterno = current_user.perfil_admin.ap_paterno.capitalize
             @nombreCorto = @nombres.split(/ /)[0] + " " + @ap_paterno
-            @sexo = current_user.perfil_admin.genero.sexo
-            if @sexo == "masculino"
-              @imgPerfil = "users/user01.jpg"
-            else
-              @imgPerfil = "users/user02.jpg"
-            end
+            @imgPerfil = current_user.gravatar_url(default: '')
             @imgCover="covers/admin-cover.jpg"
-            @menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Comunicados",link:admin_publicaciones_path, icon:"description"},{title:"Publicaciones",link:admin_publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_admin_publicacion_path, icon:"add"}, {title:"Agregar usuario", link:new_user_registration_path, icon:"person_add"},{title:"Editar perfil", icon:"border_color"}]
+            @menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Base de Datos", link:"!#", icon:"storage"},{title:"Comunicados",link:comunicados_path, icon:"description"},{title:"Publicaciones",link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_comunicado_path, icon:"add"}, {title:"Agregar usuario", link:new_user_registration_path, icon:"person_add"},{title:"Editar perfil", icon:"border_color"}]
             @tablas=[{title:"Panel de administración", link:rails_admin_path},{title:"Archivo", link:"basededatos/archivo"},{title:"Color", link:"basededatos/color"}, {title:"Generación", link:"basededatos/generacion"},{title:"Grado", link:"basededatos/grado"},  {title:"Grupo", link:"basededatos/grupo"},{title:"Materia", link:"basededatos/materia"}, {title:"Administrativos", link:"basededatos/perfil_admin"},{title:"Profesores", link:"basededatos/perfil_profesor"},{title:"Alumnos", link:"basededatos/perfil_alumno"}, {title:"Tutores", link:"basededatos/perfil_tutor"}, {title:"Publicación", link:"basededatos/publicacion"},{title:"Tipos", link:"basededatos/tipo"}, {title:"Turno", link:"basededatos/turno"}, {title:"Usuario", link:"basededatos/user"}]
             @tiposPerfiles=[{title:"Administradores", link:perfil_admins_path}, {title:"Profesor",link:perfil_profesores_path}, {title:"Alumnos",link:perfil_alumnos_path}, {title:"Tutores",link:perfil_tutores_path}]
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
@@ -52,12 +47,7 @@ class ApplicationController < ActionController::Base
             @nombres =  current_user.perfil_profesor.nombre.capitalize
             @ap_paterno = current_user.perfil_profesor.ap_paterno.capitalize
             @nombreCorto = @nombres.split(/ /)[0] + " " + @ap_paterno
-            @sexo = current_user.perfil_profesor.genero.sexo
-            if @sexo == "masculino"
-              @imgPerfil = "users/user01.jpg"
-            else
-              @imgPerfil = "users/user02.jpg"
-            end
+            @imgPerfil = current_user.gravatar_url
             @imgCover = "covers/teacher-cover.jpg"
             @menuLateral=[{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
@@ -75,12 +65,7 @@ class ApplicationController < ActionController::Base
             @nombres =  current_user.perfil_tutor.nombre.capitalize
             @ap_paterno = current_user.perfil_tutor.ap_paterno.capitalize
             @nombreCorto = @nombres.split(/ /)[0] + " " + @ap_paterno
-            @sexo = current_user.perfil_tutor.genero.sexo
-            if @sexo == "masculino"
-              @imgPerfil = "users/user01.jpg"
-            else
-              @imgPerfil = "users/user02.jpg"
-            end
+            @imgPerfil = current_user.gravatar_url
             @imgCover = "covers/teacher-cover.jpg"
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
@@ -97,12 +82,7 @@ class ApplicationController < ActionController::Base
             @nombres =  current_user.perfil_alumno.nombre.capitalize
             @ap_paterno = current_user.perfil_alumno.ap_paterno.capitalize
             @nombreCorto = @nombres.split(/ /)[0] + " " + @ap_paterno
-            @sexo = current_user.perfil_alumno.genero.sexo
-            if @sexo == "masculino"
-              @imgPerfil = "users/user01.jpg"
-            else
-              @imgPerfil = "users/user02.jpg"
-            end
+            @imgPerfil = current_user.gravatar_url
             @imgCover = "covers/teacher-cover.jpg"
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else

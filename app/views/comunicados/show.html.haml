@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Titulo:
+  = @comunicado.titulo
+%p
+  %b Mensaje:
+  = @comunicado.mensaje
+%p
+  %b Mensaje markdown:
+  = @comunicado.mensaje_markdown
+%p
+  %b Fecha de termino:
+  = @comunicado.fecha_de_termino
+%p
+  %b Prioridad:
+  = @comunicado.prioridad
+%p
+  %b Perfil admin:
+  = @comunicado.perfil_admin
+
+= link_to 'Edit', edit_comunicado_path(@comunicado)
+\|
+= link_to 'Back', comunicados_path

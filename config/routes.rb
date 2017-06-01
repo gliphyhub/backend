@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :admin_publicaciones
+  resources :comunicados
   resources :perfil_alumnos#, only: [:create]
   resources :perfil_tutores#, only: [:create]
   resources :perfil_profesores#, only: [:create]

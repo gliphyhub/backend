@@ -39,7 +39,10 @@ rails g scaffold Publicacion titulo mensaje:text mensaje_markdown:text fecha_de_
 
 rails g scaffold AdminPublicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_admin:belongs_to
 
+rails d scaffold AdminPublicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_admin:belongs_to
+
 rails g model AdminArchivo admin_publicacion:belongs_to nombre ruta
+rails d model AdminArchivo admin_publicacion:belongs_to nombre ruta
 
 rails g model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
 rails d model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
@@ -47,5 +50,8 @@ rails d model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs
 rails g model Archivo publicacion:belongs_to nombre ruta
 
 rails g model PublicacionGrupo grupo:belongs_to publicacion:belongs_to
+
+rails g scaffold Comunicado titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_admin:belongs_to
+rails g model ComunicadoArchivo admin_publicacion:belongs_to nombre ruta
 
 

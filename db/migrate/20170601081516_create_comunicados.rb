@@ -1,6 +1,6 @@
-class CreateAdminPublicaciones < ActiveRecord::Migration[5.0]
+class CreateComunicados < ActiveRecord::Migration[5.0]
   def change
-    create_table :admin_publicaciones do |t|
+    create_table :comunicados do |t|
       t.string :titulo
       t.text :mensaje
       t.text :mensaje_markdown

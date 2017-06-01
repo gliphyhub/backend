@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170530131744) do
+ActiveRecord::Schema.define(version: 20170601081518) do
 
   create_table "admin_archivos", force: :cascade do |t|
     t.integer  "admin_publicacion_id"
@@ -47,6 +47,27 @@ ActiveRecord::Schema.define(version: 20170530131744) do
     t.string   "descripcion"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "comunicado_archivos", force: :cascade do |t|
+    t.integer  "admin_publicacion_id"
+    t.string   "nombre"
+    t.string   "ruta"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.index ["admin_publicacion_id"], name: "index_comunicado_archivos_on_admin_publicacion_id"
+  end
+
+  create_table "comunicados", force: :cascade do |t|
+    t.string   "titulo"
+    t.text     "mensaje"
+    t.text     "mensaje_markdown"
+    t.date     "fecha_de_termino"
+    t.boolean  "prioridad"
+    t.integer  "perfil_admin_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["perfil_admin_id"], name: "index_comunicados_on_perfil_admin_id"
   end
 
   create_table "generaciones", force: :cascade do |t|

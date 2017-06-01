@@ -1,0 +1,31 @@
+%h1 Listing comunicados
+
+%table
+  %thead
+    %tr
+      %th Titulo
+      %th Mensaje
+      %th Mensaje markdown
+      %th Fecha de termino
+      %th Prioridad
+      %th Perfil admin
+      %th
+      %th
+      %th
+
+  %tbody
+    - @comunicados.each do |comunicado|
+      %tr
+        %td= comunicado.titulo
+        %td= comunicado.mensaje
+        %td= comunicado.mensaje_markdown
+        %td= comunicado.fecha_de_termino
+        %td= comunicado.prioridad
+        %td= comunicado.perfil_admin
+        %td= link_to 'Show', comunicado
+        %td= link_to 'Edit', edit_comunicado_path(comunicado)
+        %td= link_to 'Destroy', comunicado, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Comunicado', new_comunicado_path

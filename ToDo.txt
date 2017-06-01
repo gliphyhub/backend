@@ -1,6 +1,6 @@
 crear usuarios de admin,  cambiar los before_action de los controllers para editar...//done
 
-validate al correo => registro, edit, login...
+validate al correo => registro, edit, login.../// done
 
 validar con acentos .../// done
 
@@ -11,20 +11,34 @@ erroresen lista y.... validar//// done
 
 mark down.../// done 
 
-disñeo a calendario...
+paginacion...//done
 
-drag and drop...
+gravartar...//done
 
-paginacion...
 
-rails admin....
-los perfiles solo se pueden eliminar desde us
+rails admin.... .// done (checar y confiiguara tablas de publicaciones)
+
 
 mails...
 
+paths de rails admin
+
 notificaciones....
 
-nadie puede editar publicacioness
+drag and drop...
+
+nadie puede editar publicacioness...
+
+disñeo a calendario...
+terminar diseño de editar perfil...
+diseño de la paginacion...
+
+
+
+
+
+
+
 
 scopes
 en el modelo
@@ -38,9 +52,19 @@ En el controlador
 @publicaciones = Publicacion.publicados.ultimos
 
 
-
+=time_ago_in_words(publicacion.created_at) ago
 
 render @modeloplural
 
 _modelosingular
 	coasas en singular.metodo
+
+
+
+"404, "mm", "identicon", "monsterid", "wavatar", "retro", "blank" or an absolute URL.
+
+
+
+
+NOTA IMPORTANTE
+eliminar perfiles desde nosotros

@@ -42,4 +42,162 @@ RailsAdmin.config do |config|
     # history_index
     # history_show
   end
+  config.excluded_models = ["MateriaGrupo","ProfesorGrupo","ProfesorMateria"]
+  #nivel
+  config.model Nivel do
+  configure :nivel do
+  read_only true
+  end
+  configure :grupos do
+  read_only true
+  end
+  configure :materias do
+  read_only true
+  end
+  end
+  #genero
+  config.model Genero do
+  configure :sexo do
+  read_only true
+  end
+  configure :perfil_admins do
+  read_only true
+  end
+  configure :perfil_profesores do
+  read_only true
+  end
+  configure :perfil_tutores do
+  read_only true
+  end
+  configure :perfil_alumnos do
+  read_only true
+  end
+  end
+  #generacion
+  config.model Generacion do
+  configure :perfil_alumnos do
+  read_only true
+  end
+  end
+  config.model 'Generacion' do
+    edit do
+      group :default do
+        label "Generacion"
+        help "Agregar una descripción para asignar posteriormente"
+      end
+    end
+  end
+  #grado
+  config.model Grado do
+  configure :grado do
+  read_only true
+  end
+  configure :materias do
+  read_only true
+  end
+  configure :grupos do
+  read_only true
+  end
+  end
+  #grupo
+  config.model Grupo do
+  configure :publicacion_grupos do
+  read_only true
+  end
+  configure :perfil_profesores do
+  read_only true
+  end
+  configure :perfil_alumnos do
+  read_only true
+  end
+  configure :publicaciones do
+  read_only true
+  end
+  end
+  #materias
+  config.model Materia do
+  configure :perfil_profesores do
+  read_only true
+  end
+  configure :publicaciones do
+  read_only true
+  end
+  end
+
+  #perfil admin
+  config.model PerfilAdmin do
+  configure :admin_publicaciones do
+  read_only true
+  end
+  end
+  #perfil profesor
+  config.model PerfilProfesor do
+  configure :grupos do
+  read_only true
+  end
+  configure :materias do
+  read_only true
+  end
+  configure :publicaciones do
+  read_only true
+  end
+  end
+  #tipo
+  config.model Tipo do
+  configure :users do
+  read_only true
+  end
+  end
+  #turno
+  config.model Turno do
+  configure :turno do
+  read_only true
+  end
+  configure :grupos do
+  read_only true
+  end
+  end
+  #user
+  config.model User do
+  configure :perfilado do
+  read_only true
+  end
+  configure :email do
+  read_only true
+  end
+  configure :password  do
+  read_only true
+  end
+  configure :encrypted_password  do
+  read_only true
+  end
+  configure :password_confirmation do
+  read_only true
+  end
+  configure :reset_password_token  do
+  read_only true
+  end
+  configure :reset_password_sent_at do
+  read_only true
+  end
+  configure :remember_created_at  do
+  read_only true
+  end
+  configure :sign_in_count do
+  read_only true
+  end
+  configure :current_sign_in_at do
+  read_only true
+  end
+  configure :last_sign_in_at  do
+  read_only true
+  end
+  configure :current_sign_in_ip  do
+  read_only true
+  end
+  configure :last_sign_in_ip do
+  read_only true
+  end
+  end
+
 end

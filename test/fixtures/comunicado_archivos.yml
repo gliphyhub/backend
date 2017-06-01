@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  admin_publicacion: one
+  nombre: MyString
+  ruta: MyString
+
+two:
+  admin_publicacion: two
+  nombre: MyString
+  ruta: MyString

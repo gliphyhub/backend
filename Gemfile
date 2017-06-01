@@ -38,7 +38,7 @@ gem 'jbuilder', '~> 2.5'
 #===============Nestras gemas=======================
 gem 'haml-rails'
 gem 'devise'
-gem 'rails_admin', '~> 1.1.1'
+gem 'rails_admin', '~> 1.2'
 gem 'devise-i18n'
 gem 'rails_admin-i18n'
 gem 'material_icons'
@@ -50,6 +50,8 @@ gem 'annotate'
 gem "simple_calendar", "~> 2.0"
 gem 'epic-editor-rails', :git => 'https://github.com/GioRosales/epic-editor-rails.git'
 gem 'sanitize'
+gem "will_paginate", ">=3.0.pre2"
+gem 'gravtastic'
 
 #====================================================
 #====================================================

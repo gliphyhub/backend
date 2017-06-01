@@ -24,6 +24,7 @@
  	inflect.irregular 'color', 'colores'
  	inflect.irregular 'publicacion', 'publicaciones'
  	inflect.irregular 'archivo', 'archivos'
+ 	inflect.irregular 'comunicado', 'comunicados'
 
 #==================================================
 #==================================================
