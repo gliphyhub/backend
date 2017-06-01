@@ -30,12 +30,14 @@ drag and drop...
 
 nadie puede editar publicacioness...
 
-disñeo a calendario...
-terminar diseño de editar perfil...
+disñeo a calendario... /// done
+terminar diseño de editar perfiles... // done
 diseño de la paginacion...
 
 
+ceular max 10 
 
+Agregarle '(s)' a nombre
 
 
 

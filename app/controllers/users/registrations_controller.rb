@@ -10,6 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/sign_up
    def new
+    @seccion = "Crear usuario"
     #super
     build_resource({})
     ield resource if block_given?
@@ -55,9 +56,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
    end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+   def edit
+    @seccion = "Editar"
+    super
+   end
 
   # PUT /resource
   # def update

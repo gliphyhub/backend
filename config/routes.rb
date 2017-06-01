@@ -28,6 +28,8 @@ Rails.application.routes.draw do
 
   get '/help' => 'home#help'
 
+
+
   authenticated :user do
     root 'home#index'
   end

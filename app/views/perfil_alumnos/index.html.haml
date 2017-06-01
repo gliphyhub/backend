@@ -1,29 +1,35 @@
 %main.navegacion-espacio
-  %h1 Listing perfil_alumnos
-
-  %table
-    %thead
-      %tr
-        %th User
-        %th Matricula
-        %th Ap paterno
-        %th Ap materno
-        %th Nombre
-        %th Perfil tutor
-        %th
-        %th
-
-    %tbody
-      - @perfil_alumnos.each do |perfil_alumno|
-        %tr
-          %td= perfil_alumno.user.email
-          %td= perfil_alumno.matricula
-          %td= perfil_alumno.ap_paterno
-          %td= perfil_alumno.ap_materno
-          %td= perfil_alumno.nombre
-          %td= perfil_alumno.perfil_tutor.user.email
-          %td= link_to 'Show', perfil_alumno
-          %td= link_to 'Destroy', perfil_alumno, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  %br
-  = will_paginate @perfil_alumnos
+  .row
+    .col.s12
+      %h2.red-text.center-align.trun Perfiles de alumnos
+    .col.s12
+      .tabla-contenedor
+        %table.striped
+          %thead
+            %tr
+              %th.b
+              %th.b
+              %th User
+              %th Matricula
+              %th Ap paterno
+              %th Ap materno
+              %th Nombre
+              %th Perfil tutor
+          %tbody
+            - @perfil_alumnos.each do |perfil_alumno|
+              %tr
+                %td
+                  .btn.waves-effect.btn-square
+                    = link_to '<i class="material-icons white-text">remove_red_eye</i>'.html_safe, perfil_alumno
+                %td
+                  .btn.waves-effect.btn-square.red
+                    = link_to '<i class="material-icons white-text">delete</i>'.html_safe, perfil_alumno, :method => :delete, :data => { :confirm => 'Are you sure?' }
+                %td= perfil_alumno.user.email
+                %td= perfil_alumno.matricula
+                %td= perfil_alumno.ap_paterno
+                %td= perfil_alumno.ap_materno
+                %td= perfil_alumno.nombre
+                %td= perfil_alumno.perfil_tutor.user.email
+      .col.s12
+        %br
+        = will_paginate @perfil_alumnos

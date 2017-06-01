@@ -27,7 +27,6 @@
 class PerfilAdmin < ApplicationRecord
   ###################################################
   ##################Relaciones#######################
-  has_many :admin_publicaciones, dependent: :destroy
   belongs_to :user
   belongs_to :genero
   ###################################################

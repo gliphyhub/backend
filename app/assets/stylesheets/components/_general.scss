@@ -106,3 +106,26 @@ html, body,  {
     }
   }
 }
+.calendar-heading {
+  border-radius: 5px 5px 0 0;
+}
+  .month-title {
+    padding: 10px 0 10px !important;
+    span {
+      font-weight: 300;
+      font-size: 3rem;
+      text-transform: capitalize;
+    }
+  }
+
+  //Tabla responsiva
+
+  .tabla-contenedor {
+    width: 100%;
+    overflow-y: auto;
+    th {
+      min-width: 100px;
+      &.b { min-width: 30px !important; width: 30px}
+        
+    }
+  }

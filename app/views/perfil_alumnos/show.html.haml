@@ -1,83 +1,124 @@
 %main.navegacion-espacio
-  %p#notice= notice
-
-  %p
-    %b Correo de User:
-    = @perfil_alumno.user.email
-  %p
-    %b Numero de veces ingresadas:
-    =@perfil_alumno.user.sign_in_count
-  %p
-    %b Ultima vez ingresado
-    =@perfil_alumno.user.current_sign_in_at
-  %p
-    %b Ultima vez session cerrada
-    =@perfil_alumno.user.last_sign_in_at
-  %p
-    %b Ultima ip de ingreso
-    =@perfil_alumno.user.current_sign_in_ip 
-  %p
-    %b Ultima ip de salida
-    =@perfil_alumno.user.last_sign_in_ip  
-  %p
-    %b contraseña encriptada
-    =@perfil_alumno.user.encrypted_password
-  %p
-    %b Matricula:
-    = @perfil_alumno.matricula
-  %p
-    %b Ap paterno:
-    = @perfil_alumno.ap_paterno
-  %p
-    %b Ap materno:
-    = @perfil_alumno.ap_materno
-  %p
-    %b Nombre:
-    = @perfil_alumno.nombre
-  %p
-    %b Fecha de nacimiento:
-    = @perfil_alumno.fecha_de_nacimiento
-  %p
-    %b Genero:
-    = @perfil_alumno.genero.sexo
-  %p
-    %b Calle:
-    = @perfil_alumno.calle
-  %p
-    %b Numero exterior:
-    = @perfil_alumno.numero_exterior
-  %p
-    %b Numero interior:
-    = @perfil_alumno.numero_interior
-  %p
-    %b Colonia:
-    = @perfil_alumno.colonia
-  %p
-    %b Delegacion municipio:
-    = @perfil_alumno.delegacion_municipio
-  %p
-    %b Codigo postal:
-    = @perfil_alumno.codigo_postal
-  %p
-    %b Telefono casa:
-    = @perfil_alumno.telefono_casa
-  %p
-    %b Telefono celular:
-    = @perfil_alumno.telefono_celular
-  %p
-    %b Telefono recados:
-    = @perfil_alumno.telefono_recados
-  %p
-    %b Extension recados:
-    = @perfil_alumno.extension_recados
-  %p
-    %b Grupo:
-    = @perfil_alumno.grupo.grupo
-  %p
-    %b Generacion:
-    = @perfil_alumno.generacion.generacion
-  %p
-    %b Perfil tutor:
-    = @perfil_alumno.perfil_tutor.user.email
-
-= link_to 'Back', perfil_alumnos_path
+  .row
+    .col.s12.l4.principal-usuario
+      .col.s12.center-align
+        .btn.waves-effect
+          = link_to 'REGRESAR', perfil_alumnos_path, class:"white-text"
+      .col.s12.center-align
+        = image_tag @perfil_alumno.user.gravatar_url(default: 'mm', size: '300')
+    .col.s12.l8.perfiles-usuario
+      .col.s12
+        %p#notice= notice
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left face
+                %span.card-title Información personal
+              .col.s12
+                %p
+                  %b Matricula:
+                  = @perfil_alumno.matricula
+                %p
+                  %b Ap paterno:
+                  = @perfil_alumno.ap_paterno
+                %p
+                  %b Ap materno:
+                  = @perfil_alumno.ap_materno
+                %p
+                  %b Nombre:
+                  = @perfil_alumno.nombre
+                %p
+                  %b Fecha de nacimiento:
+                  = @perfil_alumno.fecha_de_nacimiento
+                %p
+                  %b Género:
+                  = @perfil_alumno.genero.sexo
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left show_chart
+                %span.card-title Estadísticas de uso
+              .col.s12
+                %p
+                  %b Correo de User:
+                  = @perfil_alumno.user.email
+                %p
+                  %b Numero de veces ingresadas:
+                  =@perfil_alumno.user.sign_in_count
+                %p
+                  %b Ultima vez ingresado
+                  =@perfil_alumno.user.current_sign_in_at
+                %p
+                  %b Ultima vez session cerrada
+                  =@perfil_alumno.user.last_sign_in_at
+                %p
+                  %b Ultima ip de ingreso
+                  =@perfil_alumno.user.current_sign_in_ip 
+                %p
+                  %b Ultima ip de salida
+                  =@perfil_alumno.user.last_sign_in_ip  
+                %p.truncate
+                  %b contraseña encriptada
+                  =@perfil_alumno.user.encrypted_password
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left explore
+                %span.card-title Dirección
+              .col.s12
+                %p
+                  %b Calle:
+                  = @perfil_alumno.calle
+                %p
+                  %b Numero exterior:
+                  = @perfil_alumno.numero_exterior
+                %p
+                  %b Numero interior:
+                  = @perfil_alumno.numero_interior
+                %p
+                  %b Colonia:
+                  = @perfil_alumno.colonia
+                %p
+                  %b Delegacion municipio:
+                  = @perfil_alumno.delegacion_municipio
+                %p
+                  %b Codigo postal:
+                  = @perfil_alumno.codigo_postal
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left comment
+                %span.card-title Contacto
+              .col.s12
+                %p
+                  %b Telefono casa:
+                  = @perfil_alumno.telefono_casa
+                %p
+                  %b Telefono celular:
+                  = @perfil_alumno.telefono_celular
+                %p
+                  %b Telefono recados:
+                  = @perfil_alumno.telefono_recados
+                %p
+                  %b Extension recados:
+                  = @perfil_alumno.extension_recados
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left extension
+                %span.card-title Información extra
+              .col.s12
+                %p
+                  %b Grupo:
+                  = @perfil_alumno.grupo.grupo
+                %p
+                  %b Generacion:
+                  = @perfil_alumno.generacion.generacion
+                %p
+                  %b Perfil tutor:
+                  = @perfil_alumno.perfil_tutor.user.email

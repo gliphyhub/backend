@@ -1,73 +1,109 @@
 %main.navegacion-espacio 
-  %p#notice= notice
-  %p
-    %b Correo de User:
-    = @perfil_admin.user.email
-  %p
-    %b Numero de veces ingresadas:
-    =@perfil_admin.user.sign_in_count
-  %p
-    %b Ultima vez ingresado
-    =@perfil_admin.user.current_sign_in_at
-  %p
-    %b Ultima vez session cerrada
-    =@perfil_admin.user.last_sign_in_at
-  %p
-    %b Ultima ip de ingreso
-    =@perfil_admin.user.current_sign_in_ip 
-  %p
-    %b Ultima ip de salida
-    =@perfil_admin.user.last_sign_in_ip  
-  %p
-    %b contraseña encriptada
-    =@perfil_admin.user.encrypted_password
-  %p
-    %b Nss:
-    = @perfil_admin.nss
-  %p
-    %b Ap paterno:
-    = @perfil_admin.ap_paterno
-  %p
-    %b Ap materno:
-    = @perfil_admin.ap_materno
-  %p
-    %b Nombre:
-    = @perfil_admin.nombre
-  %p
-    %b Fecha de nacimiento:
-    = @perfil_admin.fecha_de_nacimiento
-  %p
-    %b Genero:
-    = @perfil_admin.genero.sexo
-  %p
-    %b Calle:
-    = @perfil_admin.calle
-  %p
-    %b Numero exterior:
-    = @perfil_admin.numero_exterior
-  %p
-    %b Numero interior:
-    = @perfil_admin.numero_interior
-  %p
-    %b Colonia:
-    = @perfil_admin.colonia
-  %p
-    %b Delegacion municipio:
-    = @perfil_admin.delegacion_municipio
-  %p
-    %b Codigo postal:
-    = @perfil_admin.codigo_postal
-  %p
-    %b Telefono casa:
-    = @perfil_admin.telefono_casa
-  %p
-    %b Telefono celular:
-    = @perfil_admin.telefono_celular
-  %p
-    %b Telefono recados:
-    = @perfil_admin.telefono_recados
-  %p
-    %b Extension recados:
-    = @perfil_admin.extension_recados
+  .row
+    .col.s12.l4.principal-usuario
+      .col.s12.center-align
+        .btn.waves-effect
+          = link_to 'REGRESAR', perfil_admins_path, class:"white-text"
+      .col.s12.center-align
+        = image_tag @perfil_admin.user.gravatar_url(default: 'mm', size: '300')
+    .col.s12.l8.perfiles-usuario
+      .col.s12
+        %p#notice= notice
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left face
+                %span.card-title Información personal
+              .col.s12
+              %p
+                %b Nss:
+                = @perfil_admin.nss
+              %p
+                %b Ap paterno:
+                = @perfil_admin.ap_paterno
+              %p
+                %b Ap materno:
+                = @perfil_admin.ap_materno
+              %p
+                %b Nombre:
+                = @perfil_admin.nombre
+              %p
+                %b Fecha de nacimiento:
+                = @perfil_admin.fecha_de_nacimiento
+              %p
+                %b Género:
+                = @perfil_admin.genero.sexo
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left show_chart
+                %span.card-title Estadísticas de uso
+              .col.s12
+                %p
+                  %b Correo de User:
+                  = @perfil_admin.user.email
+                %p
+                  %b Numero de veces ingresadas:
+                  =@perfil_admin.user.sign_in_count
+                %p
+                  %b Ultima vez ingresado
+                  =@perfil_admin.user.current_sign_in_at
+                %p
+                  %b Ultima vez session cerrada
+                  =@perfil_admin.user.last_sign_in_at
+                %p
+                  %b Ultima ip de ingreso
+                  =@perfil_admin.user.current_sign_in_ip 
+                %p
+                  %b Ultima ip de salida
+                  =@perfil_admin.user.last_sign_in_ip  
+                %p.truncate
+                  %b contraseña encriptada
+                  =@perfil_admin.user.encrypted_password
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left explore
+                %span.card-title Dirección
+              .col.s12
+                %p
+                  %b Calle:
+                  = @perfil_admin.calle
+                %p
+                  %b Numero exterior:
+                  = @perfil_admin.numero_exterior
+                %p
+                  %b Numero interior:
+                  = @perfil_admin.numero_interior
+                %p
+                  %b Colonia:
+                  = @perfil_admin.colonia
+                %p
+                  %b Delegacion municipio:
+                  = @perfil_admin.delegacion_municipio
+                %p
+                  %b Codigo postal:
+                  = @perfil_admin.codigo_postal
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left comment
+                %span.card-title Contacto
+              .col.s12
+                %p
+                  %b Telefono casa:
+                  = @perfil_admin.telefono_casa
+                %p
+                  %b Telefono celular:
+                  = @perfil_admin.telefono_celular
+                %p
+                  %b Telefono recados:
+                  = @perfil_admin.telefono_recados
+                %p
+                  %b Extension recados:
+                  = @perfil_admin.extension_recados
 
-  = link_to 'Back', perfil_admins_path

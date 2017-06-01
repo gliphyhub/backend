@@ -93,8 +93,8 @@
 	@include transition ('all 0.3s');
 }
 
-.mc-btn-action i {
-	line-height: 2.2;
+.mc-btn-action {
+	padding-top: 0.7em
 }
 
 .material-card.mc-active .mc-btn-action {
