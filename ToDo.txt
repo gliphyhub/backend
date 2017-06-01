@@ -1,23 +1,24 @@
-crear usuarios de admin,  cambiar los before_action de los controllers para editar...
+crear usuarios de admin,  cambiar los before_action de los controllers para editar...//done
 
 validate al correo => registro, edit, login...
 
-validar con acentos
+validar con acentos .../// done
 
-todos puedan editar mi perfil
+todos puedan editar mi perfil../// done
 
 opcional los numero de recados...
-erroresen lista y.... validar
+erroresen lista y.... validar//// done
+
+mark down.../// done 
 
 disñeo a calendario...
 
 drag and drop...
 
-mark down.../// done 
-
 paginacion...
 
 rails admin....
+los perfiles solo se pueden eliminar desde us
 
 mails...
 

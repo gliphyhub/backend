@@ -54,7 +54,7 @@
 						= f.text_field :delegacion_municipio
 					.input-field
 						= f.label :codigo_postal
-						= f.text_field :codigo_postal
+						= f.text_field :codigo_postal, data:{length:"5"}
 					.input-field
 						= f.label :numero_exterior
 						= f.text_field :numero_exterior
@@ -70,10 +70,10 @@
 						%span.card-title Contacto
 					.input-field
 						= f.label :telefono_casa
-						= f.text_field :telefono_casa
+						= f.text_field :telefono_casa, data:{length:"8"}
 					.input-field
 						= f.label :telefono_celular
-						= f.text_field :telefono_celular
+						= f.text_field :telefono_celular, data:{length:"8"}
 					%h6.red-text Opcional
 					.input-field
 						= f.label :telefono_recados

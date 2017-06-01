@@ -1,12 +1,12 @@
 class PerfilProfesoresController < ApplicationController
   before_action :set_perfil_profesor, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authenticate_admin!, only:[:index,:show,:update,:destroy,:edit]
+  before_action :solo_admin!, only:[:index,:show,:update,:destroy]
 
   # GET /perfil_profesores
   # GET /perfil_profesores.json
   def index
-    @perfil_profesores = PerfilProfesor.all
+    @perfil_profesores = PerfilProfesor.all.reverse
   end
 
   # GET /perfil_profesores/1
@@ -18,13 +18,13 @@ class PerfilProfesoresController < ApplicationController
   #end
 
   # GET /perfil_profesores/new
-  def new
-    @perfil_profesor = PerfilProfesor.new
-  end
+  #def new
+  #  @perfil_profesor = PerfilProfesor.new
+  #end
 
   # GET /perfil_profesores/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /perfil_profesores
   # POST /perfil_profesores.json
@@ -64,11 +64,11 @@ class PerfilProfesoresController < ApplicationController
   def update
     respond_to do |format|
       if @perfil_profesor.update(perfil_profesor_params)
-        format.html { redirect_to @perfil_profesor, notice: 'Perfil profesor was successfully updated.' }
-        format.json { render :show, status: :ok, location: @perfil_profesor }
+        format.html { redirect_to @perfil_profesor, notice: 'Perfil profesor se actualizó correctamente' }
+        #format.json { render :show, status: :ok, location: @perfil_profesor }
       else
         format.html { render :edit }
-        format.json { render json: @perfil_profesor.errors, status: :unprocessable_entity }
+        #format.json { render json: @perfil_profesor.errors, status: :unprocessable_entity }
       end
    end
   end
@@ -77,9 +77,10 @@ class PerfilProfesoresController < ApplicationController
   #DELETE /perfil_profesores/1.json
   def destroy
    @perfil_profesor.destroy
+   @perfil_profesor.user.update(perfilado:false)
    respond_to do |format|
-     format.html { redirect_to perfil_profesores_url, notice: 'Perfil profesor was successfully destroyed.' }
-     format.json { head :no_content }
+     format.html { redirect_to perfil_profesores_url, notice: 'Perfil profesor fue eliminado correctamnete' }
+     #format.json { head :no_content }
    end
   end
 

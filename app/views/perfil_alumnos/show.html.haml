@@ -1,66 +1,83 @@
-%p#notice= notice
+%main.navegacion-espacio
+  %p#notice= notice
 
-%p
-  %b User:
-  = @perfil_alumno.user
-%p
-  %b Matricula:
-  = @perfil_alumno.matricula
-%p
-  %b Ap paterno:
-  = @perfil_alumno.ap_paterno
-%p
-  %b Ap materno:
-  = @perfil_alumno.ap_materno
-%p
-  %b Nombre:
-  = @perfil_alumno.nombre
-%p
-  %b Fecha de nacimiento:
-  = @perfil_alumno.fecha_de_nacimiento
-%p
-  %b Genero:
-  = @perfil_alumno.genero
-%p
-  %b Calle:
-  = @perfil_alumno.calle
-%p
-  %b Numero exterior:
-  = @perfil_alumno.numero_exterior
-%p
-  %b Numero interior:
-  = @perfil_alumno.numero_interior
-%p
-  %b Colonia:
-  = @perfil_alumno.colonia
-%p
-  %b Delegacion municipio:
-  = @perfil_alumno.delegacion_municipio
-%p
-  %b Codigo postal:
-  = @perfil_alumno.codigo_postal
-%p
-  %b Telefono casa:
-  = @perfil_alumno.telefono_casa
-%p
-  %b Telefono celular:
-  = @perfil_alumno.telefono_celular
-%p
-  %b Telefono recados:
-  = @perfil_alumno.telefono_recados
-%p
-  %b Extension recados:
-  = @perfil_alumno.extension_recados
-%p
-  %b Grupo:
-  = @perfil_alumno.grupo
-%p
-  %b Generacion:
-  = @perfil_alumno.generacion
-%p
-  %b Perfil tutor:
-  = @perfil_alumno.perfil_tutor
+  %p
+    %b Correo de User:
+    = @perfil_alumno.user.email
+  %p
+    %b Numero de veces ingresadas:
+    =@perfil_alumno.user.sign_in_count
+  %p
+    %b Ultima vez ingresado
+    =@perfil_alumno.user.current_sign_in_at
+  %p
+    %b Ultima vez session cerrada
+    =@perfil_alumno.user.last_sign_in_at
+  %p
+    %b Ultima ip de ingreso
+    =@perfil_alumno.user.current_sign_in_ip 
+  %p
+    %b Ultima ip de salida
+    =@perfil_alumno.user.last_sign_in_ip  
+  %p
+    %b contraseña encriptada
+    =@perfil_alumno.user.encrypted_password
+  %p
+    %b Matricula:
+    = @perfil_alumno.matricula
+  %p
+    %b Ap paterno:
+    = @perfil_alumno.ap_paterno
+  %p
+    %b Ap materno:
+    = @perfil_alumno.ap_materno
+  %p
+    %b Nombre:
+    = @perfil_alumno.nombre
+  %p
+    %b Fecha de nacimiento:
+    = @perfil_alumno.fecha_de_nacimiento
+  %p
+    %b Genero:
+    = @perfil_alumno.genero.sexo
+  %p
+    %b Calle:
+    = @perfil_alumno.calle
+  %p
+    %b Numero exterior:
+    = @perfil_alumno.numero_exterior
+  %p
+    %b Numero interior:
+    = @perfil_alumno.numero_interior
+  %p
+    %b Colonia:
+    = @perfil_alumno.colonia
+  %p
+    %b Delegacion municipio:
+    = @perfil_alumno.delegacion_municipio
+  %p
+    %b Codigo postal:
+    = @perfil_alumno.codigo_postal
+  %p
+    %b Telefono casa:
+    = @perfil_alumno.telefono_casa
+  %p
+    %b Telefono celular:
+    = @perfil_alumno.telefono_celular
+  %p
+    %b Telefono recados:
+    = @perfil_alumno.telefono_recados
+  %p
+    %b Extension recados:
+    = @perfil_alumno.extension_recados
+  %p
+    %b Grupo:
+    = @perfil_alumno.grupo.grupo
+  %p
+    %b Generacion:
+    = @perfil_alumno.generacion.generacion
+  %p
+    %b Perfil tutor:
+    = @perfil_alumno.perfil_tutor.user.email
 
-= link_to 'Edit', edit_perfil_alumno_path(@perfil_alumno)
-\|
 = link_to 'Back', perfil_alumnos_path

@@ -33,21 +33,21 @@ class PerfilAdmin < ApplicationRecord
   ###################################################
   ##################Validaciones#####################
   #validates :user_id, presence: true, numericality: {only_integer: true}
-  validates :nss, presence:true, length: {in: 5..30}, numericality: {only_integer: true}, uniqueness: true
+  validates :nss, presence:true, length: {is: 11}, numericality: {only_integer: true}, uniqueness: true
   validates :ap_paterno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,
-    message: "no puede contener numeros" }
+    message: "no puede contener numeros ni espacios" }
   validates :ap_materno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,
-    message: "no puede contener numeros" }
+    message: "no puede contener numeros ni espacios" }
   validates :nombre, presence: true, length: {in: 2..50}
-  validates :fecha_de_nacimiento, presence: true
-  validates :calle, presence: true, length: {in: 4..30}
-  validates :numero_exterior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
-  validates :numero_interior, presence: true, length: {in: 1..10}, numericality: {only_integer: true}
-  validates :colonia, presence: true, length: {in: 2..30}
+  #validates :fecha_de_nacimiento, presence: true
+  validates :calle, presence: true, length: {in: 3..40}
+  validates :numero_exterior, presence: true, length: {in: 1..8}, numericality: {only_integer: true}
+  #validates :numero_interior,presence: false, length: {in: 1..8}, numericality: {only_integer: true}
+  validates :colonia, presence: true, length: {in: 4..30}
   validates :delegacion_municipio, presence: true, length: {in: 4..30}
   validates :codigo_postal, presence: true, length: {is: 5}, numericality: {only_integer: true}
-  validates :telefono_casa, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
-  validates :telefono_celular, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
-  #validates :telefono_recados,presence:false, length: {in: 8..15}, numericality: {only_integer: true}
-  #validates :extension_recados,presence:false, length: {in: 1..10}
+  validates :telefono_casa, presence: true, length: {in: 8..12}, numericality: {only_integer: true}
+  validates :telefono_celular, presence: true, length: {in: 8..12}, numericality: {only_integer: true}
+  #validates :telefono_recados, presence: false#,length: {in: 8..15}, numericality: {only_integer: true}
+  #validates :extension_recados,presence: false#, length: {in: 1..10}, numericality: {only_integer: true}
 end

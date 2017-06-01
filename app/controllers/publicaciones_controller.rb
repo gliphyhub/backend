@@ -7,9 +7,8 @@ class PublicacionesController < ApplicationController
   Ruta_directorio_archivos = "public/prof/archivos"
   # GET /publicaciones
   # GET /publicaciones.json
-  def index
-    @seccion = "Publicaciones"
-    @archi = Archivo.all
+  def index 
+    @archi = Archivo.select("id, nombre, ruta, publicacion_id")
     @archivos = Dir.entries(Ruta_directorio_archivos)
     @urgentes = Publicacion.where(perfil_profesor_id: current_user.perfil_profesor.id, prioridad: true).reverse
     @publicaciones = Publicacion.where(perfil_profesor_id: current_user.perfil_profesor.id, prioridad:false).reverse
@@ -22,7 +21,6 @@ class PublicacionesController < ApplicationController
 
   # GET /publicaciones/new
   def new
-    @seccion ="Nueva Publicacion"
     @publicacion = Publicacion.new
   end
 
@@ -76,14 +74,14 @@ class PublicacionesController < ApplicationController
                           ruta: path
                         })
                         if @archivo.save()
-                          format.html { redirect_to publicaciones_path, notice: 'La publicación ha sido creada satisfactoriamente.' }
+                           return redirect_to publicaciones_path, notice: 'La publicación ha sido creada satisfactoriamente.' 
                           #format.json { render :show, status: :created, location: @publicacion }
                         else
-                          format.html { render :new }
+                           return  render :new 
                           #format.json { render json: @publicacion.errors, status: :unprocessable_entity }
                         end
                       else
-                        format.html { render :new }
+                        return render :new
                         #format.json { render json: @publicacion.errors, status: :unprocessable_entity }
                       end
                     end

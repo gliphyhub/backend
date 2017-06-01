@@ -1,29 +1,26 @@
-%h1 Listing perfil_profesores
+%main.navegacion-espacio
+  %h1 Listing perfil_profesores
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Nss
-      %th Ap paterno
-      %th Ap materno
-      %th Nombre
-      %th
-      %th
-      %th
-
-  %tbody
-    - @perfil_profesores.each do |perfil_profesor|
+  %table
+    %thead
       %tr
-        %td= perfil_profesor.user.email
-        %td= perfil_profesor.nss
-        %td= perfil_profesor.ap_paterno
-        %td= perfil_profesor.ap_materno
-        %td= perfil_profesor.nombre
-        %td= link_to 'Show', perfil_profesor
-        %td= link_to 'Edit', edit_perfil_profesor_path(perfil_profesor)
-        %td= link_to 'Destroy', perfil_profesor, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th User
+        %th Nss
+        %th Ap paterno
+        %th Ap materno
+        %th Nombre
+        %th
+        %th
 
-%br
+    %tbody
+      - @perfil_profesores.each do |perfil_profesor|
+        %tr
+          %td= perfil_profesor.user.email
+          %td= perfil_profesor.nss
+          %td= perfil_profesor.ap_paterno
+          %td= perfil_profesor.ap_materno
+          %td= perfil_profesor.nombre
+          %td= link_to 'Show', perfil_profesor
+          %td= link_to 'Destroy', perfil_profesor, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Perfil profesor', new_perfil_profesor_path
+  %br

@@ -1,29 +1,25 @@
-%h1 Listing perfil_admins
+%main.navegacion-espacio
+  %h1 Listing perfil_admins
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Nss
-      %th Ap paterno
-      %th Ap materno
-      %th Nombre
-      %th
-      %th
-      %th
-
-  %tbody
-    - @perfil_admins.each do |perfil_admin|
+  %table
+    %thead
       %tr
-        %td= perfil_admin.user.email
-        %td= perfil_admin.nss
-        %td= perfil_admin.ap_paterno
-        %td= perfil_admin.ap_materno
-        %td= perfil_admin.nombre
-        %td= link_to 'Show', perfil_admin
-        %td= link_to 'Edit', edit_perfil_admin_path(perfil_admin)
-        %td= link_to 'Destroy', perfil_admin, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th User
+        %th Nss
+        %th Ap paterno
+        %th Ap materno
+        %th Nombre
+        %th
+        %th
 
-%br
-
-= link_to 'New Perfil admin', new_perfil_admin_path
+    %tbody
+      - @perfil_admins.each do |perfil_admin|
+        %tr
+          %td= perfil_admin.user.email
+          %td= perfil_admin.nss
+          %td= perfil_admin.ap_paterno
+          %td= perfil_admin.ap_materno
+          %td= perfil_admin.nombre
+          %td= link_to 'Show', perfil_admin
+          %td= link_to 'Destroy', perfil_admin, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  %br

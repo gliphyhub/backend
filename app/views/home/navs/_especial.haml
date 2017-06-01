@@ -62,7 +62,7 @@
 										%i.arrow.material-icons.white-bonis arrow_drop_down
 									.collapsible-body
 										%ul.blue-grey.darken-3
-											-@tablas.each do |tabla|
+											-@tablas.each do |tabla| 
 												%li
 													%a.waves-effect.white-bonis{href:tabla[:link]}
 														%span= 	tabla[:title]
@@ -77,9 +77,8 @@
 									.collapsible-body
 										%ul.blue-grey.darken-3
 											-@tiposPerfiles.each do |tabla|
-												%li
-													%a.waves-effect.white-bonis
-														%span= 	tabla[:title]
+												%li.waves-effect
+													=link_to tabla[:title],tabla[:link],class:"white-bonis"
 					-else
 						%li
 							%li.waves-effect

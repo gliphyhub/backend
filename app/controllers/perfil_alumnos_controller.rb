@@ -1,12 +1,12 @@
 class PerfilAlumnosController < ApplicationController
   before_action :set_perfil_alumno, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authenticate_admin!, only:[:index,:show,:update,:destroy,:edit]
+  before_action :solo_admin!, only:[:index,:show,:update,:destroy]
 
   # GET /perfil_alumnos
   # GET /perfil_alumnos.json
   def index
-    @perfil_alumnos = PerfilAlumno.all
+    @perfil_alumnos = PerfilAlumno.all.reverse
   end
 
   # GET /perfil_alumnos/1
@@ -15,13 +15,13 @@ class PerfilAlumnosController < ApplicationController
   end
 
   # GET /perfil_alumnos/new
-  def new
-    @perfil_alumno = PerfilAlumno.new
-  end
+  #def new
+  #  @perfil_alumno = PerfilAlumno.new
+  #end
 
   # GET /perfil_alumnos/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /perfil_alumnos
   # POST /perfil_alumnos.json
@@ -61,11 +61,11 @@ class PerfilAlumnosController < ApplicationController
   def update
     respond_to do |format|
       if @perfil_alumno.update(perfil_alumno_params)
-        format.html { redirect_to @perfil_alumno, notice: 'Perfil alumno was successfully updated.' }
-        format.json { render :show, status: :ok, location: @perfil_alumno }
+        format.html { redirect_to @perfil_alumno, notice: 'Perfil alumno se actualizó correctamente' }
+        #format.json { render :show, status: :ok, location: @perfil_alumno }
       else
         format.html { render :edit }
-        format.json { render json: @perfil_alumno.errors, status: :unprocessable_entity }
+        #format.json { render json: @perfil_alumno.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -74,9 +74,10 @@ class PerfilAlumnosController < ApplicationController
   # # DELETE /perfil_alumnos/1.json
   def destroy
     @perfil_alumno.destroy
+    @perfil_alumno.user.update(perfilado:false)
     respond_to do |format|
-      format.html { redirect_to perfil_alumnos_url, notice: 'Perfil alumno was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to perfil_alumnos_url, notice: 'Perfil alumno fue eliminado correctamente' }
+      #format.json { head :no_content }
     end
   end
 

@@ -1,57 +1,85 @@
-%p#notice= notice
+%main.navegacion-espacio 
+  %p#notice= notice
+  %p
+    %b Correo de User:
+    = @perfil_profesor.user.email
+  %p
+    %b Numero de veces ingresadas:
+    =@perfil_profesor.user.sign_in_count
+  %p
+    %b Ultima vez ingresado
+    =@perfil_profesor.user.current_sign_in_at
+  %p
+    %b Ultima vez session cerrada
+    =@perfil_profesor.user.last_sign_in_at
+  %p
+    %b Ultima ip de ingreso
+    =@perfil_profesor.user.current_sign_in_ip 
+  %p
+    %b Ultima ip de salida
+    =@perfil_profesor.user.last_sign_in_ip  
+  %p
+    %b contraseña encriptada
+    =@perfil_profesor.user.encrypted_password
+  %p
+    %b Grupos
+    -unless @perfil_profesor.grupos.nil?
+      -@perfil_profesor.grupos.each do |grupo|
+        =grupo.grupo 
+        \|
+  %p
+    %b Materias
+    -unless @perfil_profesor.materias.nil?
+      -@perfil_profesor.materias.each do |materia|
+        =materia.materia 
+        \|
+  %p
+    %b Nss:
+    = @perfil_profesor.nss
+  %p
+    %b Ap paterno:
+    = @perfil_profesor.ap_paterno
+  %p
+    %b Ap materno:
+    = @perfil_profesor.ap_materno
+  %p
+    %b Nombre:
+    = @perfil_profesor.nombre
+  %p
+    %b Fecha de nacimiento:
+    = @perfil_profesor.fecha_de_nacimiento
+  %p
+    %b Genero:
+    = @perfil_profesor.genero.sexo
+  %p
+    %b Calle:
+    = @perfil_profesor.calle
+  %p
+    %b Numero exterior:
+    = @perfil_profesor.numero_exterior
+  %p
+    %b Numero interior:
+    = @perfil_profesor.numero_interior
+  %p
+    %b Colonia:
+    = @perfil_profesor.colonia
+  %p
+    %b Delegacion municipio:
+    = @perfil_profesor.delegacion_municipio
+  %p
+    %b Codigo postal:
+    = @perfil_profesor.codigo_postal
+  %p
+    %b Telefono casa:
+    = @perfil_profesor.telefono_casa
+  %p
+    %b Telefono celular:
+    = @perfil_profesor.telefono_celular
+  %p
+    %b Telefono recados:
+    = @perfil_profesor.telefono_recados
+  %p
+    %b Extension recados:
+    = @perfil_profesor.extension_recados
 
-%p
-  %b User:
-  = @perfil_profesor.user
-%p
-  %b Nss:
-  = @perfil_profesor.nss
-%p
-  %b Ap paterno:
-  = @perfil_profesor.ap_paterno
-%p
-  %b Ap materno:
-  = @perfil_profesor.ap_materno
-%p
-  %b Nombre:
-  = @perfil_profesor.nombre
-%p
-  %b Fecha de nacimiento:
-  = @perfil_profesor.fecha_de_nacimiento
-%p
-  %b Genero:
-  = @perfil_profesor.genero
-%p
-  %b Calle:
-  = @perfil_profesor.calle
-%p
-  %b Numero exterior:
-  = @perfil_profesor.numero_exterior
-%p
-  %b Numero interior:
-  = @perfil_profesor.numero_interior
-%p
-  %b Colonia:
-  = @perfil_profesor.colonia
-%p
-  %b Delegacion municipio:
-  = @perfil_profesor.delegacion_municipio
-%p
-  %b Codigo postal:
-  = @perfil_profesor.codigo_postal
-%p
-  %b Telefono casa:
-  = @perfil_profesor.telefono_casa
-%p
-  %b Telefono celular:
-  = @perfil_profesor.telefono_celular
-%p
-  %b Telefono recados:
-  = @perfil_profesor.telefono_recados
-%p
-  %b Extension recados:
-  = @perfil_profesor.extension_recados
-
-= link_to 'Edit', edit_perfil_profesor_path(@perfil_profesor)
-\|
-= link_to 'Back', perfil_profesores_path
+  = link_to 'Back', perfil_profesores_path

@@ -1,12 +1,12 @@
 class PerfilTutoresController < ApplicationController
   before_action :set_perfil_tutor, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authenticate_admin!, only:[:index,:show,:update,:destroy,:edit]
+  before_action :solo_admin!, only:[:index,:show,:update,:destroy]
 
   # GET /perfil_tutores
   # GET /perfil_tutores.json
   def index
-   @perfil_tutores = PerfilTutor.all
+   @perfil_tutores = PerfilTutor.all.reverse
   end
 
   # GET /perfil_tutores/1
@@ -15,13 +15,13 @@ class PerfilTutoresController < ApplicationController
   end
 
   # GET /perfil_tutores/new
-  def new
-    @perfil_tutor = PerfilTutor.new
-  end
+  #def new
+  #  @perfil_tutor = PerfilTutor.new
+  #end
 
   # GET /perfil_tutores/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /perfil_tutores
   # POST /perfil_tutores.json
@@ -45,11 +45,11 @@ class PerfilTutoresController < ApplicationController
   def update
     respond_to do |format|
       if @perfil_tutor.update(perfil_tutor_params)
-        format.html { redirect_to @perfil_tutor, notice: 'Perfil tutor was successfully updated.' }
-        format.json { render :show, status: :ok, location: @perfil_tutor }
+        format.html { redirect_to @perfil_tutor, notice: 'Perfil tutor se actualizó correctamente' }
+        #format.json { render :show, status: :ok, location: @perfil_tutor }
       else
         format.html { render :edit }
-        format.json { render json: @perfil_tutor.errors, status: :unprocessable_entity }
+        #format.json { render json: @perfil_tutor.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,9 +58,10 @@ class PerfilTutoresController < ApplicationController
   # DELETE /perfil_tutores/1.json
   def destroy
     @perfil_tutor.destroy
+    @perfil_tutor.user.update(perfilado:false)
     respond_to do |format|
-      format.html { redirect_to perfil_tutores_url, notice: 'Perfil tutor was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to perfil_tutores_url, notice: 'Perfil fue eliminado correctamente' }
+      #format.json { head :no_content }
     end
   end
 

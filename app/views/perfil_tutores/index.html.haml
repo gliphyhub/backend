@@ -1,27 +1,24 @@
-%h1 Listing perfil_tutores
+%main.navegacion-espacio
+  %h1 Listing perfil_tutores
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Ap paterno
-      %th Ap materno
-      %th Nombre
-      %th
-      %th
-      %th
-
-  %tbody
-    - @perfil_tutores.each do |perfil_tutor|
+  %table
+    %thead
       %tr
-        %td= perfil_tutor.user.email
-        %td= perfil_tutor.ap_paterno
-        %td= perfil_tutor.ap_materno
-        %td= perfil_tutor.nombre
-        %td= link_to 'Show', perfil_tutor
-        %td= link_to 'Edit', edit_perfil_tutor_path(perfil_tutor)
-        %td= link_to 'Destroy', perfil_tutor, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th User
+        %th Ap paterno
+        %th Ap materno
+        %th Nombre
+        %th
+        %th
 
-%br
+    %tbody
+      - @perfil_tutores.each do |perfil_tutor|
+        %tr
+          %td= perfil_tutor.user.email
+          %td= perfil_tutor.ap_paterno
+          %td= perfil_tutor.ap_materno
+          %td= perfil_tutor.nombre
+          %td= link_to 'Show', perfil_tutor
+          %td= link_to 'Destroy', perfil_tutor, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Perfil tutor', new_perfil_tutor_path
+  %br

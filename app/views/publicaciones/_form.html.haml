@@ -5,25 +5,22 @@
 			%p Seleccione las opciones que desee y necesite para la publicación de un nuevo comunicado.
 			.col.s12
 				%br/
-				-Grado.all.each do |g| 
-					-current_user.perfil_profesor.materias.each do |materia| 
-						.input-field
-							-if g.grado == materia.grado.grado
-								= radio_button_tag :materia_para_la_publicacion,materia.id
-								= label_tag "materia_para_la_publicacion_#{materia.id}", materia.materia
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								%hr/
-					-current_user.perfil_profesor.grupos.each do |grupo| 
-						.input-field
-							-if g.grado == grupo.grado.grado
-								= check_box_tag "grupos[#{grupo.id}]", grupo.id
-								=label_tag "grupos[#{grupo.id}]", grupo.grupo
-					
+				-current_user.perfil_profesor.materias.each do |materia| 
+					.input-field
+						= radio_button_tag :materia_para_la_publicacion,materia.id
+						= label_tag "materia_para_la_publicacion_#{materia.id}", materia.materia
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						-materia.grupos.each do |g|
+							-current_user.perfil_profesor.grupos.each do |grupo| 
+								-if g.grupo == grupo.grupo
+									= check_box_tag "grupos[#{grupo.id}]", grupo.id
+									=label_tag "grupos[#{grupo.id}]", grupo.grupo
+						%hr/												
 		.col.s12.l7{:style=>"margin-top: 1em"}
 			%h4.truncate.center-align Contenido
-			.input-field.col.s12
+			.input-fiedl.col.s12
 				- if @publicacion.errors.any?
-					%blockquote = "#{pluralize(@publicacion.errors.count, "error")} ocurrio al guardar publicar"
+					%blockquote = "#{pluralize(@publicacion.errors.count, "error")} ocurrio al guardar publicar ponga los filtros de nuevo"
 				- @publicacion.errors.full_messages.each do |msg|
 					%li= msg
 					%script Materialize.toast("#{msg}", 10000);

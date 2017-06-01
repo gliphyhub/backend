@@ -1,31 +1,28 @@
-%h1 Listing perfil_alumnos
+%main.navegacion-espacio
+  %h1 Listing perfil_alumnos
 
-%table
-  %thead
-    %tr
-      %th User
-      %th Matricula
-      %th Ap paterno
-      %th Ap materno
-      %th Nombre
-      %th Perfil tutor
-      %th
-      %th
-      %th
-
-  %tbody
-    - @perfil_alumnos.each do |perfil_alumno|
+  %table
+    %thead
       %tr
-        %td= perfil_alumno.user.email
-        %td= perfil_alumno.matricula
-        %td= perfil_alumno.ap_paterno
-        %td= perfil_alumno.ap_materno
-        %td= perfil_alumno.nombre
-        %td= perfil_alumno.perfil_tutor.user.email
-        %td= link_to 'Show', perfil_alumno
-        %td= link_to 'Edit', edit_perfil_alumno_path(perfil_alumno)
-        %td= link_to 'Destroy', perfil_alumno, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %th User
+        %th Matricula
+        %th Ap paterno
+        %th Ap materno
+        %th Nombre
+        %th Perfil tutor
+        %th
+        %th
 
-%br
+    %tbody
+      - @perfil_alumnos.each do |perfil_alumno|
+        %tr
+          %td= perfil_alumno.user.email
+          %td= perfil_alumno.matricula
+          %td= perfil_alumno.ap_paterno
+          %td= perfil_alumno.ap_materno
+          %td= perfil_alumno.nombre
+          %td= perfil_alumno.perfil_tutor.user.email
+          %td= link_to 'Show', perfil_alumno
+          %td= link_to 'Destroy', perfil_alumno, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= link_to 'New Perfil alumno', new_perfil_alumno_path
+  %br

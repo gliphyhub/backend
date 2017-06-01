@@ -1,12 +1,12 @@
 class PerfilAdminsController < ApplicationController
-  before_action :set_perfil_admin, only: [:show, :edit, :update, :destroy]
+  before_action :set_perfil_admin, only: [:show, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authenticate_admin!, only:[:index,:show,:update,:destroy,:edit]
+  before_action :solo_admin!, only:[:index,:show,:update,:destroy]
 
   # GET /perfil_admins
   # GET /perfil_admins.json
   def index
-   @perfil_admins = PerfilAdmin.all
+   @perfil_admins = PerfilAdmin.all.reverse
   end
 
   # GET /perfil_admins/1
@@ -15,13 +15,13 @@ class PerfilAdminsController < ApplicationController
   end
 
   # GET /perfil_admins/new
-  def new
-    @perfil_admin = PerfilAdmin.new
-  end
+  #def new
+    #@perfil_admin = PerfilAdmin.new
+  #end
 
   # GET /perfil_admins/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /perfil_admins
   # POST /perfil_admins.json
@@ -46,11 +46,11 @@ class PerfilAdminsController < ApplicationController
   def update
     respond_to do |format|
       if @perfil_admin.update(perfil_admin_params)
-        format.html { redirect_to @perfil_admin, notice: 'Perfil admin was successfully updated.' }
-        format.json { render :show, status: :ok, location: @perfil_admin }
+        format.html { redirect_to @perfil_admin, notice: 'Perfil admin se actualizó correctamente' }
+        #format.json { render :show, status: :ok, location: @perfil_admin }
       else
         format.html { render :edit }
-        format.json { render json: @perfil_admin.errors, status: :unprocessable_entity }
+        #format.json { render json: @perfil_admin.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,9 +59,10 @@ class PerfilAdminsController < ApplicationController
   # DELETE /perfil_admins/1.json
   def destroy
     @perfil_admin.destroy
+    @perfil_admin.user.update(perfilado:false)
     respond_to do |format|
-      format.html { redirect_to perfil_admins_url, notice: 'Perfil admin was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to perfil_admins_url, notice: 'Perfil fue eliminado correctamente' }
+      #format.json { head :no_content }
     end
   end
 
