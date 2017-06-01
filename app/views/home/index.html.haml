@@ -7,3 +7,6 @@
 		=render "perfil_tutores/form"
 	-elsif current_user.tipo.id == 4 && current_user.perfil_alumno.nil?
 		=render "perfil_alumnos/form"
+	
+
+	= pie_chart Grupo.group(:grado_id).count

@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_action :authenticate_user!
+
   def bienvenida
   end
 
@@ -13,6 +15,7 @@ class HomeController < ApplicationController
     elsif current_user.tipo.id == 4 && current_user.perfil_alumno.nil?
       @perfil_alumno = PerfilAlumno.new
     end
+
   end
 
 

@@ -51,8 +51,8 @@ gem "simple_calendar", "~> 2.0"
 gem 'epic-editor-rails', :git => 'https://github.com/GioRosales/epic-editor-rails.git'
 gem 'sanitize'
 gem "will_paginate", ">=3.0.pre2"
-gem 'gravtastic'
-
+gem 'gravtastic'  
+gem "chartkick"
 #====================================================
 #====================================================
 group :development, :test do

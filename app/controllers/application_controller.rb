@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
             @nombreCorto = @nombres.split(/ /)[0] + " " + @ap_paterno
             @imgPerfil = current_user.gravatar_url
             @imgCover = "covers/teacher-cover.jpg"
-            @menuLateral=[{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
+            @menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
             @imgPerfil = "users/desconocido.png"
