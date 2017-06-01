@@ -3,80 +3,83 @@
 //=========== footer - card - comunicados ==========
 .contenido-comunicado
 {
-    margin: 0;
-    .card-content
-    {
-      padding-bottom: 235px;
+    padding: 0px !important;
+    width: 100%;
+    margin-bottom: 100px;
+    height: auto;
+    overflow: hidden;
+    .views-c{
+      position: absolute;
+      margin-top: -20px !important;
+      padding-right: 10px;
+      right: 0;
     }
-    .card-action
-    {
-       position: absolute;
-       bottom: 0px;
-       width: 100%;
-       max-height: 230px;
-       overflow: hidden;
-       img
-       {
-        border-radius: 50%;
-        height: 50px;
-        //margin-right:10px;
-       }
-       h4
-       {
-        font-size: 17px !important;
-        font-weight: 300 !important;
-        margin: 2px;
-       }
-       p
-       {
-        margin: 5px;
-        font-weight: 400 !important;
-        font-size: 12px !important;
-       }
-       .row
-       {
-        margin: 0px;
-       }
+    .boot {
+      position: absolute;
+         bottom: 0px;
+         width: 100%;
+         max-height: 230px;
+         overflow: hidden;
+    }
+    .principal {
+      padding-bottom: 100px;
+      i {
+        font-size: 20px;
+      }
+    }
+    .desplegable {
+      //padding-top: 10px;
+
+      padding-bottom: 172px;
+      margin-top: -80px;
+      display: none;
+      height: 0px;
+      h1 {
+        margin: 0 !important;
+        font-size: 1.6em;
+        line-height: 2;
+      }
+      h3 {
+        margin: 0 !important;
+        font-size: 1.2em;
+      }
+      .card-message {
+        padding-top: 15px;
+      }
+      .card-action{
+        position: absolute;
+        bottom: 68px;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+         img
+         {
+          border-radius: 50%;
+          height: 50px;
+          //margin-right:10px;
+         }
+         h4
+         {
+          font-size: 17px !important;
+          font-weight: 300 !important;
+          margin: 2px;
+         }
+         p
+         {
+          margin: 5px;
+          font-weight: 400 !important;
+          font-size: 12px !important;
+         }
+         .row
+         {
+          margin: 0px;
+         }
+      }
     }
 }
 
-#contenido-responsivo{
-  max-height: 80%;
-  height: 80%;
-  width: 90%;
-  .modal-content
-  {
-    padding: 0px;
-  }
-}
 
-.destacar-btn {
-  position: absolute;
-  top: 15px;
-}
-
-
-
-#contenido-large{
-  position: fixed;
-  top: 70px;
-  bottom: 15px;
-  height: auto;
-  overflow-y: auto;
-  margin-right: 10px;
-}
-
-.publicacion  .head-card{
-  padding : 100px 10px 10px 15px  !important;
-  color: white;
-  background-color: #e74c3c;
-  h4  {
-    font-size: 22px !important;
-    font-weight: 500 !important;
-    margin: 0;
-    line-height: 1.5;
-  }
-}
 /// NUEVOS CARDS CHIDOS
 
 .titulo-card
@@ -109,17 +112,18 @@
 #cards-comunicados {
   .card{
     margin: 0px;
+    
     color: black;
     &:hover{
-      box-shadow: none;
       transform: translate3d(0, -3px, 0);
     }
     transition: all 0.2s
   }
   .head-card{
-    padding : 125px 10px 10px 15px  !important;
     color: white;
-    border-radius: 5px;
+    border-radius: 3px;
+    background-color: #e74c3c;
+    padding : 50px 10px 10px 15px  !important;
     h4  {
       font-size: 22px !important;
       font-weight: 500 !important;
@@ -141,11 +145,6 @@
   }
 }
 
-.comunicado-contenedor {
-  padding: 0px !important;
-  width: 100%;
-  margin-bottom: 10px;
-}
 
 
 .etiqueta {

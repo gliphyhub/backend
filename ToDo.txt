@@ -15,13 +15,14 @@ paginacion...//done
 
 gravartar...//done
 
+graficas...//done
 
 rails admin.... .// done (checar y confiiguara tablas de publicaciones)
 
 
 mails...
 
-paths de rails admin..//
+paths de rails admin..
 
 notificaciones....
 

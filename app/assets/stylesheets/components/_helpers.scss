@@ -103,6 +103,16 @@
   min-height: 100vh !important;
 }
 
+.min-total-bar {
+  min-height: calc(100vh - 64px) !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .min-total-bar {
+    min-height: calc(100vh - 56px) !important;
+  }
+}
+
 .upper {
   text-transform: uppercase;
 }

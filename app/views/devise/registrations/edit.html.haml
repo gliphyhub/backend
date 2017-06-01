@@ -1,16 +1,28 @@
-%main
+-if current_user.tipo.id == 1
+	-@nombreCompleto = "#{current_user.perfil_admin.nombre.capitalize} #{current_user.perfil_admin.ap_paterno.capitalize} #{current_user.perfil_admin.ap_materno.capitalize}"
+	-@fechaNac = current_user.perfil_admin.fecha_de_nacimiento
+	-@sexo = current_user.perfil_admin.genero.sexo.capitalize
+-elsif current_user.tipo.id == 2
+	-@nombreCompleto = "#{current_user.perfil_profesor.nombre.capitalize} #{current_user.perfil_profesor.ap_paterno.capitalize} #{current_user.perfil_profesor.ap_materno.capitalize}"
+	-@fechaNac = current_user.perfil_profesor.fecha_de_nacimiento
+	-@sexo = current_user.perfil_profesor.genero.sexo.capitalize
+-elsif current_user.tipo.id == 3
+	-@nombreCompleto = "#{current_user.perfil_tutor.nombre.capitalize} #{current_user.perfil_tutor.ap_paterno.capitalize} #{current_user.perfil_tutor.ap_materno.capitalize}"
+	-@fechaNac = current_user.perfil_tutor.fecha_de_nacimiento
+	-@sexo = current_user.perfil_tutor.genero.sexo.capitalize
+-elsif current_user.tipo.id == 4
+	-@nombreCompleto = "#{current_user.perfil_alumno.nombre.capitalize} #{current_user.perfil_alumno.ap_paterno.capitalize} #{current_user.perfil_alumno.ap_materno.capitalize}"
+	-@fechaNac = current_user.perfil_alumno.fecha_de_nacimiento
+	-@sexo = current_user.perfil_alumno.genero.sexo.capitalize
+%main.navegacion-espacio
 	-#Contenedor principal
 	-#para que no de el error de las particles
 	#particles.ocultado
-	.profile.row.no-margin.min-total.white-text
+	.profile.row.no-margin.min-total-bar.white-text
 		.col.s12.m12.l4.no-padding.side-profile
 			-#Portada
 			.portadaProfile.z-depth-3.no-padding
-				=image_tag "#{@imgCover}"
-				.col.s12.back-btn
-					%i.material-icons.left arrow_back
-					= link_to "Back", :back,class:"btn waves-effect center-align white-bonis"
-					
+				=image_tag "#{@imgCover}"					
 			-#Imagen de perfil
 			.imgProfile.col.s12.center.no-padding
 				=image_tag "#{@imgPerfil}",class:"circle z-depth-4"
@@ -24,7 +36,7 @@
 				%a.btn-flat.waves-effect.orange-text.text-lighten-1 Editar foto
 
 		-#Contenido
-		.contentProfile.col.s12.m12.l8.no-padding.blue-grey.darken-2.z-depth-3
+		.contentProfile.col.s12.m12.l8.no-padding.blue-grey.darken-2.z-depth-3.min-total-bar
 			-#Opciones
 			#profileOptions.col.s12
 				.col.s12.no-padding
@@ -41,7 +53,7 @@
 							%i.material-icons.left contacts
 							%p Tipo de cuenta:
 						.col.s12
-							%h5 #{@tipoUser}
+							%h5 #{@tipoUser.capitalize}
 					.col.s12.m6.dato
 						.col.s12
 							%i.material-icons.left event
@@ -55,7 +67,8 @@
 						.col.s12
 							%h5 #{@sexo}
 				= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| 
-					= devise_error_messages!
+					.col.s12
+						= devise_error_messages!
 					.col.s12.no-padding
 						.col.s12.m6.dato
 							.col.s12
@@ -76,9 +89,11 @@
 								#confirmar-col.col.s12.input-field.ocultado
 									= f.password_field :password_confirmation, autocomplete: "off" , disabled:"true",placeholder:"**********"
 									-#%input#passTwo.validate{placeholder:"********", disabled:"", type:"text"}
-					#validarPass.col.s12.m6.input-field.ocultado.white-text
+					#validarPass.col.s12.m6.ocultado.white-text
 						%h5.orange-text.text-darken-1 Ingresa tu contraseña antigua para guardar los cambios:
-						= f.password_field :current_password, autocomplete: "off",disabled:"true",placeholder:"Contraseña antigua"
+						.input-field
+							= f.label :current_password, class:"white-text"
+							= f.password_field :current_password, autocomplete: "off",disabled:"true"
 					.col.s12.m6.dato
 						%a#cancelarDatosProfile.btn-flat.waves-effect.orange-text.text-darken-1.ocultado{href:"#!"} Cancelar
 						%a#editarDatosProfile.btn.waves-effect.grey-text.text-darken-4.orange{href:"#!"} Editar

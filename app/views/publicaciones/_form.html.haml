@@ -4,26 +4,37 @@
 			%h4.truncate.center-align Filtros
 			%p Seleccione las opciones que desee y necesite para la publicación de un nuevo comunicado.
 			.col.s12
-				%br/
-				-current_user.perfil_profesor.materias.each do |materia| 
-					.input-field
-						= radio_button_tag :materia_para_la_publicacion,materia.id
-						= label_tag "materia_para_la_publicacion_#{materia.id}", materia.materia
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						-materia.grupos.each do |g|
-							-current_user.perfil_profesor.grupos.each do |grupo| 
-								-if g.grupo == grupo.grupo
-									= check_box_tag "grupos[#{grupo.id}]", grupo.id
-									=label_tag "grupos[#{grupo.id}]", grupo.grupo
-						%hr/												
+				%ul.collapsible{data:{collapsible:"accordion"}}
+					-current_user.perfil_profesor.materias.each do |materia|
+						%li
+							.collapsible-header
+								= materia.materia
+							.collapsible-body.grey.lighten-3.mas-space
+								.input-field.row
+									.col.s12.radio
+										= radio_button_tag :materia_para_la_publicacion,materia.id
+										= label_tag "materia_para_la_publicacion_#{materia.id}", "Seleccionar esta materia"
+									.col.s12
+									.col.s12.no-padding
+										-materia.grupos.each do |g|
+											-current_user.perfil_profesor.grupos.each do |grupo| 
+												-if g.grupo == grupo.grupo
+													.col.s6
+														= check_box_tag "grupos[#{grupo.id}]", grupo.id
+														=label_tag "grupos[#{grupo.id}]", grupo.grupo
+							
+				
+				
+															
 		.col.s12.l7{:style=>"margin-top: 1em"}
 			%h4.truncate.center-align Contenido
-			.input-fiedl.col.s12
+			.input-field.col.s12
 				- if @publicacion.errors.any?
-					%blockquote = "#{pluralize(@publicacion.errors.count, "error")} ocurrio al guardar publicar ponga los filtros de nuevo"
+					.red.lighten-2{style:"padding:10px"}
+						%i.material-icons.left warning
+						%h6= "#{pluralize(@publicacion.errors.count, "problema(s)")} ocurrio al guardar publicar ponga los filtros de nuevo"
 				- @publicacion.errors.full_messages.each do |msg|
-					%li= msg
-					%script Materialize.toast("#{msg}", 10000);
+					%script Materialize.toast("#{msg}", 5000);
 			.input-field.col.s12
 				= f.label :titulo
 				= f.text_field :titulo, data:{length:"30"}

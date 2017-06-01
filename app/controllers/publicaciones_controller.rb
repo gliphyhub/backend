@@ -99,7 +99,7 @@ class PublicacionesController < ApplicationController
                     @grupos.each do |grupo, valor|
                       PublicacionGrupo.create(grupo_id: valor,publicacion_id:  @publicacion.id)
                     end   
-                    format.html { redirect_to publicaciones_path, notice: 'La publicación ha sido creada satisfactoriamente.' }
+                    return redirect_to publicaciones_path, notice: 'La publicación ha sido creada satisfactoriamente.' 
                     #format.json { render :show, status: :created, location: @publicacion }
                   else
                     return render:new

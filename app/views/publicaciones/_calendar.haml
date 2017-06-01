@@ -1,4 +1,4 @@
-= month_calendar events: @publicaciones, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link do |date, publicacion| 
+= month_calendar events: @urgentes, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link do |date, publicacion| 
 	=date.day
 		-publicacion.each do |p|
 		= p.titulo

@@ -14,7 +14,7 @@
 %body
 	- flash.each do |_key, msg|
 		%script Materialize.toast("#{msg}", 5000);
-	-if user_signed_in? && (action_name != "basededatos" && !(resource_name == :user && action_name == 'edit'))
+	-if user_signed_in? && (action_name != "basededatos")
 		-#para que no de el error de las particles
 		#particles.ocultado
 		=render "home/navs/nav"		

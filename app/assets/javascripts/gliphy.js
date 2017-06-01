@@ -153,59 +153,7 @@ $(function() {
 		cambiarHrefTag();
 	});
 
-	//Botones de cambio de vista 
-	var vistaTres = true;
 
-	$('#vista-simple').click(function () {
-		//$('#contenido-comunicado-large).animate({opacity: '0.0'}, "slow");
-		//$('#contenido-comunicado-large, .v-large').addClass('ocultado'); //quitar el v-large
-		$('#contenido-comunicado-large').fadeOut(1);
-		//$('#contenido-large').animate({bottom:'100%'}, 400);
-		$('.v-touch').removeClass("hide-on-large-only");
-		$('#vista-simple').addClass('red white-bonis');
-		$('#vista-tres-columnas').removeClass('red white-bonis');
-		///$('#parte-izquierda').animate({width: '58.3333333333%'},"slow");    
-		$('#parte-izquierda').removeClass('l7');
-		//$('#diversos, #cards-comunicados').addClass('l6');
-		//$('#calendario-contenedor, #flitros-contenedor').addClass('l12');
-		 //usar ajazx
-		/*if ($('#cards-comunicados .row a').hasClass("urgente-card")){
-		}else{
-		$("#cards-comunicados .row a").removeClass("m6");
-		$("#cards-comunicados .row a").addClass("m12");
-		}*/
-		$('.comunicado-contenedor').off("click");
-		$('.comunicado-contenedor').attr("href", tagHrefRexponsive);
-		vistaTres = false;
-  	});
-
-	$('#vista-tres-columnas').click(function () {
-		//$('#contenido-comunicado-large, .v-large').removeClass('ocultado');//quitar el v-large
-		//$('#contenido-large').removeClass("fixed");
-		$('.v-touch').addClass("hide-on-large-only");
-		$('#vista-tres-columnas').addClass('red white-bonis');
-		$('#vista-simple').removeClass('red white-bonis');
-		$('#parte-izquierda').addClass('l7');
-		//$('#contenido-large').addClass("fixed");
-		//$('#diversos, #cards-comunicados').removeClass('l6');
-		//$('#calendario-contenedor, #flitros-contenedor').removeClass('l12');
-		//usar ajazx
-		/*if ($('#cards-comunicados .row a').hasClass("urgente-card")){
-		}else{
-		 $("#cards-comunicados .row a").removeClass("m6");
-		$("#cards-comunicados .row a").addClass("m12");
-		 }*/
-		$('#contenido-comunicado-large').fadeIn(1);
-		$('#contenido-large').animate({opacity: '0.0',}, 0);
-		$('#contenido-large').animate({opacity: '0.0',}, 900);
-		$('#contenido-large').animate({opacity: '1',}, 900);
-
-		$('.comunicado-contenedor').on("click", function(e) {
-			mostrarComunicadoLarge(e);
-		});
-		$('.comunicado-contenedor').attr("href", tagHrefLarge);
-		vistaTres = true;
-	});
 
 	
 	$(".flechita").dropdown();
@@ -226,25 +174,7 @@ $(function() {
 	//========= Editar Profile ==========
 	var editable = false
 	$("#editarDatosProfile").on("click", function() {
-		if (editable) {
-			// $("#passOne").prop("disabled", true);
-			// $("#passOne").attr("placeholder", "********");
-			// $("#passOne").val("");
-			// $("#passTwo").parent().addClass("ocultado");
-			// $("#passTwo").prop("disabled", true);
-			// $("#passTwo").attr("placeholder", "********");
-			// $("#passTwo").val("");
-			// $("#correoUser").addClass("grey-text");
-			// $("#user_email").prop("disabled", true);
-			// $("#editarDatosProfile").text("editar");
-			// $("#cancelarDatosProfile").addClass("ocultado");
-			// $("#validarPass").addClass("ocultado");
-			// $("#validarPass input").prop("disabled", true);
-			// $("#validarPass").val("");
-			// $(".editar").addClass("ocultado");
-			// editable = !editable;
-		}
-		else {
+		if (!editable) {
 			$("#user_email").prop("disabled", false);
 			$("#user_email").removeClass("grey-text");
 			$("#user_password").prop("disabled", false);
@@ -253,38 +183,25 @@ $(function() {
 			$("#editarDatosProfile").addClass("ocultado");
 			$("#confirmar-col").removeClass("ocultado");
 			$("#user_password_confirmation").prop("disabled", false);
-			// $("#passOne").prop("disabled", false);
-			// $("#passOne").attr("placeholder", "Ingresa la nueva contraseña");
-			// $("#passTwo").parent().removeClass("ocultado");
-			// $("#passTwo").prop("disabled", false);
-			// $("#passTwo").attr("placeholder", "Repite la contraseña");
-			// $("#correoUser").removeClass("grey-text");
-			// $("#correoUser").prop("disabled", false);
-			// $("#editarDatosProfile").text("guardar");
-			// $("#cancelarDatosProfile").removeClass("ocultado");
-			// $("#validarPass").removeClass("ocultado");
-			// $("#validarPass input").prop("disabled", false);
-			// $(".editar").removeClass("ocultado");
-			// editable = !editable;
+			$("#validarPass").removeClass("ocultado");
+			$("#validarPass input").prop("disabled", false);
+			$("#cancelarDatosProfile").removeClass("ocultado");
+			editable = !editable
 		}
 	});
 
 	$("#cancelarDatosProfile").on("click", function() {
-		$("#passOne").prop("disabled", true);
-		$("#passOne").attr("placeholder", "********");
-		$("#passOne").val("");
-		$("#passTwo").parent().addClass("ocultado");
-		$("#passTwo").prop("disabled", true);
-		$("#passTwo").attr("placeholder", "********");
-		$("#passTwo").val("");
-		$("#correoUser").addClass("grey-text");
-		$("#correoUser").prop("disabled", true);
-		$("#editarDatosProfile").text("editar");
-		$("#cancelarDatosProfile").addClass("ocultado");
+		$("#user_email").prop("disabled", true);
+		$("#user_email").addClass("grey-text");
+		$("#user_password").prop("disabled", true);
+		$("#user_password").addClass("grey-text");
+		$("#editar-devise").parent().addClass("ocultado");
+		$("#editarDatosProfile").removeClass("ocultado");
+		$("#confirmar-col").addClass("ocultado");
+		$("#user_password_confirmation").prop("disabled", true);
 		$("#validarPass").addClass("ocultado");
 		$("#validarPass input").prop("disabled", true);
-		$("#validarPass input").val("");
-		$(".editar").addClass("ocultado");
+		$("#cancelarDatosProfile").addClass("ocultado");
 		editable = !editable;
 	});
 
@@ -298,8 +215,22 @@ $(function() {
 			$(this).removeClass("input-error");
 		});
 	});
-
+	// Para ver comunicados
+	$('.para-ver').on("click", function(e) {
+		var vvv = "#" + e.target.id;
+		var rrr = $(vvv).parents(".card").find('.desplegable').prop('style').height
+		if (rrr == "auto") {
+			$(vvv).parents(".card").find('.desplegable').css({height:'0'});
+			$(vvv).parents(".card").find('.desplegable').css({display:'none'});	
+		}
+		else {
+			$(vvv).parents(".card").find('.desplegable').css({height:'auto'});
+			$(vvv).parents(".card").find('.desplegable').css({display:'inherit'});	
+		}
+	});
 	
+	// Para elegir grupos
+	$('.collapsible').collapsible();
 /*###################habilitar y deshabilitar materias#############*/
 	var  grado_1
 	grado_1=0
