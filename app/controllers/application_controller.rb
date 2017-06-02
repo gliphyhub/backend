@@ -34,11 +34,11 @@ class ApplicationController < ActionController::Base
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
             @imgPerfil = "users/desconocido.png"
-            @imgCover = "covers/desconocido.png"
+            @imgCover = "covers/desconocido.jpg"
           end
         else
           @imgPerfil = "users/desconocido.png"
-          @imgCover = "covers/desconocido.png"
+          @imgCover = "covers/desconocido.jpg"
         end
 
       elsif current_user.tipo.id == 2
@@ -48,16 +48,16 @@ class ApplicationController < ActionController::Base
             @ap_paterno = current_user.perfil_profesor.ap_paterno.capitalize
             @nombreCorto = @nombres.split(/ /)[0] + " " + @ap_paterno
             @imgPerfil = current_user.gravatar_url(default: 'mm')
-            @imgCover = "covers/teacher-cover.jpg"
+            @imgCover = "covers/prof-cover.jpeg"
             @menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
             @imgPerfil = "users/desconocido.png"
-            @imgCover = "covers/desconocido.png"
+            @imgCover = "covers/desconocido.jpg"
           end
         else
           @imgPerfil = "users/desconocido.png"
-          @imgCover = "covers/desconocido.png"
+          @imgCover = "covers/desconocido.jpg"
         end
       elsif current_user.tipo.id == 3
         unless current_user.perfil_tutor.nil?
@@ -66,15 +66,15 @@ class ApplicationController < ActionController::Base
             @ap_paterno = current_user.perfil_tutor.ap_paterno.capitalize
             @nombreCorto = @nombres.split(/ /)[0] + " " + @ap_paterno
             @imgPerfil = current_user.gravatar_url(default: 'mm')
-            @imgCover = "covers/teacher-cover.jpg"
+            @imgCover = "covers/tutor-cover.jpeg"
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
             @imgPerfil = "users/desconocido.png"
-            @imgCover = "covers/desconocido.png"
+            @imgCover = "covers/desconocido.jpg"
           end
         else
           @imgPerfil = "users/desconocido.png"
-          @imgCover = "covers/desconocido.png"
+          @imgCover = "covers/desconocido.jpg"
         end
       else
         unless current_user.perfil_alumno.nil?
@@ -83,15 +83,15 @@ class ApplicationController < ActionController::Base
             @ap_paterno = current_user.perfil_alumno.ap_paterno.capitalize
             @nombreCorto = @nombres.split(/ /)[0] + " " + @ap_paterno
             @imgPerfil = current_user.gravatar_url(default: 'mm')
-            @imgCover = "covers/teacher-cover.jpg"
+            @imgCover = "covers/student-cover.jpg"
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
             @imgPerfil = "users/desconocido.png"
-            @imgCover = "covers/desconocido.png"
+            @imgCover = "covers/desconocido.jpg"
           end
         else
           @imgPerfil = "users/desconocido.png"
-          @imgCover = "covers/desconocido.png"
+          @imgCover = "covers/desconocido.jpg"
         end
       end
     end    

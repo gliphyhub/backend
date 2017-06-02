@@ -130,7 +130,7 @@ $(function() {
 		$('#contenido-large .card-content').animate({opacity: '1'}, 1500);
 	};
 
-	// Cabiar tags dependiendo del tamaño del dispositivo o resizing
+	/*// Cabiar tags dependiendo del tamaño del dispositivo o resizing
 	var tagHrefRexponsive = "#contenido-responsivo"
 	var tagHrefLarge ="#!" 
 
@@ -151,7 +151,7 @@ $(function() {
 
 	$(window).resize(function() {
 		cambiarHrefTag();
-	});
+	});*/
 
 
 
