@@ -33,11 +33,11 @@ class ApplicationController < ActionController::Base
             @tiposPerfiles=[{title:"Administradores", link:perfil_admins_path}, {title:"Profesor",link:perfil_profesores_path}, {title:"Alumnos",link:perfil_alumnos_path}, {title:"Tutores",link:perfil_tutores_path}]
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
-            @imgPerfil = "users/desconocido.png"
+            @imgPerfil = "users/desconocido.jpeg"
             @imgCover = "covers/desconocido.jpg"
           end
         else
-          @imgPerfil = "users/desconocido.png"
+          @imgPerfil = "users/desconocido.jpeg"
           @imgCover = "covers/desconocido.jpg"
         end
 
@@ -52,11 +52,11 @@ class ApplicationController < ActionController::Base
             @menuLateral=[{title:"Inicio", link:root_path, icon:"home"},{title:"Publicaciones", link:publicaciones_path, icon:"account_circle"},{title:"Agregar",link:new_publicacion_path, icon:"add"}]
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
-            @imgPerfil = "users/desconocido.png"
+            @imgPerfil = "users/desconocido.jpeg"
             @imgCover = "covers/desconocido.jpg"
           end
         else
-          @imgPerfil = "users/desconocido.png"
+          @imgPerfil = "users/desconocido.jpeg"
           @imgCover = "covers/desconocido.jpg"
         end
       elsif current_user.tipo.id == 3
@@ -69,11 +69,11 @@ class ApplicationController < ActionController::Base
             @imgCover = "covers/tutor-cover.jpeg"
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
-            @imgPerfil = "users/desconocido.png"
+            @imgPerfil = "users/desconocido.jpeg"
             @imgCover = "covers/desconocido.jpg"
           end
         else
-          @imgPerfil = "users/desconocido.png"
+          @imgPerfil = "users/desconocido.jpeg"
           @imgCover = "covers/desconocido.jpg"
         end
       else
@@ -86,11 +86,11 @@ class ApplicationController < ActionController::Base
             @imgCover = "covers/student-cover.jpg"
             @notificationes=[{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"},{title:"Comunicado 1", icon:"sms", publicador: "David", desc: "Destacado el 00/00/00"}, {title:"Tarea 1", icon:"description", publicador: "Villena",  desc: "Fecha de entrega el 25/05/17"}, {title:"Comunicado 2", icon:"sms", publicador: "Clemente Cartujano", desc: "Alguna especie de preview o mensaje bastante largo que sí cabe"}]
           else
-            @imgPerfil = "users/desconocido.png"
+            @imgPerfil = "users/desconocido.jpeg"
             @imgCover = "covers/desconocido.jpg"
           end
         else
-          @imgPerfil = "users/desconocido.png"
+          @imgPerfil = "users/desconocido.jpeg"
           @imgCover = "covers/desconocido.jpg"
         end
       end
