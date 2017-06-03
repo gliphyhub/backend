@@ -32,6 +32,8 @@ nadie puede editar publicacioness...///done
 solo admin delete publicaciones.....//done 
 
 
+
+
 vitas y dias........./ fking done!!!!!!!!!
 
 rails admin.... .// done (checar y confiiguara tablas de publicaciones)

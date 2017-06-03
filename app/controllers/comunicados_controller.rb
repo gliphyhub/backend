@@ -25,7 +25,7 @@ class ComunicadosController < ApplicationController
   # POST /comunicados.json
   def create
     @comunicado = Comunicado.new(comunicado_params)
-
+    raise @comunicado
     respond_to do |format|
       if @comunicado.save
         format.html { redirect_to @comunicado, notice: 'Comunicado was successfully created.' }
@@ -69,6 +69,10 @@ class ComunicadosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comunicado_params
-      params.require(:comunicado).permit(:titulo, :mensaje, :mensaje_markdown, :fecha_de_termino, :prioridad, :perfil_admin_id)
+      params.require(:comunicado).permit(:titulo, 
+                                         :mensaje,
+                                         :mensaje_markdown, 
+                                         :fecha_de_termino, 
+                                         :prioridad)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603025451) do
+ActiveRecord::Schema.define(version: 20170603090102) do
 
   create_table "archivos", force: :cascade do |t|
     t.integer  "publicacion_id"
@@ -46,11 +46,28 @@ ActiveRecord::Schema.define(version: 20170603025451) do
     t.index ["grupo_id"], name: "index_comunicado_grupos_on_grupo_id"
   end
 
+  create_table "comunicado_profesores", force: :cascade do |t|
+    t.integer  "perfil_profesor_id"
+    t.integer  "comunicado_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.index ["comunicado_id"], name: "index_comunicado_profesores_on_comunicado_id"
+    t.index ["perfil_profesor_id"], name: "index_comunicado_profesores_on_perfil_profesor_id"
+  end
+
+  create_table "comunicado_tutores", force: :cascade do |t|
+    t.integer  "perfil_tutor_id"
+    t.integer  "comunicado_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["comunicado_id"], name: "index_comunicado_tutores_on_comunicado_id"
+    t.index ["perfil_tutor_id"], name: "index_comunicado_tutores_on_perfil_tutor_id"
+  end
+
   create_table "comunicados", force: :cascade do |t|
     t.string   "titulo"
     t.text     "mensaje"
     t.text     "mensaje_markdown"
-    t.date     "fecha_de_termino"
     t.integer  "visitas",          default: 0
     t.boolean  "prioridad"
     t.integer  "perfil_admin_id"

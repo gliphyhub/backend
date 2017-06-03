@@ -108,7 +108,7 @@
 								.desplegable.card-content
 									.divider
 									.card-message
-										%p.text-normal= w.mensaje.html_safe
+										%p.text-normal= Sanitize.fragment(w.mensaje, Sanitize::Config::RELAXED).html_safe
 									%p{style:"margin-top: 1em"}	 
 										- @archi.each do |m| 
 											- if m.publicacion_id == w.id

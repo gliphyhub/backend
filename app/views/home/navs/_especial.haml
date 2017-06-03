@@ -86,10 +86,9 @@
 								=link_to item[:title], item[:link], class:"white-bonis"
 					%br/
 		.line-divider
-		%li.ayuda-btn
-			%a.waves-effect.white-bonis{href:"help.html"}
-				%i.material-icons.left.white-bonis error
-				%span Ayuda
+		%li.ayuda-btn.waves-effect
+			%i.material-icons.left.white-bonis error
+			=link_to "Ayuda", help_path, class:"white-bonis"
 -#=========================================
 -#======== Menú navegación - Responsive ============
 -#=========================================
@@ -133,7 +132,6 @@
 							=link_to item[:title], item[:link], class:"white-bonis"
 				%br/
 		.line-divider
-		%li.ayuda-btn
-			%a.waves-effect.white-bonis{href:"help.html"}
-				%i.material-icons.left.white-bonis error
-				%span Ayuda
+		%li.ayuda-btn.waves-effect
+			%i.material-icons.left.white-bonis error
+			=link_to "Ayuda", help_path, class:"white-bonis"

@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: comunicado_tutores
+#
+#  id              :integer          not null, primary key
+#  perfil_tutor_id :integer
+#  comunicado_id   :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  perfil_tutor: one
+  comunicado: one
+
+two:
+  perfil_tutor: two
+  comunicado: two

@@ -28,7 +28,40 @@ $(function() {
 	   $(".collapsible-header").click(function () {
 	    $("#flecha_up_down").text("keyboard_arrow_down");
 	});*/
+	$("#tabgrupos").click(function (){
+		$("#everyone").prop( "checked", false );
+		$("#noteveryone").prop( "checked", false );
+		$("#grupoesp").prop( "checked", true );
+		$("#generalfiltertab input[type=checkbox]").prop('checked', false);
+		$("#generalizando").addClass("ocultado");
+		$("#especificando").fadeIn();
+		$("#gruposfiltertab input[type=checkbox]").prop('checked', false);
+	});
+	$("#tabgeneral").click(function (){
+		$("#grupoesp").prop( "checked", false );
+		$("#notgrupoesp").prop( "checked", false );		
+		$("#noteveryone").prop( "checked", true );
+		$("#gruposfiltertab input[type=checkbox]").prop('checked', false);
+		$("#generalizando").addClass("ocultado");
+		$("#especificando").fadeIn();
+	});
+	$("#everyone").click(function (){
+		$("#generalfiltertab input[type=checkbox]").prop('checked', true);
+	});
+	$("#noteveryone").click(function (){
+		$("#generalfiltertab input[type=checkbox]").prop('checked', false);
+	});
+	$("#notgrupoesp").click(function (){
+		$("#generalizando").removeClass("ocultado");
+		$("#especificando").fadeOut();
+	});
+	$("#grupoesp").click(function (){
+		$("#generalizando").addClass("ocultado");
+		$("#especificando").fadeIn();
+		$("#gruposfiltertab input[type=checkbox]").prop('checked', false);
+	});
 
+	
 	// =============== CONTAR CARACTERES ====================
 	$('input#input_text, textarea#textarea1').characterCounter();
 	 // =============== ComboBox =========================

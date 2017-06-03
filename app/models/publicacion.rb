@@ -18,7 +18,7 @@ class Publicacion < ApplicationRecord
 	###################################################
     ##################Validaciones#####################
     validates :titulo, presence: true, length: {in: 3..30}
-    validates :mensaje, presence: true, length: {in: 15..400}
+    validates :mensaje, presence: true, length: {in: 15..3000}
     validates :fecha_de_termino, presence: true
     validate :expiration_date_cannot_be_in_the_past
     #validates :prioridad, presence: true

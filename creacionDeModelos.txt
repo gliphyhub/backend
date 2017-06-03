@@ -51,9 +51,11 @@ rails g model Archivo publicacion:belongs_to nombre ruta
 
 rails g model PublicacionGrupo grupo:belongs_to publicacion:belongs_to
 
-rails g scaffold Comunicado titulo mensaje:text mensaje_markdown:text fecha_de_termino:date visitas:integer prioridad:boolean perfil_admin:belongs_to
+rails g scaffold Comunicado titulo mensaje:text mensaje_markdown:text visitas:integer prioridad:boolean perfil_admin:belongs_to
 rails g model ComunicadoArchivo comunicado:belongs_to nombre ruta
 
 
 rails g model ComunicadoGrupo grupo:belongs_to comunicado:belongs_to
+rails g model ComunicadoProfesor perfil_profesor:belongs_to comunicado:belongs_to
+rails g model ComunicadoTutor perfil_tutor:belongs_to comunicado:belongs_to
 

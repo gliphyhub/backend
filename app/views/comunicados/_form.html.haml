@@ -1,28 +1,126 @@
-= form_for @comunicado do |f|
-  - if @comunicado.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@comunicado.errors.count, "error")} prohibited this comunicado from being saved:"
-      %ul
-        - @comunicado.errors.full_messages.each do |msg|
-          %li= msg
+= form_for @comunicado,:html=>{:id=>"formulario_comunicado"} do |f|
+	.row
+		.col.s12.l5
+			%h4.truncate.center-align Filtros
+			%p Seleccione las opciones que desee y necesite para la publicación de un nuevo comunicado.
+			.col.s12
+				%nav.nav-extended
+					.nav-content.bar-menu-color
+						%ul.tabs.tabs-transparent
+							%li.tab
+								%a#tabgeneral{:href => "#generalfiltertab"} todo
+							%li.tab
+								%a#tabgrupos{:href => "#gruposfiltertab"} general				
+				#generalfiltertab.col.s12
+					.input-field
+						%input#everyone{:value=>"si",:name=>"everyone", :type=>"radio"}
+						%label{:for=>"everyone"} <b>Todos</b>
+						&nbsp;&nbsp;&nbsp;
+						%input#noteveryone{:value=>"no",:name=>"everyone", :type=>"radio",:checked=>"checked"}
+						%label{:for=>"noteveryone"} <b>Seleccionar</b>
+						%br/
+						%br/
+					%h5 Usuarios						
+					.input-field{style:"height: 125px"}
+						-Tipo.all.each do |tipo|
+							-unless tipo.id == 1
+								.col.s12
+									= check_box_tag "tipo[#{tipo.id}]",tipo.id
+									= label_tag "tipo[#{tipo.id}]", tipo.tipo_de_usuario.humanize.pluralize
+					%h5 Nivel
+					.input-field{style:"height: 75px"}
+						-Nivel.all.each do |nivel|
+							.col.s12
+								= check_box_tag "nivel[#{nivel.id}]",nivel.id
+								= label_tag "nivel[#{nivel.id}]", nivel.nivel.humanize
+					%h5 Turno
+					.input-field
+						-Turno.all.each do |turno|
+							.col.s12
+								= check_box_tag "turno[#{turno.id}]",turno.id
+								= label_tag "turno[#{turno.id}]",turno.turno.humanize
+				#gruposfiltertab.col.s12
+					.input-field
+						%input#notgrupoesp{:value=>"si",:name=>"grupoesp", :type=>"radio"}
+						%label{:for=>"notgrupoesp"} <b>General</b>
+						&nbsp;&nbsp;&nbsp;
+						%input#grupoesp{:value=>"no",:name=>"grupoesp", :type=>"radio"}
+						%label{:for=>"grupoesp"} <b>Específico</b>
+						%br/
+						%br/
+					#generalizando.ocultado
+						%input#matutino-grupos{:name=>"turno-grupos", :type=>"checkbox"}
+						%label{:for=>"matutino-grupos"} <b>Matutino</b>
 
-  .field
-    = f.label :titulo
-    = f.text_field :titulo
-  .field
-    = f.label :mensaje
-    = f.text_area :mensaje
-  .field
-    = f.label :mensaje_markdown
-    = f.text_area :mensaje_markdown
-  .field
-    = f.label :fecha_de_termino
-    = f.date_select :fecha_de_termino
-  .field
-    = f.label :prioridad
-    = f.check_box :prioridad
-  .field
-    = f.label :perfil_admin
-    = f.text_field :perfil_admin
-  .actions
-    = f.submit 'Save'
+						%input#vespertino-grupos{:name=>"turno-grupos", :type=>"checkbox"}
+						%label{:for=>"vespertino-grupos",style:"margin-left: 1rem"} <b>Vespertino</b>
+						.input-field
+							%select#grados{multiple:"",:name=>"grados[]"}
+								%option{ disabled:"", selected:""} Elija por grado
+								-Grado.all.each do |grado| 
+									%option{value:"#{grado.id}"} #{grado.grado}
+							%label Grado
+					#especificando.input-field
+						-Grado.all.each do |grade| 
+							%p{style:"margin-top: 2rem"}
+								.input-field
+									%select{multiple:"",:name=>"grupos[]"}
+										%option{disabled:"", selected:""} Eliga por grupo
+										-grade.grupos.each do |grupo| 
+											%option{value:"#{grupo.id}"} #{grupo.grupo}
+									%label "Grupos para #{grade.grado}"
+		.col.s12.l7{:style=>"margin-top: 1em"}
+			%h4.truncate.center-align Contenido
+			.input-field.col.s12
+				- if @comunicado.errors.any?
+					.red.lighten-2{style:"padding:10px"}
+						%i.material-icons.left warning
+						%h6= "#{pluralize(@comunicado.errors.count, "problema(s)")} ocurrio al guardar publicar ponga los filtros de nuevo"
+				- @comunicado.errors.full_messages.each do |msg|
+					%script Materialize.toast("#{msg}", 5000);
+			.input-field.col.s12
+				= f.label :titulo
+				= f.text_field :titulo, data:{length:"30"}
+			.input-field.col.s12
+				-#= f.label :mensaje
+				=label_tag "Mensaje"
+				%br/
+				%br/
+				#epiceditor.materialize-textarea
+				= f.hidden_field :mensaje
+				= f.hidden_field :mensaje_markdown
+				%br/
+				%br/
+			.col.s12
+				= f.file_field :archivo, value: @archivo
+				%br
+				%h5 Seleccione la prioridad del comunicado
+			.col.s12.input-field
+				= f.check_box :prioridad
+				= f.label :prioridad,"Urgente"
+		-#===============Boton publicar================
+	.fixed-action-btn
+		%a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped.hoverable{href:"#mensaje-confirmar", data:{position:"left", delay:"50", tooltip:"Publicar"}}
+			%i.material-icons done
+	-#===============Mensaje del boton=============
+	#mensaje-confirmar.modal
+		.modal-content
+			%h4 ¿Deseas continuar?
+			%p Revise los datos, y asegurese de que son correctos.
+			%p.right
+				%a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href:"#"} Volver
+				= f.submit 'Publicar',class:"modal-action modal-close  waves-effect waves-green btn"
+				%br/
+				%br/
+%script
+	var editor = new EpicEditor({
+	textarea: "comunicado_mensaje_markdown",
+	file:{
+	name:"nuevo-comunicado"
+	}
+	});
+	editor.load();
+	$("#formulario_comunicado").on("submit",function(){
+	$("#comunicado_mensaje").val( editor.exportFile("nuevo-comunicado","html"));
+	$("#comunicado_mensaje_markdown").val( editor.exportFile("nuevo-comunicado"));
+	});

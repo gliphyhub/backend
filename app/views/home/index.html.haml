@@ -1,4 +1,8 @@
-%main
+-if current_user.tipo.id <= 2
+	-@ver=240
+-else
+	-@ver=0
+%main{style:"padding-left:#{@ver}px"}
 	-if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
 		=render "perfil_admins/form"
 	-elsif current_user.tipo.id == 2 && current_user.perfil_profesor.nil?
@@ -9,10 +13,8 @@
 		=render "perfil_alumnos/form"
 	
 	-if current_user.tipo.id == 1 && current_user.perfilado == true
-		%p admin
 		= pie_chart Grupo.group(:grado_id).count
 	-elsif current_user.tipo.id == 2 && current_user.perfilado == true
-		%p profesor
-		= pie_chart Grupo.group(:grado_id).count
+		= pie_chart Publicacion.group(:perfil_profesor_id).count
 	-elsif current_user.tipo.id == 4 && current_user.perfilado == true
 		=render "publicaciones/alumnos_pub"

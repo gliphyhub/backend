@@ -25,6 +25,7 @@
  	inflect.irregular 'publicacion', 'publicaciones'
  	inflect.irregular 'archivo', 'archivos'
  	inflect.irregular 'comunicado', 'comunicados'
+ 	inflect.irregular 'administrador', 'administradores'
 
 #==================================================
 #==================================================

@@ -6,7 +6,6 @@
 #  titulo           :string
 #  mensaje          :text
 #  mensaje_markdown :text
-#  fecha_de_termino :date
 #  visitas          :integer          default("0")
 #  prioridad        :boolean
 #  perfil_admin_id  :integer
@@ -15,8 +14,14 @@
 #
 
 class Comunicado < ApplicationRecord
-  belongs_to :perfil_admin
-  has_one :comunicado_archivo, dependent: :destroy
-  has_many :comunicado_grupos, dependent: :destroy
-  has_many :grupos, :through => :comunicado_grupos 
+	validates :titulo, presence: true, length: {in: 3..30}
+    validates :mensaje, presence: true, length: {in: 15..3000}
+	belongs_to :perfil_admin
+	has_one :comunicado_archivo, dependent: :destroy
+	has_many :comunicado_grupos, dependent: :destroy
+	has_many :grupos, :through => :comunicado_grupos
+	has_many :comunicado_profesores, dependent: :destroy
+	has_many :perfil_profesores, :through => :comunicado_profesores
+	has_many :comunicado_tutores, dependent: :destroy
+	has_many :perfil_tutores, :through => :comunicado_tutores
 end

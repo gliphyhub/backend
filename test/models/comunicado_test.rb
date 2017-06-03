@@ -6,7 +6,6 @@
 #  titulo           :string
 #  mensaje          :text
 #  mensaje_markdown :text
-#  fecha_de_termino :date
 #  visitas          :integer          default("0")
 #  prioridad        :boolean
 #  perfil_admin_id  :integer

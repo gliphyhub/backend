@@ -50,6 +50,8 @@ class PerfilProfesor < ApplicationRecord
   has_many :profesor_materias, dependent: :destroy
   has_many :materias, :through => :profesor_materias #hacer manual
   has_many :publicaciones, dependent: :destroy
+  has_many :comunicado_profesores, dependent: :destroy
+  has_many :comunicados, :through => :comunicado_profesores
   ###################################################
   ############Validaciones de relaciones#############
   #validates_associated :profesor_publicaciones

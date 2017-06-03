@@ -43,6 +43,8 @@ class PerfilTutor < ApplicationRecord
   belongs_to :user
   belongs_to :genero
   has_many :perfil_alumnos, dependent: :destroy
+  has_many :comunicado_tutores, dependent: :destroy
+  has_many :comunicados, :through => :comunicado_tutores
   ###################################################
   ############Validaciones de relaciones#############
   #validates_associated :perfil_alumnos
