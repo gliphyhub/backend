@@ -5,7 +5,7 @@ class CreatePublicaciones < ActiveRecord::Migration[5.0]
       t.text :mensaje
       t.text :mensaje_markdown
       t.date :fecha_de_termino
-      t.boolean :prioridad
+      t.integer :visitas, default: 0
       t.belongs_to :perfil_profesor
       t.belongs_to :materia
 

@@ -32,8 +32,8 @@ class PerfilAlumno < ApplicationRecord
   ##################Validaciones#####################
   validates :matricula, presence:true, length: {is: 8}, numericality: {only_integer: true}, uniqueness: true
   #validates :tutor_mailcito, presence: true, format: {with: /\A[^@\s]+@[^@\s]+\z/, message: "no es un correo valido"}
-  validates :ap_paterno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,  message: "no puede contener numeros ni espacios" }
-  validates :ap_materno, presence: true, length: {in: 2..20}, format: { with: /\A[a-zA-Z]+\z/,  message: "no puede contener numeros ni espacios" }
+  validates :ap_paterno, presence: true, length: {in: 2..20}
+  validates :ap_materno, presence: true, length: {in: 2..20}
   validates :nombre, presence: true, length: {in: 2..50}
   #validates :fecha_de_nacimiento, presence: true
   validates :calle, presence: true, length: {in: 4..30}
@@ -42,7 +42,7 @@ class PerfilAlumno < ApplicationRecord
   validates :colonia, presence: true, length: {in: 4..30}
   validates :delegacion_municipio, presence: true, length: {in: 4..30}
   validates :codigo_postal, presence: true, length: {is: 5}, numericality: {only_integer: true}
-  validates :telefono_casa, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
+  validates :telefono_casa, presence: true, length: {in: 8..10}, numericality: {only_integer: true}
   #validates :telefono_celular, presence: true, length: {in: 8..15}, numericality: {only_integer: true}
   #validates :grupo_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}
   #validates :generacion_id, presence: {message: "Campo obligatorio."}, numericality: {only_integer: true}

@@ -103,4 +103,16 @@
                 %p
                   %b Extension recados:
                   = @perfil_tutor.extension_recados
-
+        .card.grey.lighten-3
+          .card-content
+            .row
+              .col.s12
+                %i.material-icons.left extension
+                %span.card-title Información extra
+              .col.s12
+                %p
+                  %b  Alumno(s) a cargo|
+                  -unless @perfil_tutor.perfil_alumnos.nil?
+                    -@perfil_tutor.perfil_alumnos.each do |alumno|
+                      #{alumno.nombre} #{alumno.ap_paterno} #{alumno.ap_materno}- #{alumno.user.email}
+                      \|

@@ -5,14 +5,16 @@ Rails.application.routes.draw do
   resources :perfil_profesores#, only: [:create]
   resources :perfil_admins#, except: [:create]
   mount RailsAdmin::Engine => '/basededatos', as: 'rails_admin'
-  resources :publicaciones
+  resources :publicaciones,except: [:update,:edit]
 
+  put "visitar/:id",to: 'publicaciones#visitar', as: 'visita'
   #devise_for :users, controllers: { registrations: 'users/registrations' }
   #devise_scope :user do
   # get '/users/sign_out' => 'devise/sessions#destroy'
   #end
 
   devise_for :users, skip: :registrations
+
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'
     resource :registration,
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
         get :cancel
       end
   end
+
 
   get '/help' => 'home#help'
 

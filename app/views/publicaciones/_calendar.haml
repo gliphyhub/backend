@@ -1,4 +1,8 @@
-= month_calendar events: @urgentes, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link do |date, publicacion| 
-	=date.day
-	-publicacion.each do |p|
-		= p "."
+-if @publicaciones.size != 0
+	= month_calendar events: @publicaciones, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link do |date, publicacion| 
+		=date.day
+		-publicacion.each do |p|
+			= p "."
+-else
+	= month_calendar do |date|
+		= date.day

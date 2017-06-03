@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   layout :set_layout
   before_action :leer_datos
+
+  
   ##before_action :set_current_user
 
    #=== se abandono la idea no borrar puede ser ultil despues====

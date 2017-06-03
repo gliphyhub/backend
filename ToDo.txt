@@ -17,8 +17,24 @@ gravartar...//done
 
 graficas...//done
 
-rails admin.... .// done (checar y confiiguara tablas de publicaciones)
+disñeo a calendario... /// done
+terminar diseño de editar perfiles... // done
 
+ceular max 10..../done
+
+aps con acentos...//done
+
+Agregarle '(s)' a nombre../done
+
+
+nadie puede editar publicacioness...///done
+
+solo admin delete publicaciones.....//done 
+
+
+vitas y dias........./ fking done!!!!!!!!!
+
+rails admin.... .// done (checar y confiiguara tablas de publicaciones)
 
 mails...
 
@@ -28,18 +44,7 @@ notificaciones....
 
 drag and drop...
 
-nadie puede editar publicacioness...
-
-disñeo a calendario... /// done
-terminar diseño de editar perfiles... // done
 diseño de la paginacion...
-
-
-ceular max 10 
-
-Agregarle '(s)' a nombre
-
-
 
 
 

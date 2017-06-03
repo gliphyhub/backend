@@ -114,13 +114,13 @@
                 %span.card-title Información extra
               .col.s12
                 %p
-                  %b Grupos
+                  %b Grupo(s)|
                   -unless @perfil_profesor.grupos.nil?
                     -@perfil_profesor.grupos.each do |grupo|
                       =grupo.grupo 
                       \|
                 %p
-                  %b Materias
+                  %b Materia(s)|
                   -unless @perfil_profesor.materias.nil?
                     -@perfil_profesor.materias.each do |materia|
                       =materia.materia 

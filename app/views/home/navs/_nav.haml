@@ -16,6 +16,10 @@
 			=image_tag "#{@imgPerfil}", class:"circle"
 			%span.white-text.name #{@nombreCorto}
 			%span.white-text.email.separado #{@tipoUser}
+	-if current_user.perfilado == true && (current_user.tipo.id == 4 || current_user.tipo.id == 3)
+		%li.waves-effect
+			%i.material-icons.left.white-bonis home
+			=link_to "Inicio", root_path, class:"white-bonis waves-effect"
 	%li.waves-effect
 		-if current_user.perfilado== true
 			%i.material-icons.left.white-bonis person

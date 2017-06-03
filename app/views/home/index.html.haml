@@ -14,5 +14,5 @@
 	-elsif current_user.tipo.id == 2 && current_user.perfilado == true
 		%p profesor
 		= pie_chart Grupo.group(:grado_id).count
-
-			
+	-elsif current_user.tipo.id == 4 && current_user.perfilado == true
+		=render "publicaciones/alumnos_pub"

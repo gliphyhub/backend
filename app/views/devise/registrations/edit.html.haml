@@ -2,19 +2,24 @@
 	-@nombreCompleto = "#{current_user.perfil_admin.nombre.capitalize} #{current_user.perfil_admin.ap_paterno.capitalize} #{current_user.perfil_admin.ap_materno.capitalize}"
 	-@fechaNac = current_user.perfil_admin.fecha_de_nacimiento
 	-@sexo = current_user.perfil_admin.genero.sexo.capitalize
+	-@ver=240
 -elsif current_user.tipo.id == 2
 	-@nombreCompleto = "#{current_user.perfil_profesor.nombre.capitalize} #{current_user.perfil_profesor.ap_paterno.capitalize} #{current_user.perfil_profesor.ap_materno.capitalize}"
 	-@fechaNac = current_user.perfil_profesor.fecha_de_nacimiento
 	-@sexo = current_user.perfil_profesor.genero.sexo.capitalize
+	-@ver=240
 -elsif current_user.tipo.id == 3
 	-@nombreCompleto = "#{current_user.perfil_tutor.nombre.capitalize} #{current_user.perfil_tutor.ap_paterno.capitalize} #{current_user.perfil_tutor.ap_materno.capitalize}"
 	-@fechaNac = current_user.perfil_tutor.fecha_de_nacimiento
 	-@sexo = current_user.perfil_tutor.genero.sexo.capitalize
+	-@ver=0
 -elsif current_user.tipo.id == 4
 	-@nombreCompleto = "#{current_user.perfil_alumno.nombre.capitalize} #{current_user.perfil_alumno.ap_paterno.capitalize} #{current_user.perfil_alumno.ap_materno.capitalize}"
 	-@fechaNac = current_user.perfil_alumno.fecha_de_nacimiento
 	-@sexo = current_user.perfil_alumno.genero.sexo.capitalize
-%main.navegacion-espacio
+	-@ver=0
+
+%main{style:"padding-left:#{@ver}px"}
 	-#Contenedor principal
 	-#para que no de el error de las particles
 	#particles.ocultado
@@ -66,6 +71,23 @@
 							%p Sexo:
 						.col.s12
 							%h5 #{@sexo}
+					-if current_user.tipo.id == 3
+						-unless current_user.perfil_tutor.perfil_alumnos.nil?
+							.col.s12.m6.dato
+								.col.s12
+									%i.material-icons.left extension
+									%p Alumno(s)
+								.col.s12
+									-current_user.perfil_tutor.perfil_alumnos.each do |alumno|
+										%h5 #{alumno.nombre} #{alumno.ap_paterno} #{alumno.ap_materno}- #{alumno.user.email}
+										\|
+					-if current_user.tipo.id == 4
+						.col.s12.m6.dato
+							.col.s12
+								%i.material-icons.left extension
+								%p Grupo
+							.col.s12
+								%h5= current_user.perfil_alumno.grupo.grupo
 				= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| 
 					.col.s12
 						= devise_error_messages!

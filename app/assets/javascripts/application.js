@@ -19,5 +19,3 @@
 //= require gliphy
 //= require epiceditor
 // require turbolinks
-
-

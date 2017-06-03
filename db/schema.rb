@@ -12,27 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20170601081518) do
 
-  create_table "admin_archivos", force: :cascade do |t|
-    t.integer  "admin_publicacion_id"
-    t.string   "nombre"
-    t.string   "ruta"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["admin_publicacion_id"], name: "index_admin_archivos_on_admin_publicacion_id"
-  end
-
-  create_table "admin_publicaciones", force: :cascade do |t|
-    t.string   "titulo"
-    t.text     "mensaje"
-    t.text     "mensaje_markdown"
-    t.date     "fecha_de_termino"
-    t.boolean  "prioridad"
-    t.integer  "perfil_admin_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["perfil_admin_id"], name: "index_admin_publicaciones_on_perfil_admin_id"
-  end
-
   create_table "archivos", force: :cascade do |t|
     t.integer  "publicacion_id"
     t.string   "nombre"
@@ -63,10 +42,11 @@ ActiveRecord::Schema.define(version: 20170601081518) do
     t.text     "mensaje"
     t.text     "mensaje_markdown"
     t.date     "fecha_de_termino"
+    t.integer  "visitas",          default: 0
     t.boolean  "prioridad"
     t.integer  "perfil_admin_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
     t.index ["perfil_admin_id"], name: "index_comunicados_on_perfil_admin_id"
   end
 
@@ -243,15 +223,6 @@ ActiveRecord::Schema.define(version: 20170601081518) do
     t.index ["perfil_profesor_id"], name: "index_profesor_materias_on_perfil_profesor_id"
   end
 
-  create_table "profesor_publicaciones", force: :cascade do |t|
-    t.integer  "publicacion_id"
-    t.integer  "perfil_profesor_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.index ["perfil_profesor_id"], name: "index_profesor_publicaciones_on_perfil_profesor_id"
-    t.index ["publicacion_id"], name: "index_profesor_publicaciones_on_publicacion_id"
-  end
-
   create_table "publicacion_grupos", force: :cascade do |t|
     t.integer  "grupo_id"
     t.integer  "publicacion_id"
@@ -266,11 +237,11 @@ ActiveRecord::Schema.define(version: 20170601081518) do
     t.text     "mensaje"
     t.text     "mensaje_markdown"
     t.date     "fecha_de_termino"
-    t.boolean  "prioridad"
+    t.integer  "visitas",            default: 0
     t.integer  "perfil_profesor_id"
     t.integer  "materia_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.index ["materia_id"], name: "index_publicaciones_on_materia_id"
     t.index ["perfil_profesor_id"], name: "index_publicaciones_on_perfil_profesor_id"
   end

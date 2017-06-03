@@ -120,5 +120,5 @@
                   %b Generacion:
                   = @perfil_alumno.generacion.generacion
                 %p
-                  %b Perfil tutor:
-                  = @perfil_alumno.perfil_tutor.user.email
+                  %b Tutor:
+                  #{@perfil_alumno.perfil_tutor.nombre}  #{@perfil_alumno.perfil_tutor.ap_paterno}  #{@perfil_alumno.perfil_tutor.ap_materno} - #{@perfil_alumno.perfil_tutor.user.email}

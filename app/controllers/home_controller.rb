@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
- 
+ Ruta_directorio_archivos = "public/prof/archivos"
   def bienvenida
   end
 
@@ -13,6 +13,12 @@ class HomeController < ApplicationController
       @perfil_tutor = PerfilTutor.new
     elsif current_user.tipo.id == 4 && current_user.perfil_alumno.nil?
       @perfil_alumno = PerfilAlumno.new
+    end
+
+    if current_user.tipo.id == 4 && current_user.perfilado == true      
+      @archi = Archivo.select("id, nombre, ruta, publicacion_id")
+      @archivos = Dir.entries(Ruta_directorio_archivos)
+      @publicaciones = current_user.perfil_alumno.grupo.publicaciones.paginate(:page => params[:page], :per_page => 6).order('created_at DESC')
     end
 
   end

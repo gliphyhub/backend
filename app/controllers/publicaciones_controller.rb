@@ -1,23 +1,35 @@
 class PublicacionesController < ApplicationController
-  before_action :set_publicacion, only: [:show, :edit, :update, :destroy]
+  before_action :set_publicacion, only: [:show, :destroy,:visitar]
   before_action :authenticate_user!
-  before_action :solo_prof!, only:[:new,:create,:destroy]
-
+  before_action :solo_prof!, only:[:new,:create]
+  before_action :solo_admin!, only:[:destroy]
 
   Ruta_directorio_archivos = "public/prof/archivos"
   # GET /publicaciones
   # GET /publicaciones.json
-  def index 
+   def visitar
+    @publicacion.update(visitas: @publicacion.visitas + 1)
+   end
+
+  def index
+    @seccion = "Publicaciones"
+    #==================0cambiar tamebin en el home controler=======================
     @archi = Archivo.select("id, nombre, ruta, publicacion_id")
+    #==================0cambiar tamebin en el home controler=======================
     @archivos = Dir.entries(Ruta_directorio_archivos)
-    @urgentes = Publicacion.where(perfil_profesor_id: current_user.perfil_profesor.id, prioridad: true).reverse
-    @publicaciones = Publicacion.where(perfil_profesor_id: current_user.perfil_profesor.id, prioridad:false).reverse
+    if current_user.tipo.id == 2
+      #@urgentes = Publicacion.paginate(:page => params[:page], :per_page => 6)
+      #@publicaciones = Publicacion.where(perfil_profesor_id: current_user.perfil_profesor.id).order('prioridad DESC, created_at DESC')
+      @publicaciones = Publicacion.paginate(:page => params[:page], :per_page => 6).where(perfil_profesor_id: current_user.perfil_profesor.id).order('created_at DESC')
+    elsif current_user.tipo.id == 1
+      @publicaciones = Publicacion.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+    end
   end
 
   # GET /publicaciones/1
   # GET /publicaciones/1.json
-  def show
-  end
+  #def show
+  #end
 
   # GET /publicaciones/new
   def new
@@ -25,7 +37,7 @@ class PublicacionesController < ApplicationController
   end
 
   # GET /publicaciones/1/edit
-  #def edit
+  #def edit 
   #end
 
   # POST /publicaciones
@@ -141,8 +153,8 @@ class PublicacionesController < ApplicationController
   def destroy
     @publicacion.destroy
     respond_to do |format|
-      format.html { redirect_to publicaciones_url, notice: 'Publicacion was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to publicaciones_url, notice: 'Publicacion fue eliminada exitosamente' }
+      #format.json { head :no_content }
     end
   end
 
@@ -158,7 +170,6 @@ class PublicacionesController < ApplicationController
                                           :mensaje,
                                           :mensaje_markdown,
                                           :fecha_de_termino, 
-                                          :prioridad,
                                           :grupos,
                                           :materia_para_la_publicacion)
     end
