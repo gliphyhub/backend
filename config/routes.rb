@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :comunicados,except: [:update,:edit,:show]
 
   put "visitar/:id",to: 'publicaciones#visitar', as: 'visita'
+  put "visitar/:id",to: 'comunicados#visitar', as: 'visitas'
   #devise_for :users, controllers: { registrations: 'users/registrations' }
   #devise_scope :user do
   # get '/users/sign_out' => 'devise/sessions#destroy'

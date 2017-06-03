@@ -6,12 +6,14 @@ class PerfilAlumnosController < ApplicationController
   # GET /perfil_alumnos
   # GET /perfil_alumnos.json
   def index
+    @seccion="Perfiles Alumnos"
     @perfil_alumnos = PerfilAlumno.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
 
   # GET /perfil_alumnos/1
   # GET /perfil_alumnos/1.json
   def show
+    @seccion="Perfil Alumno"
   end
 
   # GET /perfil_alumnos/new

@@ -33,6 +33,7 @@ class PublicacionesController < ApplicationController
 
   # GET /publicaciones/new
   def new
+    @seccion = "Nueva Publicación"
     @publicacion = Publicacion.new
   end
 
@@ -49,7 +50,7 @@ class PublicacionesController < ApplicationController
     @publicacion.perfil_profesor_id= current_user.perfil_profesor.id
     @grupos=params[:grupos]
     @materia=params[:materia_para_la_publicacion]
-    unless @materia.nil?     
+    unless @materia.nil?
       unless @grupos.nil?
         @grupos.each do |id, g|
             if Materia.find(@materia).grupos.exists?(id)

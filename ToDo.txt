@@ -49,6 +49,8 @@ drag and drop...
 
 diseño de la paginacion...
 
+filtros para ver..
+
 
 
 scopes

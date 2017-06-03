@@ -6,12 +6,14 @@ class PerfilTutoresController < ApplicationController
   # GET /perfil_tutores
   # GET /perfil_tutores.json
   def index
+   @seccion="Perfiles Tutores"
    @perfil_tutores = PerfilTutor.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
 
   # GET /perfil_tutores/1
   # GET /perfil_tutores/1.json
   def show
+    @seccion="Perfil Tutor"
   end
 
   # GET /perfil_tutores/new

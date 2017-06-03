@@ -12,6 +12,7 @@
 							%li.tab
 								%a#tabgrupos{:href => "#gruposfiltertab"} general				
 				#generalfiltertab.col.s12
+					%h5 Si desea utilizar este filtro es importante que seleccione almenos un elemento de cada tipo
 					.input-field
 						%input#everyone{:value=>"si",:name=>"everyone", :type=>"radio"}
 						%label{:for=>"everyone"} <b>Todos</b>
@@ -25,20 +26,20 @@
 						-Tipo.all.each do |tipo|
 							-unless tipo.id == 1
 								.col.s12
-									= check_box_tag "tipo[#{tipo.id}]",tipo.id
-									= label_tag "tipo[#{tipo.id}]", tipo.tipo_de_usuario.humanize.pluralize
+									= check_box_tag "tipos[#{tipo.id}]",tipo.id
+									= label_tag "tipos[#{tipo.id}]", tipo.tipo_de_usuario.humanize.pluralize
 					%h5 Nivel
 					.input-field{style:"height: 75px"}
 						-Nivel.all.each do |nivel|
 							.col.s12
-								= check_box_tag "nivel[#{nivel.id}]",nivel.id
-								= label_tag "nivel[#{nivel.id}]", nivel.nivel.humanize
+								= check_box_tag "niveles[#{nivel.id}]",nivel.id
+								= label_tag "niveles[#{nivel.id}]", nivel.nivel.humanize
 					%h5 Turno
 					.input-field
 						-Turno.all.each do |turno|
 							.col.s12
-								= check_box_tag "turno[#{turno.id}]",turno.id
-								= label_tag "turno[#{turno.id}]",turno.turno.humanize
+								= check_box_tag "turnos[#{turno.id}]",turno.id
+								= label_tag "turnos[#{turno.id}]",turno.turno.humanize
 				#gruposfiltertab.col.s12
 					.input-field
 						%input#notgrupoesp{:value=>"si",:name=>"grupoesp", :type=>"radio"}
@@ -49,10 +50,10 @@
 						%br/
 						%br/
 					#generalizando.ocultado
-						%input#matutino-grupos{:name=>"turno-grupos", :type=>"checkbox"}
+						%input#matutino-grupos{:name=>"gradoturno[]", :type=>"checkbox",value:"1"}
 						%label{:for=>"matutino-grupos"} <b>Matutino</b>
 
-						%input#vespertino-grupos{:name=>"turno-grupos", :type=>"checkbox"}
+						%input#vespertino-grupos{:name=>"gradoturno[]", :type=>"checkbox",value:"2"}
 						%label{:for=>"vespertino-grupos",style:"margin-left: 1rem"} <b>Vespertino</b>
 						.input-field
 							%select#grados{multiple:"",:name=>"grados[]"}
@@ -92,7 +93,7 @@
 				%br/
 				%br/
 			.col.s12
-				= f.file_field :archivo, value: @archivo
+				= f.file_field :comunicado_archivo, value: @archivo
 				%br
 				%h5 Seleccione la prioridad del comunicado
 			.col.s12.input-field

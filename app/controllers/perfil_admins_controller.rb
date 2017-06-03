@@ -6,12 +6,14 @@ class PerfilAdminsController < ApplicationController
   # GET /perfil_admins
   # GET /perfil_admins.json
   def index
+   @seccion="Perfiles Admins"
    @perfil_admins = PerfilAdmin.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
 
   # GET /perfil_admins/1
   # GET /perfil_admins/1.json
   def show
+    @seccion="Perfil Admin"
   end
 
   # GET /perfil_admins/new

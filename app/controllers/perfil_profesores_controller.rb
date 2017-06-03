@@ -6,12 +6,14 @@ class PerfilProfesoresController < ApplicationController
   # GET /perfil_profesores
   # GET /perfil_profesores.json
   def index
+    @seccion="Perfiles Profesores"
     @perfil_profesores = PerfilProfesor.paginate(:page => params[:page], :per_page => 10).order('created_at DESC')
   end
 
   # GET /perfil_profesores/1
   # GET /perfil_profesores/1.json
   def show
+    @seccion="Perfil Profesor"
   end
   #def set_current_user
     #PerfilProfesor.current_user = current_user
