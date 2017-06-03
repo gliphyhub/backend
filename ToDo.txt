@@ -36,11 +36,12 @@ vitas y dias........./ fking done!!!!!!!!!
 
 rails admin.... .// done (checar y confiiguara tablas de publicaciones)
 
+comunicados...
+notificaciones....
+
 mails...
 
 paths de rails admin..
-
-notificaciones....
 
 drag and drop...
 
@@ -67,10 +68,7 @@ render @modeloplural
 _modelosingular
 	coasas en singular.metodo
 
-
-
 "404, "mm", "identicon", "monsterid", "wavatar", "retro", "blank" or an absolute URL.
-
 
 
 

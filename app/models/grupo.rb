@@ -30,6 +30,8 @@ class Grupo < ApplicationRecord
   has_many :perfil_profesores, :through => :profesor_grupos #hacer manual el destroy
   has_many :publicacion_grupos, dependent: :destroy
   has_many :publicaciones, :through => :publicacion_grupos #hacer manual el destroy
+  has_many :comunicado_grupos, dependent: :destroy
+  has_many :publicaciones, :through => :comunicado_grupos
   ###################################################
   ############Validaciones de relaciones#############
   validates_associated :perfil_alumnos

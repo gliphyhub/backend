@@ -7,7 +7,7 @@
 #  mensaje            :text
 #  mensaje_markdown   :text
 #  fecha_de_termino   :date
-#  prioridad          :boolean
+#  visitas            :integer          default("0")
 #  perfil_profesor_id :integer
 #  materia_id         :integer
 #  created_at         :datetime         not null

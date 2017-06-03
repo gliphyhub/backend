@@ -29,6 +29,7 @@ class PerfilAdmin < ApplicationRecord
   ##################Relaciones#######################
   belongs_to :user
   belongs_to :genero
+  has_many :comunicados, dependent: :destroy
   ###################################################
   ##################Validaciones#####################
   #validates :user_id, presence: true, numericality: {only_integer: true}

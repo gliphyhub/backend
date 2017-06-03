@@ -18,11 +18,10 @@ class HomeController < ApplicationController
     if current_user.tipo.id == 4 && current_user.perfilado == true      
       @archi = Archivo.select("id, nombre, ruta, publicacion_id")
       @archivos = Dir.entries(Ruta_directorio_archivos)
-      @publicaciones = current_user.perfil_alumno.grupo.publicaciones.paginate(:page => params[:page], :per_page => 6).order('created_at DESC')
+      @publicaciones = current_user.perfil_alumno.grupo.publicaciones.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
     end
 
   end
-
 
   def help
     @seccion="Ayuda"

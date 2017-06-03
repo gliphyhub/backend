@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601081518) do
+ActiveRecord::Schema.define(version: 20170603025451) do
 
   create_table "archivos", force: :cascade do |t|
     t.integer  "publicacion_id"
@@ -29,12 +29,21 @@ ActiveRecord::Schema.define(version: 20170601081518) do
   end
 
   create_table "comunicado_archivos", force: :cascade do |t|
-    t.integer  "admin_publicacion_id"
+    t.integer  "comunicado_id"
     t.string   "nombre"
     t.string   "ruta"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.index ["admin_publicacion_id"], name: "index_comunicado_archivos_on_admin_publicacion_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["comunicado_id"], name: "index_comunicado_archivos_on_comunicado_id"
+  end
+
+  create_table "comunicado_grupos", force: :cascade do |t|
+    t.integer  "grupo_id"
+    t.integer  "comunicado_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["comunicado_id"], name: "index_comunicado_grupos_on_comunicado_id"
+    t.index ["grupo_id"], name: "index_comunicado_grupos_on_grupo_id"
   end
 
   create_table "comunicados", force: :cascade do |t|

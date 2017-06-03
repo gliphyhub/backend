@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :comunicados
   resources :perfil_alumnos#, only: [:create]
   resources :perfil_tutores#, only: [:create]
   resources :perfil_profesores#, only: [:create]
   resources :perfil_admins#, except: [:create]
   mount RailsAdmin::Engine => '/basededatos', as: 'rails_admin'
-  resources :publicaciones,except: [:update,:edit]
+  resources :publicaciones,except: [:update,:edit,:show]
+  resources :comunicados,except: [:update,:edit,:show]
 
   put "visitar/:id",to: 'publicaciones#visitar', as: 'visita'
   #devise_for :users, controllers: { registrations: 'users/registrations' }

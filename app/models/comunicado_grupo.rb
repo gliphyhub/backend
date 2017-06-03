@@ -1,15 +1,15 @@
 # == Schema Information
 #
-# Table name: comunicado_archivos
+# Table name: comunicado_grupos
 #
 #  id            :integer          not null, primary key
+#  grupo_id      :integer
 #  comunicado_id :integer
-#  nombre        :string
-#  ruta          :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
 
-class ComunicadoArchivo < ApplicationRecord
+class ComunicadoGrupo < ApplicationRecord
+  belongs_to :grupo
   belongs_to :comunicado
 end
