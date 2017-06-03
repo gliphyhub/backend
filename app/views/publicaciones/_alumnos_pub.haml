@@ -73,7 +73,7 @@
 								.card-content.principal
 									%p.indigo-text.accent-1-text.truncate.etiqueta
 										%i.material-icons.left equalizer
-										%span 4963
+										%span= w.visitas
 									%p.indigo-text.accent-1-text.truncate.etiqueta
 										%i.material-icons.left today
 										%span= "Publicado #{w.created_at.to_date}"
@@ -83,11 +83,12 @@
 									%p.indigo-text.accent-1-text.truncate.etiqueta
 										%i.material-icons.left history
 										-dias_rest=(w.fecha_de_termino - w.created_at.to_date).to_i
-										-if dias_rest == 0
+										-termino = (w.fecha_de_termino - Date.today.to_date).to_i
+										-if termino == 0
 											%span{style:"color:red"} ¡Hoy es el día límite!
-										-elsif dias_rest > 0
+										-elsif termino > 0
 											%span Faltan #{dias_rest} dia(s)
-										-else
+										-elsif termino < 0
 											%span Esta tarea finalizó
 									%p.indigo-text.accent-1-text.truncate.etiqueta
 										%i.material-icons.left person
@@ -126,7 +127,7 @@
 												=image_tag w.perfil_profesor.user.gravatar_url(default: 'mm')
 											.col.s12.center-align
 												%h4.truncate= w.perfil_profesor.nombre
-								.card-action.grey.lighten-2.boot
+								.card-action.grey.lighten-2.boot.center
 									%a.btn.waves-effect.para-ver{id:"#{x}"} VER MÁS	
 						-x += 1
 				.col.s12

@@ -84,11 +84,12 @@
 										%p.indigo-text.accent-1-text.truncate.etiqueta
 											%i.material-icons.left history
 											-dias_rest=(w.fecha_de_termino - w.created_at.to_date).to_i
-											-if dias_rest == 0
+											-termino = (w.fecha_de_termino - Date.today.to_date).to_i
+											-if termino == 0
 												%span{style:"color:red"} ¡Hoy es el día límite!
-											-elsif dias_rest > 0
+											-elsif termino > 0
 												%span Faltan #{dias_rest} dia(s)
-											-else
+											-elsif termino < 0
 												%span Esta tarea finalizó
 										%p.indigo-text.accent-1-text.truncate.etiqueta
 											%i.material-icons.left person

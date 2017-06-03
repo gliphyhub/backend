@@ -77,7 +77,7 @@ class ComunicadosController < ApplicationController
         flash[:error] = "nivel es el vacio"
         render:new
       elsif @tipos.nil?
-        flash[:error] = "tipses el vacio"
+        flash[:error] = "tipos es el vacio"
         render:new
       else
         #llenos los dos comprobados
