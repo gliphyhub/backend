@@ -17,6 +17,7 @@
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  menu                   :boolean          default("t")
 #
 
 require 'test_helper'

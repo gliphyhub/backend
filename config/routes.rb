@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :publicaciones,except: [:update,:edit,:show]
   resources :comunicados,except: [:update,:edit,:show]
 
+  put "menu",to: 'home#toggle_menu', as: 'menu'
   put "visitar/:id",to: 'publicaciones#visitar', as: 'visita'
   put "visitar/:id",to: 'comunicados#visitar', as: 'visitas'
   #devise_for :users, controllers: { registrations: 'users/registrations' }

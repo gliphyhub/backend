@@ -5,7 +5,7 @@ rails g model Tipo tipo_de_usuario
 
 rails g model Genero sexo
 
-rails g devise User tipo:belongs_to
+rails g devise User tipo:belongs_to menu:boolean
 
 rails g scaffold PerfilAdmin user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
 

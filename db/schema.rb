@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170603090102) do
+ActiveRecord::Schema.define(version: 20170604210935) do
 
   create_table "archivos", force: :cascade do |t|
     t.integer  "publicacion_id"
@@ -295,6 +295,7 @@ ActiveRecord::Schema.define(version: 20170603090102) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.boolean  "menu",                   default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["tipo_id"], name: "index_users_on_tipo_id"

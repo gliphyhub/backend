@@ -39,13 +39,15 @@ class ComunicadosController < ApplicationController
   def create
     @comunicado = Comunicado.new(comunicado_params)
     @comunicado.perfil_admin_id = current_user.perfil_admin.id
+    #filtro todo
     @tipos=params[:tipos]
     @niveles=params[:niveles]
     @turnos=params[:turnos]
+    #filtro general
     @grupos=params[:grupos] # vienen en array
     @grados=params[:grados]
     @gradoturno=params[:gradoturno]#viene en array
-    #sraise @comunicado
+    #raise @comunicado
     if @tipos.nil? && @niveles.nil?
       #los dos vacios comprobado
       if @turnos.nil?
@@ -55,49 +57,116 @@ class ComunicadosController < ApplicationController
           if @grados.nil?
              #grados esta nulo 
              #todo vacio no tiene caso ver si los @gradoturno tiene algo
+             flash[:error] = "Por favor seleccione algo"
+             render:new
           else
-            #grados seleccionado
+            #grados seleccionado para enviar algo
             if @gradoturno.nil?
               #no hay filtros de matutino o vespertino 
+              flash[:error] = "Para enviar a grados seleccione también el turno"
+              return render:new
             else
-              #hay filtros de turno
+              #hay filtros de turno y grados
               #====AQUI SE GUARDA==========
+              if @comunicado.save
+                @grados.each do |gradoespecifico|
+                  @gradoturno.each do |gturn|
+                    Grupo.where(grado_id:gradoespecifico.to_i,turno_id:gturn.to_i).each do |ggesp|
+                      ComunicadoGrupo.create(grupo_id:ggesp.id,comunicado_id:@comunicado.id)
+                    end
+                  end                  
+                end
+                redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente'
+              else
+                return render:new
+              end
             end
           end
         else
-          # hay grupos seleccionados
+          # hay grupos seleccionados asi en epecifico
           #====AQUI SE GUARDA==========
+          if @comunicado.save
+            @grupos.each do |grupoespecifico|
+              ComunicadoGrupo.create(grupo_id:grupoespecifico.to_i,comunicado_id: @comunicado.id)
+            end
+            redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente'
+          else
+            return render :new
+          end
         end
       else
-        # pues si solo son dos vacios
+        #pues si solo dos vacios
+        flash[:error] = "Si desea utilizar el filtro TODO llene los demas campos"
+        return render:new
       end
     else # de tipos y niveles
       #tipo o nivel tiene algo
       if @niveles.nil?
-        flash[:error] = "nivel es el vacio"
+        flash[:error] = "Nivel no debe estar vacio"
         render:new
       elsif @tipos.nil?
-        flash[:error] = "tipos es el vacio"
+        flash[:error] = "Usuarios no debe estar vacio"
         render:new
       else
         #llenos los dos comprobados
         if @turnos.nil?
-          flash[:error] = "turnos el vacio"
+          flash[:error] = "Turnos no puede estar vacio"
           render:new
         else
           #llenos los 3 comprobado
-          #====AQUI SE GUARDA==========
+          #====AQUI SE GUARDA==========     
+          if @comunicado.save
+                @tipos.each do |tipo, key|
+                if key.to_i == 2 #prof
+                  PerfilProfesor.all.each do |p|    
+                    @niveles.each do |nivel, koy|
+                      @turnos.each do |turno, kiy|
+                        if p.grupos.where(nivel_id:koy.to_i,turno_id:kiy.to_i).size != 0
+                          a = ComunicadoProfesor.where(perfil_profesor_id:p.id,comunicado_id:@comunicado.id).size
+                          if a == 0
+                            ComunicadoProfesor.create(perfil_profesor_id:p.id,comunicado_id:@comunicado.id)
+                          end
+                        end
+                      end
+                    end
+                  end
+                elsif key.to_i == 3 #tutor
+                  PerfilTutor.all.each do |t|
+                    if t.perfil_alumnos.size !=0
+                      t.perfil_alumnos.each do |at|
+                        @turnos.each do |turnos, kiyo|                    
+                          @niveles.each do |niveles, koyo|                         
+                            if at.grupo.nivel.id == koyo.to_i && at.grupo.turno.id == kiyo.to_i
+                              b = ComunicadoTutor.where(perfil_tutor_id:t.id,comunicado_id:@comunicado.id).size
+                              if b  == 0
+                                 ComunicadoTutor.create(perfil_tutor_id:t.id,comunicado_id:@comunicado.id)
+                              end
+                            end
+                          end
+                        end
+                      end
+                    end
+                  end
+                else #alumno
+                  Grado.all.each do |grade|
+                    @niveles.each do |level, kiya|
+                      @turnos.each do |turn, koya|
+                        grade.grupos.where(nivel_id:kiya.to_i,turno_id:koya.to_i).each do |gg|
+                          ComunicadoGrupo.create(grupo_id:gg.id,comunicado_id:@comunicado.id)
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+              redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente' 
+          else #else del save
+             return render :new      
+          end # end del save
         end
       end
     end # de tipos y niveles
 
-    # respond_to do |format|
-    #   if @comunicado.save
-    #     format.html { redirect_to @comunicado, notice: 'Comunicado fue creado satisfactoriamente' }
-    #   else
-    #     return render :new        
-    #   end # end del save
-    # end #end del do format antes del save
   end
 
   # PATCH/PUT /comunicados/1

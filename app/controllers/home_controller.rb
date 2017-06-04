@@ -3,6 +3,14 @@ class HomeController < ApplicationController
   def bienvenida
   end
 
+  def toggle_menu
+    if  current_user.menu == true
+      current_user.update(menu: false)
+    else
+      current_user.update(menu: true)
+    end
+  end
+
   def index
     @seccion="Inicio"
     if current_user.tipo.id == 1 && current_user.perfil_admin.nil?

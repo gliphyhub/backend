@@ -31,11 +31,10 @@
 					%i.material-icons.left apps
 					%span OPCIONES
 			-#=========================================
-			-#============== Toggle Menú =================
+			-#============== Toggle Menú ==============
 			-#=========================================
 			.right
-				#toggleMenu.btn-flat.white-bonis.hide-on-med-and-down.hoverable
-					%i.material-icons.center view_stream
+				=link_to "<i class=\"material-icons center\"> view_stream </i>".html_safe,menu_path,:method => :put,id:"toggleMenu",class:"btn-flat white-bonis hide-on-med-and-down hoverable"
 			-#=========================================
 			-#========== Navegación - menú =================
 			-#=========================================

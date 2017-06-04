@@ -1,87 +1,87 @@
-%main
-	.col.s12
-		%h3.red-text.center-align Llenar perfil
-	= form_for @perfil_tutor do |f|
-		.container
-			%p
-				%span Es importante que llenes de manera consiente este fomulario, para que no haya problemas en el futuro
-			- if @perfil_tutor.errors.any?
-				.red.lighten-2{style:"padding:10px"}
-					%i.material-icons.left warning
-					%h6= "#{pluralize(@perfil_tutor.errors.count, "problema(s)")} ocurrio al guardar el perfil"
-				-#%blockquote= "#{pluralize(@perfil_tutor.errors.count, "probelma(s)")} ocurrio al guardar el perfil"
-				- @perfil_tutor.errors.full_messages.each do |msg|
-					-#%li= msg
-					%script Materialize.toast("#{msg}", 5000);
-			.card.grey.lighten-3
-				.card-content
-					.col.s12
-						%i.material-icons.left face
-						%span.card-title Datos personales
-					%h6.red-text Identificación
-					.input-field
-						= f.label "Nombre(s)"
-						= f.text_field :nombre
-					.input-field
-						= f.label :ap_paterno
-						= f.text_field :ap_paterno
-					.input-field
-						= f.label :ap_materno
-						= f.text_field :ap_materno
-					%h6.red-text Fecha de nacimiento
-					.input-field
-						= f.date_select :fecha_de_nacimiento, start_year:1950, end_year:2010
-					%h6.red-text Género
-					.input-field
-						-Genero.all.each do |genero|
-							= f.radio_button :genero_id,genero.id
-							= f.label "genero_id_#{genero.id}", genero.sexo.humanize
-							&nbsp;&nbsp;&nbsp;&nbsp;
-			%br/
-			.card.grey.lighten-3
-				.card-content
-					.col.s12
-						%i.material-icons.left explore
-						%span.card-title Dirección
-					.input-field
-						= f.label :calle
-						= f.text_field :calle
-					.input-field
-						= f.label :colonia
-						= f.text_field :colonia
-					.input-field
-						= f.label "Delegación o municipio"
-						= f.text_field :delegacion_municipio
-					.input-field
-						= f.label :codigo_postal
-						= f.text_field :codigo_postal, data:{length:"5"}
-					.input-field
-						= f.label :numero_exterior
-						= f.text_field :numero_exterior
-					%h6.red-text Opcional
-					.input-field
-						= f.label :numero_interior
-						= f.text_field :numero_interior
-			%br/
-			.card.grey.lighten-3
-				.card-content
-					.col.s12
-						%i.material-icons.left comment
-						%span.card-title Contacto
-					.input-field
-						= f.label :telefono_casa
-						= f.text_field :telefono_casa, data:{length:"8"}
-					.input-field
-						= f.label :telefono_celular
-						= f.text_field :telefono_celular, data:{length:"10"}
-					%h6.red-text Opcional
-					.input-field
-						= f.label :telefono_recados
-						= f.text_field :telefono_recados
-					.input-field
-						= f.label :extension_recados
-						= f.text_field :extension_recados
-			.input-field.center
-				= f.submit 'Guardar', class:"btn waves-effect waves-light"
-			%br/
-			%br/
+
+.col.s12
+	%h3.red-text.center-align Llenar perfil
+= form_for @perfil_tutor do |f|
+	.container
+		%p
+			%span Es importante que llenes de manera consiente este fomulario, para que no haya problemas en el futuro
+		- if @perfil_tutor.errors.any?
+			.red.lighten-2{style:"padding:10px"}
+				%i.material-icons.left warning
+				%h6= "#{pluralize(@perfil_tutor.errors.count, "problema(s)")} ocurrio al guardar el perfil"
+			-#%blockquote= "#{pluralize(@perfil_tutor.errors.count, "probelma(s)")} ocurrio al guardar el perfil"
+			- @perfil_tutor.errors.full_messages.each do |msg|
+				-#%li= msg
+				%script Materialize.toast("#{msg}", 5000);
+		.card.grey.lighten-3
+			.card-content
+				.col.s12
+					%i.material-icons.left face
+					%span.card-title Datos personales
+				%h6.red-text Identificación
+				.input-field
+					= f.label "Nombre(s)"
+					= f.text_field :nombre
+				.input-field
+					= f.label :ap_paterno
+					= f.text_field :ap_paterno
+				.input-field
+					= f.label :ap_materno
+					= f.text_field :ap_materno
+				%h6.red-text Fecha de nacimiento
+				.input-field
+					= f.date_select :fecha_de_nacimiento, start_year:1950, end_year:2010
+				%h6.red-text Género
+				.input-field
+					-Genero.all.each do |genero|
+						= f.radio_button :genero_id,genero.id
+						= f.label "genero_id_#{genero.id}", genero.sexo.humanize
+						&nbsp;&nbsp;&nbsp;&nbsp;
+		%br/
+		.card.grey.lighten-3
+			.card-content
+				.col.s12
+					%i.material-icons.left explore
+					%span.card-title Dirección
+				.input-field
+					= f.label :calle
+					= f.text_field :calle
+				.input-field
+					= f.label :colonia
+					= f.text_field :colonia
+				.input-field
+					= f.label "Delegación o municipio"
+					= f.text_field :delegacion_municipio
+				.input-field
+					= f.label :codigo_postal
+					= f.text_field :codigo_postal, data:{length:"5"}
+				.input-field
+					= f.label :numero_exterior
+					= f.text_field :numero_exterior
+				%h6.red-text Opcional
+				.input-field
+					= f.label :numero_interior
+					= f.text_field :numero_interior
+		%br/
+		.card.grey.lighten-3
+			.card-content
+				.col.s12
+					%i.material-icons.left comment
+					%span.card-title Contacto
+				.input-field
+					= f.label :telefono_casa
+					= f.text_field :telefono_casa, data:{length:"8"}
+				.input-field
+					= f.label :telefono_celular
+					= f.text_field :telefono_celular, data:{length:"10"}
+				%h6.red-text Opcional
+				.input-field
+					= f.label :telefono_recados
+					= f.text_field :telefono_recados
+				.input-field
+					= f.label :extension_recados
+					= f.text_field :extension_recados
+		.input-field.center
+			= f.submit 'Guardar', class:"btn waves-effect waves-light"
+		%br/
+		%br/
