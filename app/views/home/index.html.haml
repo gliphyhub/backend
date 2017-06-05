@@ -14,6 +14,7 @@
 	
 	-if current_user.tipo.id == 1 && current_user.perfilado == true
 		= pie_chart Grupo.group(:grado_id).count
+		%h1 grafica cools
 	-elsif current_user.tipo.id == 2 && current_user.perfilado == true
 		= pie_chart Publicacion.group(:perfil_profesor_id).count
 	-elsif current_user.tipo.id == 4 && current_user.perfilado == true
