@@ -94,12 +94,7 @@
 				%br/
 				%br/
 			.col.s12
-				= f.file_field :comunicado_archivo, value: @archivo
-				%br
-				%h5 Seleccione la prioridad del comunicado
-			.col.s12.input-field
-				= f.check_box :prioridad
-				= f.label :prioridad,"Urgente"
+				= f.file_field :comunicado_archivo, value: @archivo_comunicado
 		-#===============Boton publicar================
 	.fixed-action-btn
 		%a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped.hoverable{href:"#mensaje-confirmar", data:{position:"left", delay:"50", tooltip:"Publicar"}}

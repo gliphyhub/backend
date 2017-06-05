@@ -3,7 +3,7 @@ class ComunicadosController < ApplicationController
   before_action :authenticate_user!
   before_action :solo_admin!, only:[:new,:create,:destroy]
 
-  Ruta_directorio_archivos = "public/prof/archivos"
+  Ruta_directorio_archivos_admin = "public/admin/archivos"
 
    def visitar
     @comunicado.update(visitas: @comunicado.visitas + 1)
@@ -57,7 +57,7 @@ class ComunicadosController < ApplicationController
           if @grados.nil?
              #grados esta nulo 
              #todo vacio no tiene caso ver si los @gradoturno tiene algo
-             flash[:error] = "Por favor seleccione algo"
+             flash[:error] = "Por favor seleccione algun filtro"
              render:new
           else
             #grados seleccionado para enviar algo
@@ -67,31 +67,131 @@ class ComunicadosController < ApplicationController
               return render:new
             else
               #hay filtros de turno y grados
-              #====AQUI SE GUARDA==========
-              if @comunicado.save
-                @grados.each do |gradoespecifico|
-                  @gradoturno.each do |gturn|
-                    Grupo.where(grado_id:gradoespecifico.to_i,turno_id:gturn.to_i).each do |ggesp|
-                      ComunicadoGrupo.create(grupo_id:ggesp.id,comunicado_id:@comunicado.id)
-                    end
-                  end                  
+              if params[:comunicado][:comunicado_archivo]#si contiene un archivo
+                archivo = params[:comunicado][:comunicado_archivo]
+                @nombre = archivo.original_filename
+                dir = Ruta_directorio_archivos_admin
+                ext = @nombre.slice(@nombre.rindex("."), @nombre.length).downcase
+                if ext == ".pdf" || 
+                   ext == ".pptx" || 
+                   ext == ".docx" || 
+                   ext == ".xlsx"|| 
+                   ext == ".ppt" || 
+                   ext == ".doc" || 
+                   ext == ".xls" ||
+                   ext == ".png" ||
+                   ext == ".jpg" ||
+                   ext == ".jpeg" ||
+                   ext == ".gif" ||
+                   ext == ".rar"|| 
+                   ext == ".zip"
+                  path = File.join(dir, @nombre)
+                  resultado = File.open(path, "wb") {|f| f.write(archivo.read)}
+                  if resultado
+                      if @comunicado.save
+                        @grados.each do |gradoespecifico|
+                          @gradoturno.each do |gturn|
+                            Grupo.where(grado_id:gradoespecifico.to_i,turno_id:gturn.to_i).each do |ggesp|
+                              ComunicadoGrupo.create(grupo_id:ggesp.id,comunicado_id:@comunicado.id)
+                            end
+                          end                  
+                        end
+                        @archivo_comunicado = ComunicadoArchivo.new({
+                          comunicado_id: @comunicado.id,
+                          nombre: @nombre,
+                          ruta: path
+                        })
+                        if @archivo_comunicado.save()
+                           return redirect_to comunicados_path, notice: 'La publicación ha sido creada satisfactoriamente.'         
+                        else
+                           return  render :new         
+                        end
+                      else #del save
+                        return render :new      
+                      end #del save
+                  else
+                    flash[:error] = "No se pudo subir el archivo"
+                    render:new
+                  end
+                else
+                  flash[:error] = "El formato ingresado es incorrecto. Solo puedes subir archivos .doc, .docx, .pdf, .xlsx, .pptx, .ppt, .xls, .png, .gif, .jpg, .jpeg, .rar, .zip"
+                  render :new 
                 end
-                redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente'
-              else
-                return render:new
-              end
-            end
+              else # si no tiene archvo              
+              #====AQUI SE GUARDA==========
+                if @comunicado.save
+                  @grados.each do |gradoespecifico|
+                    @gradoturno.each do |gturn|
+                      Grupo.where(grado_id:gradoespecifico.to_i,turno_id:gturn.to_i).each do |ggesp|
+                        ComunicadoGrupo.create(grupo_id:ggesp.id,comunicado_id:@comunicado.id)
+                      end
+                    end                  
+                  end
+                  redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente'
+                else #del save
+                  return render:new
+                end #del save
+              end #si archivo
+            end # grupos nilos
           end
         else
-          # hay grupos seleccionados asi en epecifico
-          #====AQUI SE GUARDA==========
-          if @comunicado.save
-            @grupos.each do |grupoespecifico|
-              ComunicadoGrupo.create(grupo_id:grupoespecifico.to_i,comunicado_id: @comunicado.id)
+          if params[:comunicado][:comunicado_archivo]#si contiene un archivo
+            archivo = params[:comunicado][:comunicado_archivo]
+            @nombre = archivo.original_filename
+            dir = Ruta_directorio_archivos_admin
+            ext = @nombre.slice(@nombre.rindex("."), @nombre.length).downcase
+            if ext == ".pdf" || 
+               ext == ".pptx" || 
+               ext == ".docx" || 
+               ext == ".xlsx"|| 
+               ext == ".ppt" || 
+               ext == ".doc" || 
+               ext == ".xls" ||
+               ext == ".png" ||
+               ext == ".jpg" ||
+               ext == ".jpeg" ||
+               ext == ".gif" ||
+               ext == ".rar"|| 
+               ext == ".zip"
+              path = File.join(dir, @nombre)
+              resultado = File.open(path, "wb") {|f| f.write(archivo.read)}
+              if resultado
+                  if @comunicado.save
+                    @grupos.each do |grupoespecifico|
+                      ComunicadoGrupo.create(grupo_id:grupoespecifico.to_i,comunicado_id: @comunicado.id)
+                    end
+                    @archivo_comunicado = ComunicadoArchivo.new({
+                      comunicado_id: @comunicado.id,
+                      nombre: @nombre,
+                      ruta: path
+                    })
+                    if @archivo_comunicado.save()
+                       return redirect_to comunicados_path, notice: 'La publicación ha sido creada satisfactoriamente.'         
+                    else
+                       return  render :new         
+                    end
+                  else #del save
+                    return render :new      
+                  end #del save
+              else
+                flash[:error] = "No se pudo subir el archivo"
+                render:new
+              end
+            else
+              flash[:error] = "El formato ingresado es incorrecto. Solo puedes subir archivos .doc, .docx, .pdf, .xlsx, .pptx, .ppt, .xls, .png, .gif, .jpg, .jpeg, .rar, .zip"
+              render :new 
             end
-            redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente'
-          else
-            return render :new
+          else # si no tiene archvo
+            # hay grupos seleccionados asi en epecifico
+            #====AQUI SE GUARDA==========
+            if @comunicado.save
+              @grupos.each do |grupoespecifico|
+                ComunicadoGrupo.create(grupo_id:grupoespecifico.to_i,comunicado_id: @comunicado.id)
+              end
+              redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente'
+            else
+              return render :new
+            end
           end
         end
       else
@@ -113,56 +213,144 @@ class ComunicadosController < ApplicationController
           flash[:error] = "Turnos no puede estar vacio"
           render:new
         else
-          #llenos los 3 comprobado
-          #====AQUI SE GUARDA==========     
-          if @comunicado.save
-                @tipos.each do |tipo, key|
-                if key.to_i == 2 #prof
-                  PerfilProfesor.all.each do |p|    
-                    @niveles.each do |nivel, koy|
-                      @turnos.each do |turno, kiy|
-                        if p.grupos.where(nivel_id:koy.to_i,turno_id:kiy.to_i).size != 0
-                          a = ComunicadoProfesor.where(perfil_profesor_id:p.id,comunicado_id:@comunicado.id).size
-                          if a == 0
-                            ComunicadoProfesor.create(perfil_profesor_id:p.id,comunicado_id:@comunicado.id)
+          if params[:comunicado][:comunicado_archivo]#si contiene un archivo
+            archivo = params[:comunicado][:comunicado_archivo]
+            @nombre = archivo.original_filename
+            dir = Ruta_directorio_archivos_admin
+            ext = @nombre.slice(@nombre.rindex("."), @nombre.length).downcase
+            if ext == ".pdf" || 
+               ext == ".pptx" || 
+               ext == ".docx" || 
+               ext == ".xlsx"|| 
+               ext == ".ppt" || 
+               ext == ".doc" || 
+               ext == ".xls" ||
+               ext == ".png" ||
+               ext == ".jpg" ||
+               ext == ".jpeg" ||
+               ext == ".gif" ||
+               ext == ".rar"|| 
+               ext == ".zip"
+              path = File.join(dir, @nombre)
+              resultado = File.open(path, "wb") {|f| f.write(archivo.read)}
+              if resultado
+                  if @comunicado.save
+                      @tipos.each do |tipo, key|
+                      if key.to_i == 2 #prof
+                        PerfilProfesor.all.each do |p|
+                          @niveles.each do |nivel, koy|
+                            @turnos.each do |turno, kiy|
+                              if p.grupos.where(nivel_id:koy.to_i,turno_id:kiy.to_i).size != 0
+                                a = ComunicadoProfesor.where(perfil_profesor_id:p.id,comunicado_id:@comunicado.id).size
+                                if a == 0
+                                  ComunicadoProfesor.create(perfil_profesor_id:p.id,comunicado_id:@comunicado.id)
+                                end
+                              end
+                            end
                           end
                         end
-                      end
-                    end
-                  end
-                elsif key.to_i == 3 #tutor
-                  PerfilTutor.all.each do |t|
-                    if t.perfil_alumnos.size !=0
-                      t.perfil_alumnos.each do |at|
-                        @turnos.each do |turnos, kiyo|                    
-                          @niveles.each do |niveles, koyo|                         
-                            if at.grupo.nivel.id == koyo.to_i && at.grupo.turno.id == kiyo.to_i
-                              b = ComunicadoTutor.where(perfil_tutor_id:t.id,comunicado_id:@comunicado.id).size
-                              if b  == 0
-                                 ComunicadoTutor.create(perfil_tutor_id:t.id,comunicado_id:@comunicado.id)
+                      elsif key.to_i == 3 #tutor
+                        PerfilTutor.all.each do |t|
+                          if t.perfil_alumnos.size !=0
+                            t.perfil_alumnos.each do |at|
+                              @turnos.each do |turnos, kiyo|                    
+                                @niveles.each do |niveles, koyo|                         
+                                  if at.grupo.nivel.id == koyo.to_i && at.grupo.turno.id == kiyo.to_i
+                                    b = ComunicadoTutor.where(perfil_tutor_id:t.id,comunicado_id:@comunicado.id).size
+                                    if b  == 0
+                                       ComunicadoTutor.create(perfil_tutor_id:t.id,comunicado_id:@comunicado.id)
+                                    end
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      else #alumno
+                        Grado.all.each do |grade|
+                          @niveles.each do |level, kiya|
+                            @turnos.each do |turn, koya|
+                              grade.grupos.where(nivel_id:kiya.to_i,turno_id:koya.to_i).each do |gg|
+                                ComunicadoGrupo.create(grupo_id:gg.id,comunicado_id:@comunicado.id)
                               end
                             end
                           end
                         end
                       end
                     end
-                  end
-                else #alumno
-                  Grado.all.each do |grade|
-                    @niveles.each do |level, kiya|
-                      @turnos.each do |turn, koya|
-                        grade.grupos.where(nivel_id:kiya.to_i,turno_id:koya.to_i).each do |gg|
-                          ComunicadoGrupo.create(grupo_id:gg.id,comunicado_id:@comunicado.id)
+                    @archivo_comunicado = ComunicadoArchivo.new({
+                      comunicado_id: @comunicado.id,
+                      nombre: @nombre,
+                      ruta: path
+                    })
+                    if @archivo_comunicado.save()
+                       return redirect_to comunicados_path, notice: 'La publicación ha sido creada satisfactoriamente.'         
+                    else
+                       return  render :new
+                    end
+                  else #del save
+                    return render :new      
+                  end #del save
+              else
+                flash[:error] = "No se pudo subir el archivo"
+                render:new
+              end
+            else
+              flash[:error] = "El formato ingresado es incorrecto. Solo puedes subir archivos .doc, .docx, .pdf, .xlsx, .pptx, .ppt, .xls, .png, .gif, .jpg, .jpeg, .rar, .zip"
+              render :new 
+            end
+          else # si no tiene archvo  
+          #llenos los 3 comprobado
+          #====AQUI SE GUARDA==========     
+              if @comunicado.save
+                    @tipos.each do |tipo, key|
+                    if key.to_i == 2 #prof
+                      PerfilProfesor.all.each do |p|
+                        @niveles.each do |nivel, koy|
+                          @turnos.each do |turno, kiy|
+                            if p.grupos.where(nivel_id:koy.to_i,turno_id:kiy.to_i).size != 0
+                              a = ComunicadoProfesor.where(perfil_profesor_id:p.id,comunicado_id:@comunicado.id).size
+                              if a == 0
+                                ComunicadoProfesor.create(perfil_profesor_id:p.id,comunicado_id:@comunicado.id)
+                              end
+                            end
+                          end
+                        end
+                      end
+                    elsif key.to_i == 3 #tutor
+                      PerfilTutor.all.each do |t|
+                        if t.perfil_alumnos.size !=0
+                          t.perfil_alumnos.each do |at|
+                            @turnos.each do |turnos, kiyo|                    
+                              @niveles.each do |niveles, koyo|                         
+                                if at.grupo.nivel.id == koyo.to_i && at.grupo.turno.id == kiyo.to_i
+                                  b = ComunicadoTutor.where(perfil_tutor_id:t.id,comunicado_id:@comunicado.id).size
+                                  if b  == 0
+                                     ComunicadoTutor.create(perfil_tutor_id:t.id,comunicado_id:@comunicado.id)
+                                  end
+                                end
+                              end
+                            end
+                          end
+                        end
+                      end
+                    else #alumno
+                      Grado.all.each do |grade|
+                        @niveles.each do |level, kiya|
+                          @turnos.each do |turn, koya|
+                            grade.grupos.where(nivel_id:kiya.to_i,turno_id:koya.to_i).each do |gg|
+                              ComunicadoGrupo.create(grupo_id:gg.id,comunicado_id:@comunicado.id)
+                            end
+                          end
                         end
                       end
                     end
                   end
-                end
-              end
-              redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente' 
-          else #else del save
-             return render :new      
-          end # end del save
+                  redirect_to comunicados_path, notice: 'Comunicado fue creado satisfactoriamente' 
+              else #else del save
+                 return render :new
+              end # end del save
+          end
         end
       end
     end # de tipos y niveles
@@ -203,8 +391,6 @@ class ComunicadosController < ApplicationController
     def comunicado_params
       params.require(:comunicado).permit(:titulo, 
                                          :mensaje,
-                                         :mensaje_markdown, 
-                                         :fecha_de_termino, 
-                                         :prioridad)
+                                         :mensaje_markdown)
     end
 end
