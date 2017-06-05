@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
  Ruta_directorio_archivos = "public/prof/archivos"
+ Ruta_directorio_archivos_admin = "public/admin/archivos"
   def bienvenida
   end
 
@@ -23,12 +24,20 @@ class HomeController < ApplicationController
       @perfil_alumno = PerfilAlumno.new
     end
 
-    if current_user.tipo.id == 4 && current_user.perfilado == true      
+    if current_user.tipo.id == 4 && current_user.perfilado == true
+      @archi_c = ComunicadoArchivo.select("id, nombre, ruta, comunicado_id")
+      @archivos_c = Dir.entries(Ruta_directorio_archivos_admin)
       @archi = Archivo.select("id, nombre, ruta, publicacion_id")
       @archivos = Dir.entries(Ruta_directorio_archivos)
       @publicaciones = current_user.perfil_alumno.grupo.publicaciones.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+      @comunicados = current_user.perfil_alumno.grupo.comunicados.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+    elsif current_user.tipo.id == 3 && current_user.perfilado == true
+      @archi_c = ComunicadoArchivo.select("id, nombre, ruta, comunicado_id")
+      @archivos_c = Dir.entries(Ruta_directorio_archivos_admin)
+      @archi = Archivo.select("id, nombre, ruta, publicacion_id")
+      @archivos = Dir.entries(Ruta_directorio_archivos)
+      @comunicados = current_user.perfil_tutor.comunicados.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
     end
-
   end
 
   def help

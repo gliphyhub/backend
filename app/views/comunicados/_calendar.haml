@@ -1,0 +1,8 @@
+-if @comunicados.size != 0
+	= month_calendar events: @comunicados, previous_link: events_ajax_previous_link, next_link: events_ajax_next_link do |date, publicacion| 
+		=date.day
+		-unless publicacion.size == 0
+			▄
+-else
+	= month_calendar do |date|
+		= date.day

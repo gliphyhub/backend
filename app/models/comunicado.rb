@@ -24,4 +24,7 @@ class Comunicado < ApplicationRecord
 	has_many :perfil_profesores, :through => :comunicado_profesores
 	has_many :comunicado_tutores, dependent: :destroy
 	has_many :perfil_tutores, :through => :comunicado_tutores
+def start_time
+    self.created_at ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+end
 end

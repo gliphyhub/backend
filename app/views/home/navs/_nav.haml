@@ -36,19 +36,17 @@
 		%li.white-text
 			%h6.center-align.upper Notificaciones
 		%ul.notificaciones
-			-unless @notificationes.nil?
-				-@notificationes.each do |item|
+			-if @notificationes.size !=0
+				-@notificationes.each do |item| 
 					%li 
 						%ul.collapsible.collapsible-accordion
 							%li
 								%a.waves-effect.white-bonis.collapsible-header
-									%i.material-icons.left.white-bonis=item[:icon]
-									%span.trun=item[:title]
-									%label=item[:publicador]
+									%i.material-icons.left.white-bonis sms
+									%span.trun=item.titulo
+									%label=item.perfil_admin.nombre
 								.collapsible-body
 									%ul.blue-grey.darken-1
 										.row.no-margin
 											.col.s12.no-padding
-												.noti.white-text.jus=item[:desc]
-											.col.s12.no-padding
-												%a.btn-flat.waves-effect.no-margin.orange-text.right Ver más
+												.noti.white-text.jus= time_ago_in_words(item.created_at)

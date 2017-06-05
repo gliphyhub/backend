@@ -8,7 +8,7 @@ class PublicacionesController < ApplicationController
   # GET /publicaciones
   # GET /publicaciones.json
    def visitar
-    @publicacion.update(visitas: @publicacion.visitas + 1)
+     @publicacion.update(visitas: @publicacion.visitas + 1)
    end
 
   def index
@@ -23,6 +23,7 @@ class PublicacionesController < ApplicationController
       @publicaciones = Publicacion.paginate(:page => params[:page], :per_page => 6).where(perfil_profesor_id: current_user.perfil_profesor.id).order('created_at DESC')
     elsif current_user.tipo.id == 1
       @publicaciones = Publicacion.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+        
     end
   end
 

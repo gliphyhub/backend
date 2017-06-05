@@ -1,23 +1,23 @@
 %main.navegacion-espacio
 	-#===============Boton buscar================
-	.fixed-action-btn
-		%a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped.hoverable{href:"#buscar", data:{position:"left", delay:"50", tooltip:"Buscar"}}
-			%i.material-icons search
-	-#===============Mensaje de buscar=============
-	#buscar.modal.bottom-sheet
-		.modal-content
-			%h5 Ingrese el término de la búsqueda
-			%br/
-			.input-field
-				%i.material-icons.prefix search
-				%input#links1.validate{type:"text"}
-				%label{for:"links1"} Búsqueda
+	-# .fixed-action-btn
+	-# 	%a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped.hoverable{href:"#buscar", data:{position:"left", delay:"50", tooltip:"Buscar"}}
+	-# 		%i.material-icons search
+	-# -#===============Mensaje de buscar=============
+	-# #buscar.modal.bottom-sheet
+	-# 	.modal-content
+	-# 		%h5 Ingrese el término de la búsqueda
+	-# 		%br/
+	-# 		.input-field
+	-# 			%i.material-icons.prefix search
+	-# 			%input#links1.validate{type:"text"}
+	-# 			%label{for:"links1"} Búsqueda
 
-		.modal-footer
-			%p.right
+	-# 	.modal-footer
+	-# 		%p.right
 				
-				%a.modal-action.modal-close.waves-effect.waves-green.btn{href:"#"} Buscar
-				%a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href:"#"} Volver
+	-# 			%a.modal-action.modal-close.waves-effect.waves-green.btn{href:"#"} Buscar
+	-# 			%a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href:"#"} Volver
 	-#============Dirigido a ============
 	#dirigido.modal
 		.modal-content
@@ -135,16 +135,15 @@
 										-if current_user.tipo.id==1
 											= link_to 'Eliminar', w, :method => :delete, :data => { :confirm => '¿Seguro? que desea eliminar'},class:"btn waves-effect waves-light red"
 							-x += 1
-					.col.s12
+					.col.s12.center
 						%br
-						= will_paginate @publicaciones
+						%h4= will_paginate @publicaciones
 			-else				
 				.col.s12.center{style:"margin-top:80px"}
 					%h4.center-align No hay publicaciones
 					%br/
 					%br/
 								
-
 
 
 	-# -@publicaciones.each do |w|

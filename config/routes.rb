@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   put "menu",to: 'home#toggle_menu', as: 'menu'
   put "visitar/:id",to: 'publicaciones#visitar', as: 'visita'
-  put "visitar/:id",to: 'comunicados#visitar', as: 'visitas'
+  put "ver/:id",to: 'comunicados#visitar', as: 'ver'
+  get "fijar/:id",to: 'comunicados#fijar', as: 'fijar'
+
   #devise_for :users, controllers: { registrations: 'users/registrations' }
   #devise_scope :user do
   # get '/users/sign_out' => 'devise/sessions#destroy'

@@ -1,22 +1,22 @@
 -#===============Boton buscar================
-.fixed-action-btn
-	%a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped.hoverable{href:"#buscar", data:{position:"left", delay:"50", tooltip:"Buscar"}}
-		%i.material-icons search
--#===============Mensaje de buscar=============
-#buscar.modal.bottom-sheet
-	.modal-content
-		%h5 Ingrese el término de la búsqueda
-		%br/
-		.input-field
-			%i.material-icons.prefix search
-			%input#links1.validate{type:"text"}
-			%label{for:"links1"} Búsqueda
+-# .fixed-action-btn
+-# 	%a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped.hoverable{href:"#buscar", data:{position:"left", delay:"50", tooltip:"Buscar"}}
+-# 		%i.material-icons search
+-# -#===============Mensaje de buscar=============
+-# #buscar.modal.bottom-sheet
+-# 	.modal-content
+-# 		%h5 Ingrese el término de la búsqueda
+-# 		%br/
+-# 		.input-field
+-# 			%i.material-icons.prefix search
+-# 			%input#links1.validate{type:"text"}
+-# 			%label{for:"links1"} Búsqueda
 
-	.modal-footer
-		%p.right
+-# 	.modal-footer
+-# 		%p.right
 			
-			%a.modal-action.modal-close.waves-effect.waves-green.btn{href:"#"} Buscar
-			%a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href:"#"} Volver
+-# 			%a.modal-action.modal-close.waves-effect.waves-green.btn{href:"#"} Buscar
+-# 			%a.modal-action.modal-close.waves-effect.waves-green.btn-flat{href:"#"} Volver
 -#============Dirigido a ============
 #dirigido.modal
 	.modal-content
@@ -33,10 +33,8 @@
 		%p.right
 			%a.modal-action.modal-close.waves-effect.btn-flat{href:"#!"} Volver
 -#===============Principal contenido===========
-.row	
-	#parte-izquierda.col.s12.animar		
-		.col.s12
-			%h3.red-text.center-align Publicaciones
+.row
+	#parte-izquierda.col.s12.animar
 		#diversos.col.s12
 			-#======== CALENDAR ==========
 			#calendario-contenedor.col.s12.m7.no-padding
@@ -57,9 +55,10 @@
 								%option{value:"1"} Importancia
 							%label Ordenar por:
 		-#======== CARDS =======
+		=render "comunicados/alumno"
 		-if @publicaciones.size != 0
 			#cards-comunicados.col.s12
-				%h4.truncate.center-align Publicaciones
+				%h3.red-text.truncate.center-align Publicaciones
 				.row
 					-lim = @publicaciones.size
 					-x = 1
@@ -128,11 +127,11 @@
 											.col.s12.center-align
 												%h4.truncate= w.perfil_profesor.nombre
 								.card-action.grey.lighten-2.boot.center
-									%a.btn.waves-effect.para-ver{id:"#{x}"} VER MÁS	
+									= link_to "VER MAS",visita_path(w),:method => :put,id:"#{x}",class:"btn waves-effect para-ver"
 						-x += 1
-				.col.s12
+				.col.s12.center
 					%br
-					= will_paginate @publicaciones
+					%h4= will_paginate @publicaciones
 		-else				
 			.col.s12.center{style:"margin-top:80px"}
 				%h4.center-align No hay publicaciones

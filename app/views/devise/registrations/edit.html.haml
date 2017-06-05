@@ -79,8 +79,7 @@
 									%p Alumno(s)
 								.col.s12
 									-current_user.perfil_tutor.perfil_alumnos.each do |alumno|
-										%h5 #{alumno.nombre} #{alumno.ap_paterno} #{alumno.ap_materno}- #{alumno.user.email}
-										\|
+										%h5 #{alumno.nombre} #{alumno.ap_paterno} #{alumno.ap_materno} - #{alumno.user.email} - #{alumno.grupo.grupo}
 					-if current_user.tipo.id == 4
 						.col.s12.m6.dato
 							.col.s12

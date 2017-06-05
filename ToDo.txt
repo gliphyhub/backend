@@ -38,8 +38,14 @@ vitas y dias........./ fking done!!!!!!!!!
 
 rails admin.... .// done (checar y confiiguara tablas de publicaciones)
 
-comunicados...
-notificaciones....
+comunicados... //// done!!!!!
+
+
+notificaciones.... ///
+
+filtros para ver..
+
+
 
 mails...
 
@@ -49,34 +55,7 @@ drag and drop...
 
 diseño de la paginacion...
 
-filtros para ver..
 
 
 
-la barra ya fucinna cambiar en layouy y new de cada pefil
-
-scopes
-en el modelo
-
-scope :publicados, ->{ where (state:"published")}
-
-scope :ultimos, ->{order("created_at" DESC).limit(10)}
-
-En el controlador
-
-@publicaciones = Publicacion.publicados.ultimos
-
-
-=time_ago_in_words(publicacion.created_at) ago
-
-render @modeloplural
-
-_modelosingular
-	coasas en singular.metodo
-
-"404, "mm", "identicon", "monsterid", "wavatar", "retro", "blank" or an absolute URL.
-
-
-
-NOTA IMPORTANTE
-eliminar perfiles desde nosotros
+la barra ya fucinna cambiar en layouy y new de cada pefil, index de ublicaciones para admin 

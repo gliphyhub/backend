@@ -1,21 +1,34 @@
 class ComunicadosController < ApplicationController
-  before_action :set_comunicado, only: [:destroy,:visitar]
+  before_action :set_comunicado, only: [:destroy,:visitar,:fijar]
   before_action :authenticate_user!
-  before_action :solo_admin!, only:[:new,:create,:destroy]
+  before_action :solo_admin!, only:[:new,:create,:destroy,:fijar]
 
   Ruta_directorio_archivos_admin = "public/admin/archivos"
 
    def visitar
     @comunicado.update(visitas: @comunicado.visitas + 1)
-
+   end
+   def fijar
+    if @comunicado.prioridad == true
+      @comunicado.update(prioridad: false)
+    else
+      @comunicado.update(prioridad: true)
+    end
+    return redirect_to comunicados_path
    end
 
   # GET /comunicados
   # GET /comunicados.json
   def index
     @seccion = "Comunicados"
+    #==================0cambiar tamebin en el home controler=======================
+    @archi_c = ComunicadoArchivo.select("id, nombre, ruta, comunicado_id")
+    #==================0cambiar tamebin en el home controler=======================
+    @archivos_c = Dir.entries(Ruta_directorio_archivos_admin)
     if current_user.tipo.id == 1
       @comunicados = Comunicado.paginate(:page => params[:page], :per_page => 9).order('prioridad DESC, created_at DESC')
+    elsif current_user.tipo.id == 2
+      @comunicados = current_user.perfil_profesor.comunicados.paginate(:page => params[:page], :per_page => 9).order('prioridad DESC, created_at DESC')        
     end
   end
 
@@ -39,6 +52,7 @@ class ComunicadosController < ApplicationController
   def create
     @comunicado = Comunicado.new(comunicado_params)
     @comunicado.perfil_admin_id = current_user.perfil_admin.id
+    @comunicado.prioridad = false
     #filtro todo
     @tipos=params[:tipos]
     @niveles=params[:niveles]
@@ -376,12 +390,11 @@ class ComunicadosController < ApplicationController
   def destroy
     @comunicado.destroy
     respond_to do |format|
-      format.html { redirect_to comunicados_url, notice: 'Comunicado was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to comunicados_url, notice: 'Comunicado fue eliminado correctamente' }
     end
   end
 
-  private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_comunicado
       @comunicado = Comunicado.find(params[:id])
@@ -393,4 +406,5 @@ class ComunicadosController < ApplicationController
                                          :mensaje,
                                          :mensaje_markdown)
     end
+
 end
