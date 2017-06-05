@@ -9,7 +9,7 @@
 class Nivel < ApplicationRecord
   ###################################################
   ##################Validaciones#####################
-    validates :nivel, presence: {message: "Campo obligatorio."}, length: {in: 5..30, message: "El nivel debe tener entre 5 y 30 caracteres."}
+    #validates :nivel, presence: {message: "Campo obligatorio."}, length: {in: 5..30, message: "El nivel debe tener entre 5 y 30 caracteres."}
   ###################################################
   ####################Relaciones#####################
 	  has_many :grupos, dependent: :destroy
