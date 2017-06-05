@@ -2,7 +2,7 @@
 	-@ver=240
 -else
 	-@ver=0
-%main{style:"padding-left:#{@ver}px"}
+%main.navegacion-espacio{style:"padding-left:#{@ver}px"}
 	-if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
 		=render "perfil_admins/form"
 	-elsif current_user.tipo.id == 2 && current_user.perfil_profesor.nil?
@@ -11,13 +11,26 @@
 		=render "perfil_tutores/form"
 	-elsif current_user.tipo.id == 4 && current_user.perfil_alumno.nil?
 		=render "perfil_alumnos/form"
-	
-	-if current_user.tipo.id == 1 && current_user.perfilado == true
-		= pie_chart Grupo.group(:grado_id).count
-		%h1 grafica cools
-	-elsif current_user.tipo.id == 2 && current_user.perfilado == true
-		= pie_chart Publicacion.group(:perfil_profesor_id).count
-	-elsif current_user.tipo.id == 4 && current_user.perfilado == true
-		=render "publicaciones/alumnos_pub"
-	-else current_user.tipo.id == 4 && current_user.perfilado == true
-		=render "comunicados/tutor"
+	.row
+		-if current_user.tipo.id == 1 && current_user.perfilado == true
+			.col.m6.s12
+				%h3 Usuarios en el sistema
+				= pie_chart User.group(:tipo_id).count
+			.col.m6.s12
+				%h3 Promedio de ingreso al sistema
+				=line_chart User.group(:sign_in_count).sum(:id)
+			.col.s12.center
+				%h3 Vistas por publicación
+				= column_chart Publicacion.group(:titulo).order("created_at DESC").limit(15).sum(:visitas), xtitle: "Publicacion", ytitle: "Visitas"
+				
+			.col.s12.center
+				%h3 Vistas por Comunicados
+				= bar_chart Comunicado.group(:titulo).limit(10).order("created_at DESC").sum(:visitas), xtitle: "Comunicadoss", ytitle: "Visitas"
+		-elsif current_user.tipo.id == 2 && current_user.perfilado == true
+			.col.s12.center
+				%h3 Alcance de mis publicaciones
+				= line_chart Publicacion.where(perfil_profesor_id:current_user.perfil_profesor.id).group(:titulo).order("created_at DESC").limit(10).sum(:visitas), xtitle: "Publicacion", ytitle: "Visitas"
+		-elsif current_user.tipo.id == 4 && current_user.perfilado == true
+			=render "publicaciones/alumnos_pub"
+		-else current_user.tipo.id == 4 && current_user.perfilado == true
+			=render "comunicados/tutor"

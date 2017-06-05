@@ -37,6 +37,7 @@ class HomeController < ApplicationController
       @archi = Archivo.select("id, nombre, ruta, publicacion_id")
       @archivos = Dir.entries(Ruta_directorio_archivos)
       @comunicados = current_user.perfil_tutor.comunicados.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+      @publicaciones = current_user.perfil_tutor.perfil_alumnos.last.grupo.comunicados.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
     end
   end
 
