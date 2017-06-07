@@ -13,6 +13,14 @@ class HomeController < ApplicationController
   end
 
   def index
+    @comunicados = Comunicado.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+    @archi_c = ComunicadoArchivo.select("id, nombre, ruta, comunicado_id")
+      @archivos_c = Dir.entries(Ruta_directorio_archivos_admin)
+      @publicaciones = Publicacion.all.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+       @archi = Archivo.select("id, nombre, ruta, publicacion_id")
+       @notificationes= Comunicado.all.limit(10).order('prioridad DESC, created_at DESC')
+    #==================0cambiar tamebin en el home controler=======================
+    @archivos = Dir.entries(Ruta_directorio_archivos)
     @seccion="Inicio"
     if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
       @perfil_admin = PerfilAdmin.new
