@@ -29,6 +29,7 @@
 		position: absolute;
 		background: #3367D6;
 		bottom: 0;
+		z-index: 1;
 	}
 	.row {
 		position: relative;
@@ -109,7 +110,7 @@
 	border-radius: 2px;
 }
 
-@media only screen and (max-height: 600px) {
+@media only screen and (max-width: 600px) {
 	.index-first .row {
 		padding: 15vh 0 20px 0;
 		img {
@@ -432,3 +433,10 @@ footer {
 
 nav ul li {font-weight: 500;}
 
+.label-chido {
+	label {
+		&::before {
+			border: 2px solid #bdbdbd;
+		};
+	}
+}

@@ -1,8 +1,8 @@
--if current_user.tipo.id <= 2
-	-@ver=240
+-if current_user.menu == true
+	-@ver="navegacion-espacio"
 -else
-	-@ver=0
-%main.navegacion-espacio{style:"padding-left:#{@ver}px"}
+	-@ver=""
+%main{class:"#{@ver}"}
 	-if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
 		=render "perfil_admins/form"
 	-elsif current_user.tipo.id == 2 && current_user.perfil_profesor.nil?

@@ -7,9 +7,9 @@
 		%i.material-icons.prefix.medium lock_outline
 		= f.password_field :password, autocomplete: "off"
 		= f.label :password
-	.input-field.col.s12{style:"margin: -13px 0 17px 0"}
+	.input-field.col.s12.label-chido{style:"margin: -13px 0 17px 0"}
 		= f.check_box :remember_me
 		= f.label :remember_me
 	%br/
 	.input-field.col.s12
-		= f.submit t('.sign_in'), class:"col s12 btn waves-effect waves-light"
+		= f.submit t('.sign_in'), class:"col s12 btn waves-effect waves-light new-button"

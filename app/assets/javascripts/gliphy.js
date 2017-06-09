@@ -1,33 +1,10 @@
-$(function() {
+$(document).on('turbolinks:load', function() {
+	// Inicialización de efecto de olas
+	Waves.displayEffect()
+	// Inicialización de tabs
+	$('ul.tabs').tabs();
+	
 
-	/*var editor = new EpicEditor({
-	file:{
-	name:"nueva-publicacion"
-	}
-	});
-	$("#formulario_publicacion").on("submit",function(){
-	$("#publicacion_mensaje").val( editor.exportFile("nueva-publicacion","html"));
-	});*/
-
-	  /*============evitar inciar sesion=====================
-	  $("form button").click(function (e) {
-	    e.preventDefault();
-	  });
-	  //====================================================
-	  $(".dropdown-button").dropdown({
-	    constrainWidth: false, //no abarque el ancho que quiera
-	    alignment: 'right',
-	  });
-	  //===========btn editar==================================
-	  $(".abrir-btn").click(function () {
-	    $(".collapsible-header").addClass("active");
-	    $("#lista-expandible").addClass("active");
-	    $(".collapsible-body").slideDown();
-	    $("#flecha_up_down").text("keyboard_arrow_up");
-	  });
-	   $(".collapsible-header").click(function () {
-	    $("#flecha_up_down").text("keyboard_arrow_down");
-	});*/
 	$("#tabgrupos").click(function (){
 		$("#everyone").prop( "checked", false );
 		$("#noteveryone").prop( "checked", false );
@@ -205,22 +182,20 @@ $(function() {
 
 
 	//========= Editar Profile ==========
-	var editable = false
-	$("#editarDatosProfile").on("click", function() {
-		if (!editable) {
-			$("#user_email").prop("disabled", false);
-			$("#user_email").removeClass("grey-text");
-			$("#user_password").prop("disabled", false);
-			$("#user_password").removeClass("grey-text");
-			$("#editar-devise").parent().removeClass("ocultado");
-			$("#editarDatosProfile").addClass("ocultado");
-			$("#confirmar-col").removeClass("ocultado");
-			$("#user_password_confirmation").prop("disabled", false);
-			$("#validarPass").removeClass("ocultado");
-			$("#validarPass input").prop("disabled", false);
-			$("#cancelarDatosProfile").removeClass("ocultado");
-			editable = !editable
-		}
+
+	$("#editarDatosProfile").click( function() {
+		$("#user_email").prop("disabled", false);
+		$("#user_email").removeClass("grey-text");
+		$("#user_password").prop("disabled", false);
+		$("#user_password").removeClass("grey-text");
+		$("#editar-devise").parent().removeClass("ocultado");
+		$("#editarDatosProfile").addClass("ocultado");
+		$("#confirmar-col").removeClass("ocultado");
+		$("#user_password_confirmation").prop("disabled", false);
+		$("#validarPass").removeClass("ocultado");
+		$("#validarPass input").prop("disabled", false);
+		$('#error_explanation').removeClass("ocultado");
+		$("#cancelarDatosProfile").removeClass("ocultado");
 	});
 
 	$("#cancelarDatosProfile").on("click", function() {
@@ -234,6 +209,7 @@ $(function() {
 		$("#user_password_confirmation").prop("disabled", true);
 		$("#validarPass").addClass("ocultado");
 		$("#validarPass input").prop("disabled", true);
+		$('#error_explanation').addClass("ocultado");
 		$("#cancelarDatosProfile").addClass("ocultado");
 		editable = !editable;
 	});
@@ -264,6 +240,8 @@ $(function() {
 	
 	// Para elegir grupos
 	$('.collapsible').collapsible();
+
+
 /*###################habilitar y deshabilitar materias#############*/
 	var  grado_1
 	grado_1=0

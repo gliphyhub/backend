@@ -87,35 +87,5 @@
 								%p Grupo
 							.col.s12
 								%h5= current_user.perfil_alumno.grupo.grupo
-				= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| 
-					.col.s12
-						= devise_error_messages!
-					.col.s12.no-padding
-						.col.s12.m6.dato
-							.col.s12
-								%i.material-icons.left email
-								%p Correo:
-							
-								.col.s12.input-field
-									= f.email_field :email, autofocus: true,class:"grey-text",disabled:"true"
-									-#%input#correoUser.validate.grey-text{placeholder:"Ingresa un correo electrónico",value:"#{}", disabled:"", type:"text"}
-						.col.s12.m6.dato
-							.col.s12
-								%i.material-icons.left vpn_key
-								%p Contraseña:
-							.col.s12.no-padding
-								.col.s12.input-field
-									= f.password_field :password, autocomplete: "off", disabled:"true",placeholder:"**********", class:"grey-text"
-									-#%input#passOne.validate{placeholder:"********", disabled:"", type:"text"}
-								#confirmar-col.col.s12.input-field.ocultado
-									= f.password_field :password_confirmation, autocomplete: "off" , disabled:"true",placeholder:"**********"
-									-#%input#passTwo.validate{placeholder:"********", disabled:"", type:"text"}
-					#validarPass.col.s12.m6.ocultado.white-text
-						%h5.orange-text.text-darken-1 Ingresa tu contraseña antigua para guardar los cambios:
-						.input-field
-							= f.label :current_password, class:"white-text"
-							= f.password_field :current_password, autocomplete: "off",disabled:"true"
-					.col.s12.m6.dato
-						%a#cancelarDatosProfile.btn-flat.waves-effect.orange-text.text-darken-1.ocultado{href:"#!"} Cancelar
-						%a#editarDatosProfile.btn.waves-effect.grey-text.text-darken-4.orange{href:"#!"} Editar
-						= f.submit "GUARDAR", class:"btn waves-effect grey-text text-darken-4 orange ocultado", id:"editar-devise"
+				= render "reg"
+				

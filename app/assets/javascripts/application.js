@@ -18,4 +18,4 @@
 //= require materialize/extras/nouislider
 //= require gliphy
 //= require epiceditor
-// require turbolinks
+//= require turbolinks

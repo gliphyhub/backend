@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(document).on('turbolinks:load', function() {
 	particleground(document.getElementById('particles'), {
 		dotColor: 'rgba(240,240,240,0.4)',
 		lineColor: 'rgba(240,240,240,0.4)',
@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	});
 	var intro = document.getElementById('intro');
 	//intro.style.marginTop = -intro.offsetHeight / 2 + 'px';
-}, false);
 
-$(function() {
 	//Efecto parallax
 	$('.parallax').parallax();
 

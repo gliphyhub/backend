@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   put "ver/:id",to: 'comunicados#visitar', as: 'ver'
   get "fijar/:id",to: 'comunicados#fijar', as: 'fijar'
 
+
   #devise_for :users, controllers: { registrations: 'users/registrations' }
   #devise_scope :user do
   # get '/users/sign_out' => 'devise/sessions#destroy'
