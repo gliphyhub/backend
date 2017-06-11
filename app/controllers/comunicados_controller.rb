@@ -2,6 +2,7 @@ class ComunicadosController < ApplicationController
   before_action :set_comunicado, only: [:destroy,:visitar,:fijar]
   before_action :authenticate_user!
   before_action :solo_admin!, only:[:new,:create,:destroy,:fijar]
+  before_action :solo_perfilados
 
   Ruta_directorio_archivos_admin = "public/admin/archivos"
 
@@ -28,7 +29,11 @@ class ComunicadosController < ApplicationController
     if current_user.tipo.id == 1
       @comunicados = Comunicado.paginate(:page => params[:page], :per_page => 9).order('prioridad DESC, created_at DESC')
     elsif current_user.tipo.id == 2
-      @comunicados = current_user.perfil_profesor.comunicados.paginate(:page => params[:page], :per_page => 9).order('prioridad DESC, created_at DESC')        
+      if current_user.perfilado == true
+        @comunicados = current_user.perfil_profesor.comunicados.paginate(:page => params[:page], :per_page => 9).order('prioridad DESC, created_at DESC')
+      else
+        @comunicados = Comunicado.paginate(:page => params[:page], :per_page => 9).order('prioridad DESC, created_at DESC')
+      end
     end
   end
 
@@ -406,5 +411,4 @@ class ComunicadosController < ApplicationController
                                          :mensaje,
                                          :mensaje_markdown)
     end
-
 end

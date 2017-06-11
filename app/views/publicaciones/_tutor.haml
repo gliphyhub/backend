@@ -1,82 +1,88 @@
 .row
 	#parte-izquierda.col.s12.animar		
 		-#======== CARDS =======
-		-if @publicaciones.size != 0
-			#cards-comunicados.col.s12
-				%h3.red-text.truncate.center-align Publicaciones
-				.row
-					-lim = @publicaciones.size
-					-x = 1
-					-@publicaciones.each do |w|
-						-if (x-1)%3 == 0
-							.col.s12.hide-on-med-and-down
-						.col.s12.m6.l4{style:"margin-bottom: 10px"}
-							.card.contenido-comunicado.hoverable
-								.head-card{style:"background-color: #{w.materia.color.color}"}
-									%span.card-title= w.titulo
-								.card-content.principal
-									%p.indigo-text.accent-1-text.truncate.etiqueta
-										%i.material-icons.left equalizer
-										%span= w.visitas
-									%p.indigo-text.accent-1-text.truncate.etiqueta
-										%i.material-icons.left today
-										%span= "Publicado #{w.created_at.to_date}"
-									%p.indigo-text.accent-1-text.truncate.etiqueta
-										%i.material-icons.left date_range
-										%span= "Termino #{w.fecha_de_termino}"
-									%p.indigo-text.accent-1-text.truncate.etiqueta
-										%i.material-icons.left history
-										-dias_rest=(w.fecha_de_termino - w.created_at.to_date).to_i
-										-termino = (w.fecha_de_termino - Date.today.to_date).to_i
-										-if termino == 0
-											%span{style:"color:red"} ¡Hoy es el día límite!
-										-elsif termino > 0
-											%span Faltan #{dias_rest} dia(s)
-										-elsif termino < 0
-											%span Esta tarea finalizó
-									%p.indigo-text.accent-1-text.truncate.etiqueta
-										%i.material-icons.left person
-										%span= "De #{w.perfil_profesor.nombre}"
-									%p.indigo-text.accent-1-text.truncate.etiqueta
-										%i.material-icons.left book
-										%span= "Materia: #{w.materia.materia}"
-									%p.indigo-text.accent-1-text.etiqueta
-										%i.material-icons.left group
-										%span Para mi
-									-# -if w.prioridad == true
-									-# 	%p.indigo-text.accent-1-text.truncate.etiqueta
-									-# 		%i.material-icons.left announcement
-									-# 		%span URGENTE
-									%p.indigo-text.accent-1-text.etiqueta
-										%i.material-icons.left watch_later
-										%span Hace: #{time_ago_in_words(w.created_at)}
-								.desplegable.card-content
-									.divider
-									.card-message
-										%p.text-normal= Sanitize.fragment(w.mensaje, Sanitize::Config::RELAXED).html_safe
-									%p{style:"margin-top: 1em"}	 
-										- @archi.each do |m| 
-											- if m.publicacion_id == w.id
-												- @archivos.each do |a| 
-													-if a == m.nombre
-														.chip.trun
-															- if m == "." || m == ".." then next end
-															%i.icono-on-chip.material-icons attachment
-															-#%a{:target => "_blank", :href => "ruta_del_archivo/#{a}"}
-															%a.grey-text.text-darken-1{taget: "_blank", href:"/prof/archivos/#{a}"}= a
-									
-									.card-action.grey.lighten-2
-										.row
-											.col.s12.center-align
-												=image_tag w.perfil_profesor.user.gravatar_url(default: 'mm')
-											.col.s12.center-align
-												%h4.truncate= w.perfil_profesor.nombre
-								.card-action.grey.lighten-2.boot.center
-									= link_to "VER MAS",visita_path(w),:method => :put,id:"#{x}",class:"btn waves-effect para-ver"
-						-x += 1
-				.col.s12.center
-					%br
-					%h4= will_paginate @publicaciones
+		-unless @publicaciones.nil?
+			-if @publicaciones.size !=0
+				#cards-comunicados.col.s12
+					%h3.red-text.truncate.center-align Publicaciones
+					.row
+						-lim = @publicaciones.size
+						-x = 1
+						-@publicaciones.each do |w|
+							-if (x-1)%3 == 0
+								.col.s12.hide-on-med-and-down
+							.col.s12.m6.l4{style:"margin-bottom: 10px"}
+								.card.contenido-comunicado.hoverable
+									.head-card{style:"background-color: #{w.materia.color.color}"}
+										%span.card-title= w.titulo
+									.card-content.principal
+										%p.indigo-text.accent-1-text.truncate.etiqueta
+											%i.material-icons.left equalizer
+											%span= w.visitas
+										%p.indigo-text.accent-1-text.truncate.etiqueta
+											%i.material-icons.left today
+											%span= "Publicado #{w.created_at.to_date}"
+										%p.indigo-text.accent-1-text.truncate.etiqueta
+											%i.material-icons.left date_range
+											%span= "Termino #{w.fecha_de_termino}"
+										%p.indigo-text.accent-1-text.truncate.etiqueta
+											%i.material-icons.left history
+											-dias_rest=(w.fecha_de_termino - w.created_at.to_date).to_i
+											-termino = (w.fecha_de_termino - Date.today.to_date).to_i
+											-if termino == 0
+												%span{style:"color:red"} ¡Hoy es el día límite!
+											-elsif termino > 0
+												%span Faltan #{dias_rest} dia(s)
+											-elsif termino < 0
+												%span Esta tarea finalizó
+										%p.indigo-text.accent-1-text.truncate.etiqueta
+											%i.material-icons.left person
+											%span= "De #{w.perfil_profesor.nombre}"
+										%p.indigo-text.accent-1-text.truncate.etiqueta
+											%i.material-icons.left book
+											%span= "Materia: #{w.materia.materia}"
+										%p.indigo-text.accent-1-text.etiqueta
+											%i.material-icons.left group
+											%span Para mi
+										-# -if w.prioridad == true
+										-# 	%p.indigo-text.accent-1-text.truncate.etiqueta
+										-# 		%i.material-icons.left announcement
+										-# 		%span URGENTE
+										%p.indigo-text.accent-1-text.etiqueta
+											%i.material-icons.left watch_later
+											%span Hace: #{time_ago_in_words(w.created_at)}
+									.desplegable.card-content
+										.divider
+										.card-message
+											%p.text-normal= Sanitize.fragment(w.mensaje, Sanitize::Config::RELAXED).html_safe
+										%p{style:"margin-top: 1em"}	 
+											- @archi.each do |m| 
+												- if m.publicacion_id == w.id
+													- @archivos.each do |a| 
+														-if a == m.nombre
+															.chip.trun
+																- if m == "." || m == ".." then next end
+																%i.icono-on-chip.material-icons attachment
+																-#%a{:target => "_blank", :href => "ruta_del_archivo/#{a}"}
+																%a.grey-text.text-darken-1{taget: "_blank", href:"/prof/archivos/#{a}"}= a
+										
+										.card-action.grey.lighten-2
+											.row
+												.col.s12.center-align
+													=image_tag w.perfil_profesor.user.gravatar_url(default: 'mm')
+												.col.s12.center-align
+													%h4.truncate= w.perfil_profesor.nombre
+									.card-action.grey.lighten-2.boot.center
+										= link_to "VER MAS",visita_path(w),:method => :put,id:"#{x}",class:"btn waves-effect para-ver"
+							-x += 1
+					.col.s12.center
+						%br
+						%h4= will_paginate @publicaciones
+			-else
+				.col.s12.center{style:"margin-top:80px"}
+				%h4.center-align No hay publicaciones
+				%br/
+				%br/
 		-else				
 			.col.s12.center{style:"margin-top:80px"}
 				%h4.center-align No hay publicaciones

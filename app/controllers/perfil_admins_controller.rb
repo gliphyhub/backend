@@ -63,7 +63,7 @@ class PerfilAdminsController < ApplicationController
     @perfil_admin.destroy
     @perfil_admin.user.update(perfilado:false)
     respond_to do |format|
-      format.html { redirect_to perfil_admins_url, notice: 'Perfil fue eliminado correctamente' }
+      format.html { redirect_to perfil_admins_url, notice: 'Perfil de admin fue eliminado correctamente' }
       #format.json { head :no_content }
     end
   end

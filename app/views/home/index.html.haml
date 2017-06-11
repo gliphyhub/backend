@@ -1,4 +1,4 @@
--if current_user.menu == true
+-if current_user.menu == true &&(current_user.tipo.id <= 2)
 	-@ver="navegacion-espacio"
 -else
 	-@ver=""
@@ -32,5 +32,5 @@
 				= line_chart Publicacion.where(perfil_profesor_id:current_user.perfil_profesor.id).group(:titulo).order("created_at DESC").limit(10).sum(:visitas), xtitle: "Publicacion", ytitle: "Visitas"
 		-elsif current_user.tipo.id == 4 && current_user.perfilado == true
 			=render "publicaciones/alumnos_pub"
-		-else current_user.tipo.id == 4 && current_user.perfilado == true
+		-elsif current_user.tipo.id == 4 && current_user.perfilado == true
 			=render "comunicados/tutor"

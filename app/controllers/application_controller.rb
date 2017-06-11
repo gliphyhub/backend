@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
   #def authenticate_admin!
   #  redirect_to root_path unless user_signed_in? && current_user.tipo.id == 1
   #end
+  def solo_perfilados
+    redirect_to root_path if current_user.perfilado !=true
+  end
   def solo_admin!
     redirect_to root_path if current_user.tipo.id!=1 || current_user.perfilado != true
   end

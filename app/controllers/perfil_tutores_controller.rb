@@ -62,7 +62,7 @@ class PerfilTutoresController < ApplicationController
     @perfil_tutor.destroy
     @perfil_tutor.user.update(perfilado:false)
     respond_to do |format|
-      format.html { redirect_to perfil_tutores_url, notice: 'Perfil fue eliminado correctamente' }
+      format.html { redirect_to perfil_tutores_url, notice: 'Perfil tutor fue eliminado correctamente' }
       #format.json { head :no_content }
     end
   end

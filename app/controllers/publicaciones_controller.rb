@@ -1,8 +1,9 @@
 class PublicacionesController < ApplicationController
-  before_action :set_publicacion, only: [:destroy,:visitar]#:show,
+  before_action :set_publicacion, only: [:destroy,:visitar]
   before_action :authenticate_user!
   before_action :solo_prof!, only:[:new,:create]
   before_action :solo_admin!, only:[:destroy]
+  before_action :solo_perfilados
 
   Ruta_directorio_archivos = "public/prof/archivos"
   # GET /publicaciones

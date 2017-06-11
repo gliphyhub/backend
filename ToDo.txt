@@ -1,51 +1,4 @@
-crear usuarios de admin,  cambiar los before_action de los controllers para editar...//done
-
-validate al correo => registro, edit, login.../// done
-
-validar con acentos .../// done
-
-todos puedan editar mi perfil../// done
-
-opcional los numero de recados...
-erroresen lista y.... validar//// done
-
-mark down.../// done 
-
-paginacion...//done
-
-gravartar...//done
-
-graficas...//done
-
-disñeo a calendario... /// done
-terminar diseño de editar perfiles... // done
-
-ceular max 10..../done
-
-aps con acentos...//done
-
-Agregarle '(s)' a nombre../done
-
-
-nadie puede editar publicacioness...///done
-
-solo admin delete publicaciones.....//done 
-
-
-
-
-vitas y dias........./ fking done!!!!!!!!!
-
-rails admin.... .// done (checar y confiiguara tablas de publicaciones)
-
-comunicados... //// done!!!!!
-
-
-notificaciones.... ///
-
 filtros para ver..
-
-
 
 mails...
 
@@ -55,7 +8,8 @@ drag and drop...
 
 diseño de la paginacion...
 
+menu sea visible o no segunla bd....
 
-
+Agregar boton de eliminar en los perfiles en el show..
 
 la barra ya fucinna cambiar en layouy y new de cada pefil, index de ublicaciones para admin 

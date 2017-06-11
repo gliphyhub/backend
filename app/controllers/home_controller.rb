@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
  Ruta_directorio_archivos = "public/prof/archivos"
  Ruta_directorio_archivos_admin = "public/admin/archivos"
+ 
   def bienvenida
   end
 
@@ -13,14 +14,14 @@ class HomeController < ApplicationController
   end
 
   def index
-    @comunicados = Comunicado.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
-    @archi_c = ComunicadoArchivo.select("id, nombre, ruta, comunicado_id")
-      @archivos_c = Dir.entries(Ruta_directorio_archivos_admin)
-      @publicaciones = Publicacion.all.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
-       @archi = Archivo.select("id, nombre, ruta, publicacion_id")
-       @notificationes= Comunicado.all.limit(10).order('prioridad DESC, created_at DESC')
-    #==================0cambiar tamebin en el home controler=======================
-    @archivos = Dir.entries(Ruta_directorio_archivos)
+    # @comunicados = Comunicado.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+    # @archi_c = ComunicadoArchivo.select("id, nombre, ruta, comunicado_id")
+    # @archivos_c = Dir.entries(Ruta_directorio_archivos_admin)
+    # @publicaciones = Publicacion.all.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+    # @archi = Archivo.select("id, nombre, ruta, publicacion_id")
+    # @notificationes= Comunicado.all.limit(10).order('prioridad DESC, created_at DESC')
+    # #==================0cambiar tamebin en el home controler=======================
+    # @archivos = Dir.entries(Ruta_directorio_archivos)
     @seccion="Inicio"
     if current_user.tipo.id == 1 && current_user.perfil_admin.nil?
       @perfil_admin = PerfilAdmin.new
@@ -45,7 +46,9 @@ class HomeController < ApplicationController
       @archi = Archivo.select("id, nombre, ruta, publicacion_id")
       @archivos = Dir.entries(Ruta_directorio_archivos)
       @comunicados = current_user.perfil_tutor.comunicados.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
-      @publicaciones = current_user.perfil_tutor.perfil_alumnos.last.grupo.comunicados.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+      if current_user.perfil_tutor.perfil_alumnos.size != 0
+        @publicaciones = current_user.perfil_tutor.perfil_alumnos.last.grupo.comunicados.paginate(:page => params[:page], :per_page => 9).order('created_at DESC')
+      end
     end
   end
 

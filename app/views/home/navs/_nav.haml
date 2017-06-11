@@ -36,7 +36,7 @@
 		%li.white-text
 			%h6.center-align.upper Notificaciones
 		%ul.notificaciones
-			-if @notificationes.size !=0
+			-unless @notificationes.nil?
 				-@notificationes.each do |item| 
 					%li 
 						%ul.collapsible.collapsible-accordion
