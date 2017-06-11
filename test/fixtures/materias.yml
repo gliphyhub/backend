@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: materias
-#
-#  id         :integer          not null, primary key
-#  materia    :string
-#  nivel_id   :integer
-#  grado_id   :integer
-#  color_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
-
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:

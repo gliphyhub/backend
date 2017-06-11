@@ -2,60 +2,83 @@ bundle exec annotate
 rails db:migrate VERSION=0
 
 rails g model Tipo tipo_de_usuario
+n
 
-rails g model Genero sexo
+rails g model Genero sexo 
+n
 
-rails g devise User tipo:belongs_to menu:boolean
+rails g model Generacion generacion 
+n
 
-rails g scaffold PerfilAdmin user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+rails g model Turno turno 
+n
 
-rails g scaffold PerfilProfesor user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
-
-rails g scaffold PerfilTutor user:belongs_to ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
-
-rails g scaffold PerfilAlumno user:belongs_to matricula ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados grupo:belongs_to generacion:belongs_to perfil_tutor:belongs_to
-
-rails g model Generacion generacion
-
-rails g model Grupo grupo nivel:belongs_to grado:belongs_to turno:belongs_to
-
-rails g model Nivel nivel
+rails g model Nivel nivel 
+n
 
 rails g model Grado grado
+n
 
-rails g model Turno turno
+rails g model Grupo grupo nivel:belongs_to grado:belongs_to turno:belongs_to
+n
 
 rails g model Color color descripcion
+n
+
+rails g devise User tipo:belongs_to menu:boolean perfilado:boolean
+
+rails g model PerfilAdmin user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+n
+
+rails g model PerfilProfesor user:belongs_to nss ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+n
+
+rails g model PerfilTutor user:belongs_to ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados
+n
+
+rails g model PerfilAlumno user:belongs_to matricula ap_paterno ap_materno nombre fecha_de_nacimiento:date genero:belongs_to calle numero_exterior numero_interior colonia delegacion_municipio codigo_postal telefono_casa telefono_celular telefono_recados extension_recados grupo:belongs_to generacion:belongs_to perfil_tutor:belongs_to
+n
 
 rails g model Materia materia nivel:belongs_to grado:belongs_to color:belongs_to
+n
 
 rails g model ProfesorGrupo perfil_profesor:belongs_to grupo:belongs_to
+n
 
 rails g model ProfesorMateria perfil_profesor:belongs_to materia:belongs_to
+n
 
 rails g model MateriaGrupo materia:belongs_to grupo:belongs_to
+n
 
-rails g scaffold Publicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date  visitas:integer perfil_profesor:belongs_to materia:belongs_to
-
-rails g scaffold AdminPublicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_admin:belongs_to
-
-rails d scaffold AdminPublicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_admin:belongs_to
-
-rails g model AdminArchivo admin_publicacion:belongs_to nombre ruta
-rails d model AdminArchivo admin_publicacion:belongs_to nombre ruta
-
-rails g model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
-rails d model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
+rails g model Publicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date  visitas:integer perfil_profesor:belongs_to materia:belongs_to
+n
 
 rails g model Archivo publicacion:belongs_to nombre ruta
+n
 
 rails g model PublicacionGrupo grupo:belongs_to publicacion:belongs_to
+n
 
-rails g scaffold Comunicado titulo mensaje:text mensaje_markdown:text visitas:integer prioridad:boolean perfil_admin:belongs_to
+rails g model Comunicado titulo mensaje:text mensaje_markdown:text visitas:integer prioridad:boolean perfil_admin:belongs_to
+n
+
 rails g model ComunicadoArchivo comunicado:belongs_to nombre ruta
-
+n
 
 rails g model ComunicadoGrupo grupo:belongs_to comunicado:belongs_to
-rails g model ComunicadoProfesor perfil_profesor:belongs_to comunicado:belongs_to
-rails g model ComunicadoTutor perfil_tutor:belongs_to comunicado:belongs_to
+n
 
+rails g model ComunicadoProfesor perfil_profesor:belongs_to comunicado:belongs_to
+n
+
+rails g model ComunicadoTutor perfil_tutor:belongs_to comunicado:belongs_to
+n
+
+
+rails g scaffold AdminPublicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_admin:belongs_to
+rails d scaffold AdminPublicacion titulo mensaje:text mensaje_markdown:text fecha_de_termino:date prioridad:boolean perfil_admin:belongs_to
+rails g model AdminArchivo admin_publicacion:belongs_to nombre ruta
+rails d model AdminArchivo admin_publicacion:belongs_to nombre ruta
+rails g model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to
+rails d model ProfesorPublicacion publicacion:belongs_to perfil_profesor:belongs_to

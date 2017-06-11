@@ -1,20 +1,9 @@
-# == Schema Information
-#
-# Table name: publicacion_grupos
-#
-#  id             :integer          not null, primary key
-#  grupo_id       :integer
-#  publicacion_id :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#
-
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   grupo: one
-  perfil_profesor: one
+  publicacion: one
 
 two:
   grupo: two
-  perfil_profesor: two
+  publicacion: two

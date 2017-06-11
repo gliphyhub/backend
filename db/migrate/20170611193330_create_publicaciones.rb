@@ -6,8 +6,8 @@ class CreatePublicaciones < ActiveRecord::Migration[5.0]
       t.text :mensaje_markdown
       t.date :fecha_de_termino
       t.integer :visitas, default: 0
-      t.belongs_to :perfil_profesor
-      t.belongs_to :materia
+      t.belongs_to :perfil_profesor, foreign_key: true
+      t.belongs_to :materia, foreign_key: true
 
       t.timestamps
     end

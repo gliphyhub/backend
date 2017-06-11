@@ -1,29 +1,3 @@
-# == Schema Information
-#
-# Table name: perfil_admins
-#
-#  id                   :integer          not null, primary key
-#  user_id              :integer
-#  nss                  :string
-#  ap_paterno           :string
-#  ap_materno           :string
-#  nombre               :string
-#  fecha_de_nacimiento  :date
-#  genero_id            :integer
-#  calle                :string
-#  numero_exterior      :string
-#  numero_interior      :string
-#  colonia              :string
-#  delegacion_municipio :string
-#  codigo_postal        :string
-#  telefono_casa        :string
-#  telefono_celular     :string
-#  telefono_recados     :string
-#  extension_recados    :string
-#  created_at           :datetime         not null
-#  updated_at           :datetime         not null
-#
-
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
@@ -32,7 +6,7 @@ one:
   ap_paterno: MyString
   ap_materno: MyString
   nombre: MyString
-  fecha_de_nacimiento: 2017-05-21
+  fecha_de_nacimiento: 2017-06-11
   genero: one
   calle: MyString
   numero_exterior: MyString
@@ -51,7 +25,7 @@ two:
   ap_paterno: MyString
   ap_materno: MyString
   nombre: MyString
-  fecha_de_nacimiento: 2017-05-21
+  fecha_de_nacimiento: 2017-06-11
   genero: two
   calle: MyString
   numero_exterior: MyString

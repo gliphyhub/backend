@@ -1,19 +1,3 @@
-# == Schema Information
-#
-# Table name: publicaciones
-#
-#  id                 :integer          not null, primary key
-#  titulo             :string
-#  mensaje            :text
-#  mensaje_markdown   :text
-#  fecha_de_termino   :date
-#  visitas            :integer          default("0")
-#  perfil_profesor_id :integer
-#  materia_id         :integer
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#
-
 require 'test_helper'
 
 class PublicacionTest < ActiveSupport::TestCase
