@@ -21,15 +21,23 @@
 				=line_chart User.group(:sign_in_count).sum(:id)
 			.col.s12.center
 				%h3 Vistas por publicación
-				= column_chart Publicacion.group(:titulo).order("created_at DESC").limit(15).sum(:visitas), xtitle: "Publicacion", ytitle: "Visitas"
-				
+				-if Publicacion.all.size != 0
+					=column_chart Publicacion.group(:titulo).order("created_at DESC").limit(15).sum(:visitas), xtitle: "Publicacion", ytitle: "Visitas"
+				-else
+					%h4 No hay nada aún				
 			.col.s12.center
 				%h3 Vistas por Comunicados
-				= bar_chart Comunicado.group(:titulo).limit(10).order("created_at DESC").sum(:visitas), xtitle: "Comunicadoss", ytitle: "Visitas"
+				-if Publicacion.all.size != 0
+					= bar_chart Comunicado.group(:titulo).limit(10).order("created_at DESC").sum(:visitas), xtitle: "Comunicadoss", ytitle: "Visitas"
+				-else
+					%h4 No hay nada aún
 		-elsif current_user.tipo.id == 2 && current_user.perfilado == true
 			.col.s12.center
 				%h3 Alcance de mis publicaciones
-				= line_chart Publicacion.where(perfil_profesor_id:current_user.perfil_profesor.id).group(:titulo).order("created_at DESC").limit(10).sum(:visitas), xtitle: "Publicacion", ytitle: "Visitas"
+				-if Publicacion.where(perfil_profesor_id:current_user.perfil_profesor.id).size != 0
+					= line_chart Publicacion.where(perfil_profesor_id:current_user.perfil_profesor.id).group(:titulo).order("created_at DESC").limit(10).sum(:visitas), xtitle: "Publicacion", ytitle: "Visitas"
+				-else
+					%h4 No hay nada aún
 		-elsif current_user.tipo.id == 4 && current_user.perfilado == true
 			=render "publicaciones/alumnos_pub"
 		-elsif current_user.tipo.id == 4 && current_user.perfilado == true
